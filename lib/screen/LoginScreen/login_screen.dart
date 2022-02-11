@@ -7,15 +7,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/screen/components/buttons.dart';
+import 'package:hotelmanagement/screen/components/imput.dart';
+import 'package:hotelmanagement/screen/components/login.dart';
 import 'package:hotelmanagement/screen/elenco_ospiti_generale.dart';
 import 'package:page_transition/page_transition.dart';
 
-class login extends StatefulWidget {
+class login_screen extends StatefulWidget {
   @override
-  _Login_mobileState createState() => _Login_mobileState();
+  _login_screen_mobileState createState() => _login_screen_mobileState();
 }
 
-class _Login_mobileState extends State<login> {
+class _login_screen_mobileState extends State<login_screen> {
   @override
   Widget build(BuildContext context) {
     String box;
@@ -57,8 +60,8 @@ class _Login_mobileState extends State<login> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  LoginImput(label: "Email", controller: email),
-                  LoginImput(
+                  imput_text(label: "Email", controller: email),
+                  imput_text(
                       label: "Password",
                       controller: password,
                       obscureText: true)
@@ -74,33 +77,18 @@ class _Login_mobileState extends State<login> {
                     color: Colors.blue,
                     height: 60,
                     onPressed: () async {
-                      try {
-                        UserCredential userCredential = await FirebaseAuth
-                            .instance
-                            .signInWithEmailAndPassword(
-                                email: email.text, password: password.text);
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'user-not-found') {
-                          box = "Utente  non trovata";
-                          showAlertDialog(context, box);
-                        } else if (e.code == 'wrong-password') {
-                          box = "La password é errata";
-                          showAlertDialog(context, box);
-                        } else {
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.leftToRight,
-                                  child: ElencoOspitiGenerali()));
-                        }
-                      }
+                      login(
+                          context: context,
+                          box: box,
+                          email: email,
+                          password: password);
                     },
                     elevation: 20,
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(50)),
                     child: Text(
-                      "Login",
+                      "Accedi",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 25,
@@ -137,66 +125,5 @@ class _Login_mobileState extends State<login> {
         ),
       ),
     );
-  }
-
-  Widget LoginImput({controller, label, obscureText = false}) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.all(10),
-        child: TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            labelText: label,
-            hintText: "inserisci " + label,
-          ),
-          keyboardType: TextInputType.emailAddress,
-          controller: controller,
-        ),
-      )
-    ]);
-  }
-
-  showAlertDialog(BuildContext context, box1) {
-    // set up the button
-    Widget okButton = MaterialButton(
-      child: Text("Ok"),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-    AlertDialog alert;
-    CupertinoAlertDialog alertios;
-    // set up the AlertDialog
-    if (Platform.isAndroid) {
-      // Android-specific code
-      alert = AlertDialog(
-        title: Text(box1),
-        actions: [
-          okButton,
-        ],
-        elevation: 24.0,
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    } else {
-      // iOS-specific code
-      alertios = CupertinoAlertDialog(
-        title: Text(box1),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertios;
-        },
-      );
-    }
   }
 }
