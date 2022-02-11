@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "288333512846",
+    "firebase_url": "https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hotel-management-9a530",
+    "storage_bucket": "hotel-management-9a530.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288333512846:android:d118dacdb95d7c7d3ac9df",
+        "android_client_info": {
+          "package_name": "com.antoninoincorvaia.hotel_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288333512846-ivucjc4pfv2ttbvkghmf27mpvsug975k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.antoninoincorvaia.hotel_management",
+            "certificate_hash": "985d76610f4f2f59e48028897f6956cb1b45e6e7"
+          }
+        },
+        {
+          "client_id": "288333512846-4c49uoidbiu6k5tsa0sm9temfmmlal6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0rrVt5n_pDlsiyU3A0rrnPWkdvwQY8fM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288333512846-4c49uoidbiu6k5tsa0sm9temfmmlal6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

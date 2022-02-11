@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>907748583573-2nsit1cbfitdlc74i13dqajrafp9vejt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.907748583573-2nsit1cbfitdlc74i13dqajrafp9vejt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDh8gAI3OoVxzm2Dj62yImH6cvFMI0otSg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>907748583573</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.antoninoincorvaia.hotel_management
+</string>
+	<key>PROJECT_ID</key>
+	<string>hotel_management-1d448</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hotel_management-1d448.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:907748583573:ios:e942c5ca76d156c784d39c</string>
+	<key>DATABASE_URL</key>
+	<string>https://hotel_management-1d448-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
