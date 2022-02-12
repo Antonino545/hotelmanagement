@@ -1,17 +1,10 @@
 // ignore: file_names
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
-import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/imput.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
-import 'package:hotelmanagement/screen/elenco_ospiti_generale.dart';
-import 'package:page_transition/page_transition.dart';
 
 class login_screen extends StatefulWidget {
   @override

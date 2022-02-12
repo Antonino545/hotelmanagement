@@ -62,7 +62,7 @@ Widget button({text, onpressed, context}) {
         height: 50,
         width: 500.0,
         child: OutlinedButton(
-          onPressed: () => {onpressed()},
+          onPressed: onpressed(),
           child: Text(
             text,
           ),
