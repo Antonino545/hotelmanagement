@@ -3,22 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>907748583573-2nsit1cbfitdlc74i13dqajrafp9vejt.apps.googleusercontent.com</string>
+	<string>288333512846-9q2e54sok99ht3gviki4bmh7qfrlnngr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.907748583573-2nsit1cbfitdlc74i13dqajrafp9vejt</string>
+	<string>com.googleusercontent.apps.288333512846-9q2e54sok99ht3gviki4bmh7qfrlnngr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>288333512846-k1qkicgnieras1a7u4udg770r8ndcgo3.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDh8gAI3OoVxzm2Dj62yImH6cvFMI0otSg</string>
+	<string>AIzaSyDhff4EVnSp5ItZSFnLo303kftIHbjbDmE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>907748583573</string>
+	<string>288333512846</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.antoninoincorvaia.hotel_management
-</string>
+	<string>com.antoninoincorvaia.hotelmanagement</string>
 	<key>PROJECT_ID</key>
-	<string>hotel_management-1d448</string>
+	<string>hotel-management-9a530</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hotel_management-1d448.appspot.com</string>
+	<string>hotel-management-9a530.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -30,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:907748583573:ios:e942c5ca76d156c784d39c</string>
+	<string>1:288333512846:ios:56ef68828c41ec793ac9df</string>
 	<key>DATABASE_URL</key>
-	<string>https://hotel_management-1d448-default-rtdb.europe-west1.firebasedatabase.app</string>
+	<string>https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
