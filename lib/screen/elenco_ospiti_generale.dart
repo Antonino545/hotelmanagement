@@ -88,9 +88,11 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                             padding: const EdgeInsets.all(5.0),
                             child: Row(
                               children: [
-                                Text("Prezzo Soggiorno: " +
-                                    documentSnapshot["Prezzo"].toString() +
-                                    "€"),
+                                Text(
+                                  "Prezzo Soggiorno: " +
+                                      documentSnapshot["Prezzo"].toString() +
+                                      "€",
+                                ),
                               ],
                             ),
                           ),

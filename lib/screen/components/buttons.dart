@@ -9,7 +9,10 @@ Widget button_ico({text, icon, onpressed, context}) {
         child: OutlinedButton.icon(
           onPressed: () => onpressed,
           label: Text(text),
-          icon: Image.asset('assets/' + icon, scale: 10),
+          icon: Image.asset(
+            'assets/' + icon,
+            scale: 10,
+          ),
           style: OutlinedButton.styleFrom(
             elevation: 20,
             backgroundColor: Colors.blue,
