@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/imput.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 

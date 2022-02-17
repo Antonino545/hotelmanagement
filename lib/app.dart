@@ -9,10 +9,6 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false, //debug false
       home: welcome(), //Imposta come Home:Elenco Ospiti Attuali
       theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context)
-              .textTheme, // If this is not set, then ThemeData.light().textTheme is used.
-        ),
         //imposto il tema
         brightness: Brightness.dark,
         primaryColor: Colors.teal,

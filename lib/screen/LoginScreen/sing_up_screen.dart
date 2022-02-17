@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/imput.dart';
 import 'login_screen.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -48,90 +49,11 @@ class singup extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      Text(
-                        "Email",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                        ),
-                        controller: email,
-                      ),
-                      SizedBox(
-                        height: 30,
-                      )
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Password",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                        ),
-                        controller: password_1,
-                      ),
-                      SizedBox(
-                        height: 30,
-                      )
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Reinserisci Password",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white)),
-                        ),
-                        controller: password_2,
-                      ),
-                      SizedBox(
-                        height: 30,
-                      )
-                    ],
-                  ),
+                  imput_text(label: "Email", controller: email),
+                  imput_text(
+                      label: "Inserisci Password", controller: password_1),
+                  imput_text(
+                      label: "reinserire Password", controller: password_2),
                 ],
               ),
             ),
