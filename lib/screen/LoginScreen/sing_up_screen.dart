@@ -6,13 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/screen/components/login.dart';
 
 import '../components/imput.dart';
 import 'login_screen.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
-class singup extends StatelessWidget {
+class singup_screen extends StatelessWidget {
   get value => null;
 
   @override
@@ -28,8 +29,12 @@ class singup extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "Crea Account",
@@ -53,87 +58,61 @@ class singup extends StatelessWidget {
                   imput_text(
                       label: "Inserisci Password", controller: password_1),
                   imput_text(
-                      label: "reinserire Password", controller: password_2),
+                      label: "Reinserire Password", controller: password_2),
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                children: [
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    color: Colors.blue,
-                    height: 60,
-                    onPressed: () async {
-                      if (password_1.text != password_2.text) {
-                        box = "Le password non concidono";
-                        showAlertDialog(context, box);
-                      } else {
-                        try {
-                          UserCredential userCredential = await FirebaseAuth
-                              .instance
-                              .createUserWithEmailAndPassword(
-                                  email: email.text, password: password_1.text);
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == 'weak-password') {
-                            box =
-                                "Le password non rispetta i criteri di sicurezza";
-                            showAlertDialog(context, box);
-                          } else if (e.code == 'email-already-in-use') {
-                            box = "La mail e già in uso";
-                            showAlertDialog(context, box);
-                          }
-                        }
-                      }
-                      var currentUser = FirebaseAuth.instance.currentUser;
-                      print("UID: " + currentUser.uid.toString());
-                      var firebaseUser = FirebaseAuth.instance.currentUser;
-                      var firebase = FirebaseFirestore.instance;
-                      firebase.collection("Users").doc(currentUser.uid).set({
-                        "Mail": currentUser.email,
-                      }, SetOptions(merge: true)).then((_) {
-                        print("success!");
-                      });
-                    },
-                    elevation: 20,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Crea Account",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 25,
-                      ),
+            Column(
+              children: [
+                MaterialButton(
+                  minWidth: 200,
+                  color: Colors.blue,
+                  height: 60,
+                  onPressed: () async {
+                    singup(
+                        password_1: password_1,
+                        password_2: password_2,
+                        email: email,
+                        context: context,
+                        box: box);
+                  },
+                  elevation: 20,
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Text(
+                    "Crea Account",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Hai un account?",
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => login_screen())),
-                        child: Text(
-                          "Accedi al tuo account",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Hai un account?",
+                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => login_screen())),
+                      child: Text(
+                        "Accedi al tuo account",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

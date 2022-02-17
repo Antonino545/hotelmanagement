@@ -61,7 +61,7 @@ class _welcomeState extends State<welcome> {
                           context: context),
                       button_pageTransition(
                           text: "Crea un Account",
-                          onpressed: singup(),
+                          onpressed: singup_screen(),
                           context: context),
                       const SizedBox(
                         height: 10,

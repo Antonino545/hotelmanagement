@@ -101,7 +101,8 @@ class _login_screen_mobileState extends State<login_screen> {
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => singup())),
+                            MaterialPageRoute(
+                                builder: (context) => singup_screen())),
                         child: Text(
                           "Crea Account",
                           style: TextStyle(
