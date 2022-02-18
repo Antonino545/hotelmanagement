@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
-import 'package:hotelmanagement/Screen/elenco_ospiti_generale.dart';
+
+import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
 class ElencoOspiti extends StatefulWidget {
   String CognomePrenotazione;

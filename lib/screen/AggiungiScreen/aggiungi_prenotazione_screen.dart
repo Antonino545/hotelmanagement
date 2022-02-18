@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
+import 'package:hotelmanagement/screen/components/input.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,6 @@ import 'package:hotelmanagement/drawer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import 'aggiungi_ospiti_screen.dart';
-import 'components/AlertDialog.dart';
-import 'components/imput.dart';
 
 class AggiungiPrenotazione extends StatefulWidget {
   @override
@@ -48,11 +48,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-
-
-      ),
+      appBar: AppBar(),
       drawer: DraweNavigation(),
       body: Center(
         child: SingleChildScrollView(
@@ -60,13 +56,14 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               Text(
                 "Aggiungi Ospiti",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              imput_text(" Cognome Prenotazione", false, CognomePrenotazioneController),
-              imput_text(" Numero Ospiti", false, NumeroOspitiController),
+              input_text(TextInputType.text, " Cognome Prenotazione", false,
+                  CognomePrenotazioneController),
+              input_text(TextInputType.text, " Numero Ospiti", false,
+                  NumeroOspitiController),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextButton(
@@ -77,26 +74,24 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         borderRadius: BorderRadius.all(Radius.circular(2))),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          _buildPopupDialog(context),
-                    );
+                    Alert(context, "inserire data di inizio e fine soggiorno");
                   },
-                  child: const Text("inserire Data di inizio e fine soggiorno"),
+                  child: Text("inserire Data di inizio e fine soggiorno"),
                 ),
               ),
-              imput_text("Prezzo soggiorno", false, PrezzoController),
-              imput_text(" Numero Di Telefono", false, NumeroOspitiController),
-              imput_text("Piano", false, Pianocontroller),
-
+              input_text(TextInputType.number, "Prezzo soggiorno", false,
+                  PrezzoController),
+              input_text(TextInputType.number, " Numero Di Telefono", false,
+                  NumeroOspitiController),
+              input_text(TextInputType.text, "Piano", false, Pianocontroller),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                     icon: Icon(Icons.add),
                     onPressed: () {
                       if (CognomePrenotazioneController.text.length == 0) {
-                        showAlertDialog(context, Parola = "Cognome Prenotazione");
+                        showAlertDialog(
+                            context, Parola = "Cognome Prenotazione");
                         return;
                       }
                       if (NumeroTelfonoController.text.length == 0) {
@@ -150,30 +145,38 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
     );
   }
 
-
-  Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
-      title: const Text('Inserire Data di inizio e fine soggiorno'),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SfDateRangePicker(
-              selectionMode: DateRangePickerSelectionMode.range,
-              onSelectionChanged: selectionChanged,
+  Future<void> Alert(BuildContext context, box) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(5),
+          content: SizedBox(
+            height: 300,
+            width: 250,
+            child: Scaffold(
+              body: Column(
+                children: [
+                  SfDateRangePicker(
+                    selectionMode: DateRangePickerSelectionMode.range,
+                    onSelectionChanged: selectionChanged,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            Center(
+              child: OutlinedButton(
+                child: Text('Okay'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
           ],
-        ),
-      ),
-      actions: <Widget>[
-        new TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Close'),
-        ),
-      ],
+        );
+      },
     );
   }
 

@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/components/buttons.dart';
-import 'package:hotelmanagement/screen/components/imput.dart';
+import 'package:hotelmanagement/screen/components/input.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
 class login_screen extends StatefulWidget {
@@ -54,8 +54,10 @@ class _login_screen_mobileState extends State<login_screen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  imput_text(" Email", false, email),
-                  imput_text(" Password", true, password),
+                  input_text(
+                      TextInputType.emailAddress, " Email", false, email),
+                  input_text(TextInputType.visiblePassword, " Password", true,
+                      password),
                 ],
               ),
             ),

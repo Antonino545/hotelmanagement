@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:hotelmanagement/Screen/AggiungiSpeseScreen.dart';
-import 'package:hotelmanagement/Screen/elenco_ospiti_attuali.dart';
-import 'package:hotelmanagement/Screen/elenco_ospiti_generale.dart';
-import 'package:hotelmanagement/screen/aggiungi_prenotazione_screen.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
+import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
+import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_attuali.dart';
+import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
-import 'Screen/elenco_spese.dart';
+import 'package:page_transition/page_transition.dart';
 
 class DraweNavigation extends StatefulWidget {
   @override

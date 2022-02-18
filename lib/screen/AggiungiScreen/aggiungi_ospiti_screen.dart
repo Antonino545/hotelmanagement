@@ -2,11 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:hotelmanagement/Screen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/Drawer.dart';
 import 'package:hotelmanagement/app.dart';
-
-import 'components/imput.dart';
+import 'package:hotelmanagement/screen/components/input.dart';
 
 class AggiungiOspitiScreen extends StatefulWidget {
   final String CognomePrenotazione;
@@ -39,43 +37,18 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           Text(
             "Aggiungi Ospiti",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          imput_text("Inserire Nome", false, NomeController),
-
-          Padding(
-            // Texfield Cognome
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                labelText: "Cognome",
-                hintText: "inserisci Cognome",
-              ),
-              controller: CognomeController,
-            ),
-          ),
-          Padding(
-            // Texfield CodiceFiscale
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                labelText: "Codice Fiscale",
-                hintText: "inserisci Codice Fiscale",
-              ),
-              controller: CodiceFiscaleController,
-            ),
-          ),
+          input_text(TextInputType.text, " Nome", false, NomeController),
+          input_text(
+              TextInputType.text, " Cognome", false, CodiceFiscaleController),
+          input_text(TextInputType.text, " Codice Fiscale", false,
+              CodiceFiscaleController),
           Padding(
             // Texfield Maggiorenne
             padding: const EdgeInsets.all(8.0),
@@ -85,26 +58,11 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
                   "Maggiorenne",
                   style: TextStyle(fontSize: 20),
                 ),
-                Expanded(
-                    child: Container(
-                  height: 20,
-                  width: 20,
-                )),
-                FlutterSwitch(
-                  //switch
-                  width: 100.0, //grandezza
-                  height: 50.0,
-                  valueFontSize: 20.0,
-                  toggleSize: 45.0,
+                Switch(
                   value: Maggiorenni,
-                  borderRadius: 30.0,
-                  padding: 8.0,
-                  showOnOff: true,
-                  onToggle: (val) {
-                    //val e un boleano
+                  onChanged: (value) {
                     setState(() {
-                      Maggiorenni = val;
-                      print(Maggiorenni);
+                      Maggiorenni = value;
                     });
                   },
                 ),

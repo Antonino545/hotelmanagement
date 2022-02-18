@@ -10,7 +10,7 @@ import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
 import '../components/AlertDialog.dart';
-import '../components/imput.dart';
+import '../components/input.dart';
 import 'login_screen.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -56,9 +56,12 @@ class singup_screen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  imput_text(" Email", false, email),
-                  imput_text(" Password", true, password_1),
-                  imput_text(" Password", true, password_2),
+                  input_text(
+                      TextInputType.emailAddress, " Email", false, email),
+                  input_text(TextInputType.visiblePassword, " Password", true,
+                      password_1),
+                  input_text(TextInputType.visiblePassword, " Password", true,
+                      password_2),
                 ],
               ),
             ),
@@ -142,48 +145,5 @@ class singup_screen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  showAlertDialog(BuildContext context, box1) {
-    // set up the button
-    Widget okButton = FlatButton(
-      child: Text("Ok"),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-    AlertDialog alert;
-    CupertinoAlertDialog alertios;
-    // set up the AlertDialog
-    if (Platform.isAndroid) {
-      // Android-specific code
-      alert = AlertDialog(
-        title: Text(box1),
-        actions: [
-          okButton,
-        ],
-        elevation: 24.0,
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    } else {
-      // iOS-specific code
-      alertios = CupertinoAlertDialog(
-        title: Text(box1),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertios;
-        },
-      );
-    }
   }
 }

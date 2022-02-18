@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
+import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
 import 'package:intl/intl.dart';
-import 'package:hotelmanagement/Screen/elenco_ospiti.dart';
 
 class ElencoOspitiAttuali extends StatefulWidget {
   @override
@@ -30,6 +30,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
               return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshots.data.docs.length,
+                  // ignore: missing_return
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data.docs[index];
@@ -115,8 +116,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                     }
                   });
             } else {
-              return Align(
-                alignment: FractionalOffset.center,
+              return Center(
                 child: CircularProgressIndicator(),
               );
             }

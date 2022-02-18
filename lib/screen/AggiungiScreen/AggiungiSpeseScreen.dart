@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
-
-import 'components/imput.dart';
+import 'package:hotelmanagement/screen/components/input.dart';
 
 class AggiungiSpeseScreen extends StatefulWidget {
   @override
@@ -25,9 +24,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       drawer: DraweNavigation(),
       body: Center(
         child: SingleChildScrollView(
@@ -39,10 +36,12 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
                 "Aggiungi Spese",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              imput_text("Nome spesa", false, NomeSpesaControlle),
-              imput_text("Descrizione", false, DescrizioneSpesaControlle),
-              imput_text("Costo spesa", false, CostoSpesaControlle),
-
+              input_text(
+                  TextInputType.text, "Nome spesa", false, NomeSpesaControlle),
+              input_text(TextInputType.text, "Descrizione", false,
+                  DescrizioneSpesaControlle),
+              input_text(TextInputType.number, "Costo spesa", false,
+                  CostoSpesaControlle),
               IconButton(
                   icon: Icon(Icons.add_shopping_cart),
                   onPressed: () {
