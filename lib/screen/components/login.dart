@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:js';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,38 +10,37 @@ import 'package:page_transition/page_transition.dart';
 
 import 'AlertDialog.dart';
 
-Future<void> login({context, box, email, password}) async {
+Future<void> login(
+    {context,
+    box,
+    TextEditingController email,
+    TextEditingController password}) async {
+  print(email.text);
+  print(password.text);
+
   try {
-    UserCredential userCredential = await FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email.text, password: password.text);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
-      box = "Utente  non trovata";
-      showAlertDialog(context, box);
+      print('No user found for that email.');
     } else if (e.code == 'wrong-password') {
-      box = "La password é errata";
-      showAlertDialog(context, box);
+      print('Wrong password provided for that user.');
+    }
+  }
+  FirebaseAuth.instance.userChanges().listen((User user) {
+    if (user == null) {
+      print('User is currently signed out!');
     } else {
       Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.leftToRight,
               child: ElencoOspitiGenerali()));
+      print('Login success');
     }
-  }
+  });
 }
 
-Future<void> singup(
-    [context, password_1, password_2, box, TextEditingController email]) async {
-  if (password_1.text != password_2.text) {
-    Alert(context, "Le password non coincidono");
-  } else {
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email.text, password: email.text);
-  }
-}
-
-signInWithGoogle()  {
-
-}
+signInWithGoogle() {}
 login_with_facebook() {}

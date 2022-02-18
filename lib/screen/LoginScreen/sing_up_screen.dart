@@ -73,9 +73,31 @@ class singup_screen extends StatelessWidget {
                     if (password_1.text != password_2.text) {
                       await Alert(context, "Le password non coincidono");
                     } else {
-                      await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: email.text, password: email.text);
+                      try {
+                        await auth
+                            .createUserWithEmailAndPassword(
+                                email: email.text, password: password_1.text)
+                            .then((value) async {
+                          User user = FirebaseAuth.instance.currentUser;
+
+                          await FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(user.uid)
+                              .set({
+                            'uid': user.uid,
+                            'email': email.text,
+                            'password': password_1.text,
+                          });
+                        });
+                        print("Signed Up");
+                      } catch (e) {
+                        if (e.code == 'weak-password') {
+                          await Alert(context,
+                              "Le password non rispetta i criteri di sicurezza");
+                        } else if (e.code == 'email-already-in-use') {
+                          await Alert(context, "Questa mail é gia utilizzata");
+                        }
+                      }
                     }
                   },
                   elevation: 20,

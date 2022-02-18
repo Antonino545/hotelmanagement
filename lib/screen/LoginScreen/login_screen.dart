@@ -55,7 +55,7 @@ class _login_screen_mobileState extends State<login_screen> {
               child: Column(
                 children: [
                   imput_text(" Email", false, email),
-                  imput_text(" Password", false, password),
+                  imput_text(" Password", true, password),
                 ],
               ),
             ),
