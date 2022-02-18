@@ -69,7 +69,7 @@ class _welcomeState extends State<welcome> {
                       button_ico(
                         text: "Accedi con Google",
                         icon: "google.png",
-                        onpressed: login_with_google(),
+                        onpressed: signInWithGoogle(),
                         context: context,
                       ),
                       button_ico(

@@ -6,6 +6,8 @@ import 'package:hotelmanagement/Screen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/Drawer.dart';
 import 'package:hotelmanagement/app.dart';
 
+import 'components/imput.dart';
+
 class AggiungiOspitiScreen extends StatefulWidget {
   final String CognomePrenotazione;
 
@@ -38,26 +40,16 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Aggiungi Ospiti",
-          style: TextStyle(color: Colors.white),
-        ),
+
       ),
       body: Column(
         children: [
-          Padding(
-            // Texfield Nome
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                labelText: "Nome",
-                hintText: "inserisci Nome",
-              ),
-              controller: NomeController,
-            ),
+          Text(
+            "Aggiungi Ospiti",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
+          imput_text("Inserire Nome", false, NomeController),
+
           Padding(
             // Texfield Cognome
             padding: const EdgeInsets.all(8.0),

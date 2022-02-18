@@ -54,11 +54,8 @@ class _login_screen_mobileState extends State<login_screen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  imput_text(label: "Email", controller: email),
-                  imput_text(
-                      label: "Password",
-                      controller: password,
-                      obscureText: true)
+                  imput_text(" Email", false, email),
+                  imput_text(" Password", false, password),
                 ],
               ),
             ),

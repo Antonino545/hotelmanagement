@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/Screen/aggiungi_prenotazione_screen.dart';
+
 import 'package:hotelmanagement/Screen/AggiungiSpeseScreen.dart';
 import 'package:hotelmanagement/Screen/elenco_ospiti_attuali.dart';
 import 'package:hotelmanagement/Screen/elenco_ospiti_generale.dart';
+import 'package:hotelmanagement/screen/aggiungi_prenotazione_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'Screen/elenco_spese.dart';
@@ -32,14 +33,12 @@ class _DraweNavigationState extends State<DraweNavigation> {
               ),
             ),
             ListTile(
-              //listTitle dove abbiamo il collegamento ad Aggiungi Ospiti
+              //listTitle dove abbiamo il collegamento ad Aggiungi Spese
               title: const Text("Aggiungi Ospiti"),
-              leading: const Icon(Icons.person_add),
-              onTap: () => () => Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.leftToRight,
-                      child: AggiungiPrenotazione())),
+              leading: const Icon(Icons.add),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      AggiungiPrenotazione())), //abbiamo il collegamento ad Aggiungi Spese
             ),
             ListTile(
               //listTitle dove abbiamo il collegamento ad Aggiungi Spese

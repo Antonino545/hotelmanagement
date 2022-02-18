@@ -57,7 +57,7 @@ Widget button_pageTransition({text, onpressed, context}) {
       ));
 }
 
-Widget button({text, onpressed, context}) {
+button(text, onpressed) async {
   // todo da perfezzionare il funzionamento
   return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -66,7 +66,7 @@ Widget button({text, onpressed, context}) {
         width: 500.0,
         child: OutlinedButton(
           onPressed: () {
-            onpressed;
+            onpressed();
           },
           child: Text(
             text,

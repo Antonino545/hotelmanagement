@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-showAlertDialog(BuildContext context, box1) {
-  // set up the button
+Future<void> showAlertDialog(BuildContext context, box1) {
   Widget okButton = MaterialButton(
     child: Text("Ok"),
     onPressed: () {
@@ -23,7 +22,7 @@ showAlertDialog(BuildContext context, box1) {
       ],
       elevation: 24.0,
     );
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return alert;
@@ -37,11 +36,30 @@ showAlertDialog(BuildContext context, box1) {
         okButton,
       ],
     );
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return alertios;
       },
     );
   }
+}
+
+Future<void> Alert(BuildContext context, box) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Text(box),
+        actions: <Widget>[
+          OutlinedButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

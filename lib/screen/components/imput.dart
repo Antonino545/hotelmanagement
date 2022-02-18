@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget imput_text({controller, label, obscureText = false}) {
+imput_text(label, obscureText, [var controller]) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Padding(
       padding: const EdgeInsets.all(10),
@@ -14,6 +14,7 @@ Widget imput_text({controller, label, obscureText = false}) {
             hintText: "inserisci " + label,
           ),
           keyboardType: TextInputType.emailAddress,
+          obscureText: obscureText,
           controller: controller,
         ),
       ),

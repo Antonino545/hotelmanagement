@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,35 +30,17 @@ Future<void> login({context, box, email, password}) async {
   }
 }
 
-singup({password_1, password_2, box, email, context}) async {
+Future<void> singup(
+    [context, password_1, password_2, box, TextEditingController email]) async {
   if (password_1.text != password_2.text) {
-    box = "Le password non concidono";
-    showAlertDialog(password_2, box);
+    Alert(context, "Le password non coincidono");
   } else {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: email.text, password: password_1.text);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        box = "Le password non rispetta i criteri di sicurezza";
-        showAlertDialog(context, box);
-      } else if (e.code == 'email-already-in-use') {
-        box = "La mail e già in uso";
-        showAlertDialog(context, box);
-      }
-    }
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email.text, password: email.text);
   }
-  var currentUser = FirebaseAuth.instance.currentUser;
-  print("UID: " + currentUser.uid.toString());
-  var firebaseUser = FirebaseAuth.instance.currentUser;
-  var firebase = FirebaseFirestore.instance;
-  firebase.collection("Users").doc(currentUser.uid).set({
-    "Mail": currentUser.email,
-  }, SetOptions(merge: true)).then((_) {
-    print("success!");
-  });
 }
 
-login_with_google() {}
+signInWithGoogle()  {
+
+}
 login_with_facebook() {}

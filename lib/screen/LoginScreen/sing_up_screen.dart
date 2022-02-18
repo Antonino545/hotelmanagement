@@ -6,8 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
+import '../components/AlertDialog.dart';
 import '../components/imput.dart';
 import 'login_screen.dart';
 
@@ -54,11 +56,9 @@ class singup_screen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  imput_text(label: "Email", controller: email),
-                  imput_text(
-                      label: "Inserisci Password", controller: password_1),
-                  imput_text(
-                      label: "Reinserire Password", controller: password_2),
+                  imput_text(" Email", false, email),
+                  imput_text(" Password", true, password_1),
+                  imput_text(" Password", true, password_2),
                 ],
               ),
             ),
@@ -69,12 +69,14 @@ class singup_screen extends StatelessWidget {
                   color: Colors.blue,
                   height: 60,
                   onPressed: () async {
-                    singup(
-                        password_1: password_1,
-                        password_2: password_2,
-                        email: email,
-                        context: context,
-                        box: box);
+                    FirebaseAuth auth = FirebaseAuth.instance;
+                    if (password_1.text != password_2.text) {
+                      await Alert(context, "Le password non coincidono");
+                    } else {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: email.text, password: email.text);
+                    }
                   },
                   elevation: 20,
                   shape: RoundedRectangleBorder(
