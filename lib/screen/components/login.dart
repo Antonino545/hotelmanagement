@@ -1,14 +1,8 @@
-import 'dart:io';
-import 'dart:js';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:page_transition/page_transition.dart';
-
-import 'AlertDialog.dart';
 
 Future<void> login(
     {context,

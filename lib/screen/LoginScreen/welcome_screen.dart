@@ -26,7 +26,7 @@ class _welcomeState extends State<welcome> {
               if (isDesktop(context) || isTab(context))
                 Expanded(
                   child: Image(
-                    image: const AssetImage("assets/login.png"),
+                    image: const AssetImage("assets/Login.png"),
                     height: size.height * 0.7,
                   ),
                 ),
@@ -39,7 +39,7 @@ class _welcomeState extends State<welcome> {
                     children: [
                       if (isMobile(context))
                         Image.asset(
-                          "assets/login.png",
+                          "assets/Login.png",
                           height: size.height * 0.3,
                         ),
                       RichText(
