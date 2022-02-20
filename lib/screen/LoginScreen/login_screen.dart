@@ -65,29 +65,35 @@ class _login_screen_mobileState extends State<login_screen> {
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 children: [
-                  MaterialButton(
-                    minWidth: 200,
-                    color: Colors.blue,
-                    height: 60,
-                    onPressed: () async {
-                      login(
-                          context: context,
-                          box: box,
-                          email: email,
-                          password: password);
-                    },
-                    elevation: 20,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Accedi",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 50,
+                        width: 500.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            login(
+                                context: context,
+                                box: box,
+                                email: email,
+                                password: password);
+                          },
+                          child: Text(
+                            "Accedi",
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            textStyle: const TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 30),
+                            elevation: 20,
+                            backgroundColor: Colors.transparent,
+                            primary: Colors.white,
+                            side: BorderSide(color: Colors.white),
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(50)),
+                          ),
+                        ),
+                      )),
                   SizedBox(
                     height: 20,
                   ),

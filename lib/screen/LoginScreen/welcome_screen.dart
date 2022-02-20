@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '../components/buttons.dart';
@@ -39,7 +40,7 @@ class _welcomeState extends State<welcome> {
                     children: [
                       if (isMobile(context))
                         Image.asset(
-                          "assets/Login.png",
+                          "asset/Login.png",
                           height: size.height * 0.3,
                         ),
                       RichText(
@@ -68,13 +69,13 @@ class _welcomeState extends State<welcome> {
                       ),
                       button_ico(
                         text: "Accedi con Google",
-                        icon: "google.png",
+                        icon: AntDesign.google,
                         onpressed: signInWithGoogle(),
                         context: context,
                       ),
                       button_ico(
                         text: "Accedi con Facebook",
-                        icon: "facebook.png",
+                        icon: FontAwesome5Brands.facebook,
                         onpressed: login_with_facebook(),
                         context: context,
                       ),

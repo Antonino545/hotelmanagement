@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 Widget button_ico({text, icon, onpressed, context}) {
   return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
+        height: 50,
         width: 500.0,
         child: OutlinedButton.icon(
           onPressed: () => onpressed,
           label: Text(text),
-          icon: Image.asset(
-            'asset/' + icon,
-            scale: 10,
-          ),
+          icon: Icon(icon),
           style: OutlinedButton.styleFrom(
+            textStyle:
+                const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
             elevation: 20,
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.transparent,
             primary: Colors.white,
             side: const BorderSide(color: Colors.white),
             shape: RoundedRectangleBorder(
@@ -73,7 +74,7 @@ button(text, onpressed) async {
           ),
           style: OutlinedButton.styleFrom(
             textStyle:
-                const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                const TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
             elevation: 20,
             backgroundColor: Colors.transparent,
             primary: Colors.white,

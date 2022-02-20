@@ -67,54 +67,31 @@ class singup_screen extends StatelessWidget {
             ),
             Column(
               children: [
-                MaterialButton(
-                  minWidth: 200,
-                  color: Colors.blue,
-                  height: 60,
-                  onPressed: () async {
-                    FirebaseAuth auth = FirebaseAuth.instance;
-                    if (password_1.text != password_2.text) {
-                      await Alert(context, "Le password non coincidono");
-                    } else {
-                      try {
-                        await auth
-                            .createUserWithEmailAndPassword(
-                                email: email.text, password: password_1.text)
-                            .then((value) async {
-                          User user = FirebaseAuth.instance.currentUser;
-
-                          await FirebaseFirestore.instance
-                              .collection("users")
-                              .doc(user.uid)
-                              .set({
-                            'uid': user.uid,
-                            'email': email.text,
-                            'password': password_1.text,
-                          });
-                        });
-                        print("Signed Up");
-                      } catch (e) {
-                        if (e.code == 'weak-password') {
-                          await Alert(context,
-                              "Le password non rispetta i criteri di sicurezza");
-                        } else if (e.code == 'email-already-in-use') {
-                          await Alert(context, "Questa mail é gia utilizzata");
-                        }
-                      }
-                    }
-                  },
-                  elevation: 20,
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Text(
-                    "Crea Account",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 50,
+                      width: 500.0,
+                      child: OutlinedButton(
+                        onPressed: () async {
+                          Singup(password_1, password_2, email, context);
+                        },
+                        child: Text(
+                          "Crea Account",
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          textStyle: const TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 30),
+                          elevation: 20,
+                          backgroundColor: Colors.transparent,
+                          primary: Colors.white,
+                          side: BorderSide(color: Colors.white),
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(50)),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 20,
                 ),
