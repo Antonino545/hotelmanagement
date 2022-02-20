@@ -9,15 +9,16 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, //debug false
       home: welcome(), //Imposta come Home:Elenco Ospiti Attuali
+      darkTheme: ThemeData.dark(),
+
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           centerTitle: true,
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
         ),
-
+        buttonTheme: ButtonThemeData(),
         //imposto il tema
-        brightness: Brightness.dark,
         primaryColor: Colors.teal,
         selectedRowColor: Colors.teal,
       ),

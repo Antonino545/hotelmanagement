@@ -83,13 +83,13 @@ class _login_screen_mobileState extends State<login_screen> {
                           ),
                           style: OutlinedButton.styleFrom(
                             textStyle: const TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 30),
-                            elevation: 20,
+                                fontWeight: FontWeight.w600, fontSize: 20),
                             backgroundColor: Colors.transparent,
-                            primary: Colors.white,
-                            side: BorderSide(color: Colors.white),
                             shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.white),
+                                side: const BorderSide(
+                                  width: 10.0,
+                                  style: BorderStyle.solid,
+                                ),
                                 borderRadius: BorderRadius.circular(50)),
                           ),
                         ),

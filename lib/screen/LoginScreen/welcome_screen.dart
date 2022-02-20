@@ -5,6 +5,7 @@ import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '../components/buttons.dart';
 import '../components/login.dart';
 import 'login_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class welcome extends StatefulWidget {
   const welcome({Key key}) : super(key: key);
@@ -26,8 +27,8 @@ class _welcomeState extends State<welcome> {
             children: [
               if (isDesktop(context) || isTab(context))
                 Expanded(
-                  child: Image(
-                    image: const AssetImage("assets/Login.png"),
+                  child: SvgPicture.asset(
+                    "asset/Login.svg",
                     height: size.height * 0.7,
                   ),
                 ),
@@ -39,23 +40,15 @@ class _welcomeState extends State<welcome> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       if (isMobile(context))
-                        Image.asset(
-                          "asset/Login.png",
+                        SvgPicture.asset(
+                          "asset/login.svg",
                           height: size.height * 0.3,
                         ),
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: "Benvenuto \nIn Hotel Management\n",
-                            style: TextStyle(
-                              fontSize: isDesktop(context) ? 50 : 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                            )),
-                      ])),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      Text("Benvenuto \nIn Hotel Management\n",
+                          style: TextStyle(
+                            fontSize: isDesktop(context) ? 50 : 30,
+                            fontWeight: FontWeight.w800,
+                          )),
                       button_pageTransition(
                           text: "Accedi",
                           onpressed: login_screen(),
@@ -64,9 +57,6 @@ class _welcomeState extends State<welcome> {
                           text: "Crea un Account",
                           onpressed: singup_screen(),
                           context: context),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       button_ico(
                         text: "Accedi con Google",
                         icon: AntDesign.google,

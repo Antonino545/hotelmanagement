@@ -15,12 +15,12 @@ Widget button_ico({text, icon, onpressed, context}) {
           style: OutlinedButton.styleFrom(
             textStyle:
                 const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-            elevation: 20,
             backgroundColor: Colors.transparent,
-            primary: Colors.white,
-            side: const BorderSide(color: Colors.white),
             shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.white),
+                side: const BorderSide(
+                  width: 10.0,
+                  style: BorderStyle.solid,
+                ),
                 borderRadius: BorderRadius.circular(50)),
           ),
         ),
@@ -44,14 +44,16 @@ Widget button_pageTransition({text, onpressed, context}) {
             text,
           ),
           style: OutlinedButton.styleFrom(
-            textStyle:
-                const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-            elevation: 20,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 20,
+            ),
             backgroundColor: Colors.transparent,
-            primary: Colors.white,
-            side: BorderSide(color: Colors.white),
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(
+                  width: 10.0,
+                  style: BorderStyle.solid,
+                ),
                 borderRadius: BorderRadius.circular(50)),
           ),
         ),
@@ -73,12 +75,10 @@ button(text, onpressed) async {
             text,
           ),
           style: OutlinedButton.styleFrom(
-            textStyle:
-                const TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
+            textStyle: const TextStyle(
+                fontWeight: FontWeight.w600, fontSize: 20, color: Colors.teal),
             elevation: 20,
             backgroundColor: Colors.transparent,
-            primary: Colors.white,
-            side: BorderSide(color: Colors.white),
             shape: RoundedRectangleBorder(
                 side: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
