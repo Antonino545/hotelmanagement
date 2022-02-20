@@ -14,9 +14,8 @@ class _ElencoSpeseState extends State<ElencoSpese> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
+          title: Text(
         "Hotel Management",
-        style: TextStyle(color: Colors.white),
       )),
       drawer: DraweNavigation(),
       resizeToAvoidBottomInset: false,

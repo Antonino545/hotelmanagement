@@ -167,7 +167,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
           ),
           actions: <Widget>[
             Center(
-              child: OutlinedButton(
+              child: TextButton(
                 child: Text('Okay'),
                 onPressed: () {
                   Navigator.of(context).pop();

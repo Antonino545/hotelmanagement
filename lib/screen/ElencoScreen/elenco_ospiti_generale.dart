@@ -19,7 +19,6 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
       appBar: AppBar(
           title: Text(
         "Hotel Management",
-        style: TextStyle(color: Colors.white),
       )),
       drawer: DraweNavigation(),
       resizeToAvoidBottomInset: false,
@@ -32,8 +31,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               StreamBuilder(
-                  stream:
-                      FirebaseFirestore.instance.collection('Prenotazione').snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection('Prenotazione')
+                      .snapshots(),
                   builder: (context, snapshots) {
                     if (snapshots.hasData) {
                       return ListView.builder(
@@ -50,18 +50,22 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 child: Column(children: [
                                   ListTile(
                                     title: Text("Cognome Prenotazione: " +
-                                        documentSnapshot["CognomePrenotazione"]),
-                                    subtitle:
-                                        Text("Piano: " + documentSnapshot["Piano"]),
+                                        documentSnapshot[
+                                            "CognomePrenotazione"]),
+                                    subtitle: Text(
+                                        "Piano: " + documentSnapshot["Piano"]),
                                     trailing: IconButton(
                                       icon: Icon(Icons.person),
                                       onPressed: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) => ElencoOspiti(
-                                                  CognomePrenotazione: documentSnapshot[
-                                                          "CognomePrenotazione"]
-                                                      .toString(),
-                                                )));
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ElencoOspiti(
+                                                      CognomePrenotazione:
+                                                          documentSnapshot[
+                                                                  "CognomePrenotazione"]
+                                                              .toString(),
+                                                    )));
                                       },
                                     ),
                                   ),
@@ -80,7 +84,8 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     child: Row(
                                       children: [
                                         Text("Data di Fine soggiorno: " +
-                                            documentSnapshot["DataFine"].toString()),
+                                            documentSnapshot["DataFine"]
+                                                .toString()),
                                       ],
                                     ),
                                   ),
@@ -89,7 +94,8 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     child: Row(
                                       children: [
                                         Text("Nummero di persone: " +
-                                            documentSnapshot["NPersone"].toString()),
+                                            documentSnapshot["NPersone"]
+                                                .toString()),
                                       ],
                                     ),
                                   ),
@@ -99,7 +105,8 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                       children: [
                                         Text(
                                           "Prezzo Soggiorno: " +
-                                              documentSnapshot["Prezzo"].toString() +
+                                              documentSnapshot["Prezzo"]
+                                                  .toString() +
                                               "€",
                                         ),
                                       ],

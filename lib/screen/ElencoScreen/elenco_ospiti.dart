@@ -20,11 +20,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-        "Hotel Management",
-        style: TextStyle(color: Colors.white),
-      )),
+      appBar: AppBar(title: Text("Hotel Management")),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Ospiti').snapshots(),
           builder: (context, snapshots) {

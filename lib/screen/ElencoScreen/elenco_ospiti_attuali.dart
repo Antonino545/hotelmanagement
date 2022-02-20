@@ -19,7 +19,6 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
       appBar: AppBar(
           title: Text(
         "Hotel Management",
-        style: TextStyle(color: Colors.white),
       )),
       drawer: DraweNavigation(),
       body: StreamBuilder(
