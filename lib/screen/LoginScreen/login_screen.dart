@@ -3,15 +3,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
-import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/input.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
+// ignore: camel_case_types
 class login_screen extends StatefulWidget {
+  const login_screen({Key key}) : super(key: key);
+
   @override
   _login_screen_mobileState createState() => _login_screen_mobileState();
 }
 
+// ignore: camel_case_types
 class _login_screen_mobileState extends State<login_screen> {
   @override
   Widget build(BuildContext context) {

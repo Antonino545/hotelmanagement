@@ -1,16 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'package:hotelmanagement/Drawer.dart';
-import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/screen/components/input.dart';
 
 class AggiungiOspitiScreen extends StatefulWidget {
-  final String CognomePrenotazione;
+  final String cognomeprenotazione;
 
-  const AggiungiOspitiScreen({Key key, this.CognomePrenotazione})
+  const AggiungiOspitiScreen({Key key, this.cognomeprenotazione})
       : super(key: key);
 
   @override
@@ -31,9 +27,9 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
       appBar: AppBar(),
       body: Column(
         children: [
-          Text(
+          const Text(
             "Aggiungi Ospiti",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           input_text(TextInputType.text, " Nome", false, NomeController),
           input_text(TextInputType.text, " Cognome", false, CognomeController),
@@ -44,7 +40,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Text(
+                const Text(
                   "Maggiorenne",
                   style: TextStyle(fontSize: 20),
                 ),
@@ -61,7 +57,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
           ),
           IconButton(
               //bottone in cui ti porta alla schermata precedente
-              icon: Icon(Icons.person_add),
+              icon: const Icon(Icons.person_add),
               onPressed: () {
                 if (NomeController.text.length !=
                     0) if (CognomeController.text.length != 0) {
@@ -86,7 +82,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
       'Codice Fiscale': CodiceFiscaleController.text,
       'Cognome': CognomeController.text,
       'Nome': NomeController.text,
-      'CognomePrenotazione': widget.CognomePrenotazione,
+      'CognomePrenotazione': widget.cognomeprenotazione,
       'Maggiorenne': Maggiorenni,
     });
   }

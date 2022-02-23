@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/LoginScreen/welcome_screen.dart';
 
 class App extends StatelessWidget {

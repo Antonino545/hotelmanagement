@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
@@ -10,7 +9,10 @@ import 'login_screen.dart';
 
 FirebaseAuth auth = FirebaseAuth.instance;
 
+// ignore: camel_case_types
 class singup_screen extends StatelessWidget {
+  const singup_screen({Key key}) : super(key: key);
+
   get value => null;
 
   @override
@@ -18,7 +20,6 @@ class singup_screen extends StatelessWidget {
     var password_1 = TextEditingController();
     var password_2 = TextEditingController();
     var email = TextEditingController();
-    String box;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

@@ -7,6 +7,7 @@ import '../components/login.dart';
 import 'login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: camel_case_types
 class welcome extends StatefulWidget {
   const welcome({Key key}) : super(key: key);
 
@@ -14,6 +15,7 @@ class welcome extends StatefulWidget {
   _welcomeState createState() => _welcomeState();
 }
 
+// ignore: camel_case_types
 class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class _welcomeState extends State<welcome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
           child: Row(
             children: [
               if (isDesktop(context) || isTab(context))

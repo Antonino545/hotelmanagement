@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/components/input.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -121,7 +120,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                             i++) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AggiungiOspitiScreen(
-                                  CognomePrenotazione:
+                                  cognomeprenotazione:
                                       CognomePrenotazioneController.text)));
                         }
                       }

@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 
+// ignore: must_be_immutable
 class ElencoSpese extends StatefulWidget {
   // ignore: non_constant_identifier_names
   String CognomePrenotazione;
+
+  ElencoSpese({Key key}) : super(key: key);
   @override
   _ElencoSpeseState createState() => _ElencoSpeseState();
 }
@@ -14,10 +17,10 @@ class _ElencoSpeseState extends State<ElencoSpese> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
+          title: const Text(
         "Hotel Management",
       )),
-      drawer: DraweNavigation(),
+      drawer: const DraweNavigation(),
       resizeToAvoidBottomInset: false,
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Spese').snapshots(),

@@ -20,7 +20,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Hotel Management")),
+      appBar: AppBar(title: const Text("Hotel Management")),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Ospiti').snapshots(),
           builder: (context, snapshots) {
@@ -36,7 +36,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                         widget.CognomePrenotazione) {
                       return Card(
                           elevation: 4,
-                          margin: EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           child: Column(
@@ -68,9 +68,9 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                                 child: Row(
                                   children: [
                                     if (documentSnapshot["Maggiorenne"] == true)
-                                      Text("Maggiorenne")
+                                      const Text("Maggiorenne")
                                     else
-                                      Text("Minorenne")
+                                      const Text("Minorenne")
                                   ],
                                 ),
                               ),
@@ -79,7 +79,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                     }
                   });
             } else {
-              return Align(
+              return const Align(
                 alignment: FractionalOffset.center,
                 child: CircularProgressIndicator(),
               );
