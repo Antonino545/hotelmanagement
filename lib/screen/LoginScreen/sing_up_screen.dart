@@ -1,15 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/components/buttons.dart';
 import 'package:hotelmanagement/screen/components/login.dart';
 
-import '../components/AlertDialog.dart';
 import '../components/input.dart';
 import 'login_screen.dart';
 

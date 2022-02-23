@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -18,16 +19,6 @@ class AggiungiOspitiScreen extends StatefulWidget {
 
 class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   //aggiungi i Dati nella Raccolta Ospiti in Firebase
-  addDataOspiti() {
-    Future<DocumentReference> collectionReference =
-        FirebaseFirestore.instance.collection('Ospiti').add({
-      'Codice Fiscale': CodiceFiscaleController.text,
-      'Cognome': CognomeController.text,
-      'Nome': NomeController.text,
-      'CognomePrenotazione': widget.CognomePrenotazione,
-      'Maggiorenne': Maggiorenni,
-    });
-  }
 
 //creazioni variabili
   var NomeController = TextEditingController();
@@ -45,8 +36,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
           input_text(TextInputType.text, " Nome", false, NomeController),
-          input_text(
-              TextInputType.text, " Cognome", false, CodiceFiscaleController),
+          input_text(TextInputType.text, " Cognome", false, CognomeController),
           input_text(TextInputType.text, " Codice Fiscale", false,
               CodiceFiscaleController),
           Padding(
@@ -82,5 +72,22 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
         ],
       ),
     );
+  }
+
+  addDataOspiti() {
+    User user = FirebaseAuth.instance.currentUser;
+    Future<DocumentReference> collectionReference = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection("prenotazioni")
+        .doc("widget.CognomePrenotazione")
+        .collection("Ospiti")
+        .add({
+      'Codice Fiscale': CodiceFiscaleController.text,
+      'Cognome': CognomeController.text,
+      'Nome': NomeController.text,
+      'CognomePrenotazione': widget.CognomePrenotazione,
+      'Maggiorenne': Maggiorenni,
+    });
   }
 }

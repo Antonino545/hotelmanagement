@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/components/input.dart';
 import 'package:intl/intl.dart';
@@ -16,18 +17,6 @@ class AggiungiPrenotazione extends StatefulWidget {
 }
 
 class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
-  addDataFamigli() {
-    Future<DocumentReference> collectionReference =
-        FirebaseFirestore.instance.collection('Prenotazione').add({
-      'CognomePrenotazione': CognomePrenotazioneController.text,
-      'DataDiInizio': formatter.format(DataInzio),
-      'DataFine': formatter.format(Datafine),
-      'NPersone': int.parse(NumeroOspitiController.text),
-      'Prezzo': int.parse(PrezzoController.text),
-      'Piano': Pianocontroller.text,
-    });
-  }
-
   @override
   static String CognomePrenotazione;
   var CognomePrenotazioneController = TextEditingController();
@@ -82,7 +71,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
               input_text(TextInputType.number, "Prezzo soggiorno", false,
                   PrezzoController),
               input_text(TextInputType.number, " Numero Di Telefono", false,
-                  NumeroOspitiController),
+                  NumeroTelfonoController),
               input_text(TextInputType.text, "Piano", false, Pianocontroller),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -90,32 +79,37 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                     icon: Icon(Icons.add),
                     onPressed: () {
                       if (CognomePrenotazioneController.text.length == 0) {
-                        showAlertDialog(
-                            context, Parola = "Cognome Prenotazione");
+                        showAlertDialog(context,
+                            Parola = "Cognome Prenotazione non inserito");
                         return;
                       }
                       if (NumeroTelfonoController.text.length == 0) {
-                        showAlertDialog(context, Parola = "Telefono");
+                        showAlertDialog(context,
+                            Parola = "Numero di Telefono non inserito");
                         return;
                       }
                       if (NumeroOspitiController.text.length == 0) {
-                        showAlertDialog(context, Parola = "Numero Ospiti");
+                        showAlertDialog(
+                            context, Parola = "Numero Ospiti non inserito");
                         return;
                       }
                       if (PrezzoController.text.length == 0) {
-                        showAlertDialog(context, Parola = "Prezzo");
+                        showAlertDialog(
+                            context, Parola = "Prezzo non inserito");
                         return;
                       }
                       if (Datafine == null) {
-                        showAlertDialog(context, Parola = "Data Fine");
+                        showAlertDialog(
+                            context, Parola = "Data Fine non inserita");
                         return;
                       }
                       if (DataInzio == null) {
-                        showAlertDialog(context, Parola = "Data Inizio");
+                        showAlertDialog(
+                            context, Parola = "Data Inizio non inserita");
                         return;
                       }
                       if (Pianocontroller.text.length == 0) {
-                        showAlertDialog(context, Parola = "Piano");
+                        showAlertDialog(context, Parola = "Piano non inserito");
                         return;
                       }
 
@@ -184,6 +178,22 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
     setState(() {
       DataInzio = args.value.startDate;
       Datafine = args.value.endDate;
+    });
+  }
+
+  addDataFamigli() {
+    User user = FirebaseAuth.instance.currentUser;
+    Future<DocumentReference> collectionReference = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection("prenotazioni")
+        .add({
+      'CognomePrenotazione': CognomePrenotazioneController.text,
+      'DataDiInizio': formatter.format(DataInzio),
+      'DataFine': formatter.format(Datafine),
+      'NPersone': int.parse(NumeroOspitiController.text),
+      'Prezzo': int.parse(PrezzoController.text),
+      'Piano': Pianocontroller.text,
     });
   }
 }

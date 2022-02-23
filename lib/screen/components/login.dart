@@ -11,9 +11,6 @@ Future<void> login(
     box,
     TextEditingController email,
     TextEditingController password}) async {
-  print(email.text);
-  print(password.text);
-
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email.text, password: password.text);
@@ -55,7 +52,6 @@ Singup(
         User user = FirebaseAuth.instance.currentUser;
 
         await FirebaseFirestore.instance.collection("users").doc(user.uid).set({
-          'uid': user.uid,
           'email': email.text,
           'password': password_1.text,
         });
