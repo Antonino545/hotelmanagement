@@ -29,7 +29,7 @@ class _welcomeState extends State<welcome> {
             children: [
               if (isDesktop(context) || isTab(context))
                 Expanded(
-                  child: SvgPicture.network(
+                  child: SvgPicture.asset(
                     "asset/Login.svg",
                     height: size.height * 0.7,
                   ),
