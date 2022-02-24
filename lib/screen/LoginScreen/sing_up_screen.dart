@@ -52,11 +52,10 @@ class singup_screen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  input_text(
-                      TextInputType.emailAddress, " Email", false, email),
-                  input_text(TextInputType.visiblePassword, " Password", true,
+                  inputText(TextInputType.emailAddress, " Email", false, email),
+                  inputText(TextInputType.visiblePassword, " Password", true,
                       password_1),
-                  input_text(TextInputType.visiblePassword, " Password", true,
+                  inputText(TextInputType.visiblePassword, " Password", true,
                       password_2),
                 ],
               ),
@@ -70,7 +69,7 @@ class singup_screen extends StatelessWidget {
                       width: 500.0,
                       child: OutlinedButton(
                         onPressed: () async {
-                          Singup(password_1, password_2, email, context);
+                          singUp(password_1, password_2, email, context);
                         },
                         child: Text(
                           "Crea Account",

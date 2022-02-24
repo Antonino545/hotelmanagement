@@ -17,10 +17,10 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   //aggiungi i Dati nella Raccolta Ospiti in Firebase
 
 //creazioni variabili
-  var NomeController = TextEditingController();
-  var CognomeController = TextEditingController();
-  var CodiceFiscaleController = TextEditingController();
-  bool Maggiorenni = false;
+  var nomeController = TextEditingController();
+  var cognomeController = TextEditingController();
+  var codiceFiscaleController = TextEditingController();
+  bool maggiorenni = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +29,12 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
         children: [
           const Text(
             "Aggiungi Ospiti",
-            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          input_text(TextInputType.text, " Nome", false, NomeController),
-          input_text(TextInputType.text, " Cognome", false, CognomeController),
-          input_text(TextInputType.text, " Codice Fiscale", false,
-              CodiceFiscaleController),
+          inputText(TextInputType.text, " Nome", false, nomeController),
+          inputText(TextInputType.text, " Cognome", false, cognomeController),
+          inputText(TextInputType.text, " Codice Fiscale", false,
+              codiceFiscaleController),
           Padding(
             // Texfield Maggiorenne
             padding: const EdgeInsets.all(8.0),
@@ -45,10 +45,10 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
                   style: TextStyle(fontSize: 20),
                 ),
                 Switch(
-                  value: Maggiorenni,
+                  value: maggiorenni,
                   onChanged: (value) {
                     setState(() {
-                      Maggiorenni = value;
+                      maggiorenni = value;
                     });
                   },
                 ),
@@ -59,8 +59,8 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
               //bottone in cui ti porta alla schermata precedente
               icon: const Icon(Icons.person_add),
               onPressed: () {
-                if (NomeController.text.length !=
-                    0) if (CognomeController.text.length != 0) {
+                if (nomeController.text.isNotEmpty &&
+                    cognomeController.text.isNotEmpty) {
                   addDataOspiti();
                   Navigator.pop(context);
                 }
@@ -72,18 +72,18 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
 
   addDataOspiti() {
     User user = FirebaseAuth.instance.currentUser;
-    Future<DocumentReference> collectionReference = FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .collection("prenotazioni")
         .doc("widget.CognomePrenotazione")
         .collection("Ospiti")
         .add({
-      'Codice Fiscale': CodiceFiscaleController.text,
-      'Cognome': CognomeController.text,
-      'Nome': NomeController.text,
+      'Codice Fiscale': codiceFiscaleController.text,
+      'Cognome': cognomeController.text,
+      'Nome': nomeController.text,
       'CognomePrenotazione': widget.cognomeprenotazione,
-      'Maggiorenne': Maggiorenni,
+      'Maggiorenne': maggiorenni,
     });
   }
 }

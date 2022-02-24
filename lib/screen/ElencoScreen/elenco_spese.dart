@@ -74,7 +74,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
             } else {
               return const Align(
                 alignment: FractionalOffset.center,
-                child: const CircularProgressIndicator(),
+                child: CircularProgressIndicator(),
               );
             }
           }),

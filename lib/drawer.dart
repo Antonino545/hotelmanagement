@@ -38,7 +38,7 @@ class _DraweNavigationState extends State<DraweNavigation> {
             leading: const Icon(Icons.add),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    AggiungiPrenotazione())), //abbiamo il collegamento ad Aggiungi Spese
+                    const AggiungiPrenotazione())), //abbiamo il collegamento ad Aggiungi Spese
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Aggiungi Spese
@@ -46,7 +46,7 @@ class _DraweNavigationState extends State<DraweNavigation> {
             leading: const Icon(Icons.add),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    AggiungiSpeseScreen())), //abbiamo il collegamento ad Aggiungi Spese
+                    const AggiungiSpeseScreen())), //abbiamo il collegamento ad Aggiungi Spese
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Elenco Ospiti Generali
@@ -62,7 +62,7 @@ class _DraweNavigationState extends State<DraweNavigation> {
             leading: const Icon(Icons.list),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    ElencoOspitiAttuali())), // abbiamo il collegamento ad Elenco Ospiti Attuali
+                    const ElencoOspitiAttuali())), // abbiamo il collegamento ad Elenco Ospiti Attuali
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Finanze
@@ -70,7 +70,7 @@ class _DraweNavigationState extends State<DraweNavigation> {
             leading: const Icon(Icons.euro),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
-                    ElencoOspitiAttuali())), //abbiamo il collegamento ad Finanze
+                    const ElencoOspitiAttuali())), //abbiamo il collegamento ad Finanze
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Finanze

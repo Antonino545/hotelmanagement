@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,26 +18,34 @@ Future<void> login(
         .signInWithEmailAndPassword(email: email.text, password: password.text);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
-      print('No user found for that email.');
+      if (kDebugMode) {
+        print('No user found for that email.');
+      }
     } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
+      if (kDebugMode) {
+        print('Wrong password provided for that user.');
+      }
     }
   }
   FirebaseAuth.instance.userChanges().listen((User user) {
     if (user == null) {
-      print('User is currently signed out!');
+      if (kDebugMode) {
+        print('User is currently signed out!');
+      }
     } else {
       Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.leftToRight,
               child: ElencoOspitiGenerali()));
-      print('Login success');
+      if (kDebugMode) {
+        print('Login success');
+      }
     }
   });
 }
 
-Singup(
+singUp(
     [TextEditingController password_1,
     TextEditingController password_2,
     TextEditingController email,
@@ -56,7 +66,9 @@ Singup(
           'password': password_1.text,
         });
       });
-      print("Signed Up");
+      if (kDebugMode) {
+        print("Signed Up");
+      }
     } catch (e) {
       if (e.code == 'weak-password') {
         await Alert(context, "Le password non rispetta i criteri di sicurezza");
@@ -67,5 +79,18 @@ Singup(
   }
 }
 
-signInWithGoogle() {}
+signInWithGoogle() async {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  try {
+    // ignore: unused_local_variable
+    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+  } catch (e) {
+    if (kDebugMode) {
+      print(e.message);
+    }
+    rethrow;
+  }
+}
+
+// ignore: non_constant_identifier_names
 login_with_facebook() {}

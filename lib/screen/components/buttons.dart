@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
-Widget button_ico({text, icon, onpressed, context}) {
+Widget buttonIco({text, icon, onpressed, context}) {
   return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -27,7 +26,7 @@ Widget button_ico({text, icon, onpressed, context}) {
       ));
 }
 
-Widget button_pageTransition({text, onpressed, context}) {
+Widget buttonPageTransition({text, onpressed, context}) {
   return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -80,7 +79,7 @@ button(text, onpressed) async {
             elevation: 20,
             backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
           ),
         ),

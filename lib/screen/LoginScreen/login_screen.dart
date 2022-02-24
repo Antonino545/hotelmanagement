@@ -57,9 +57,8 @@ class _login_screen_mobileState extends State<login_screen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 children: [
-                  input_text(
-                      TextInputType.emailAddress, " Email", false, email),
-                  input_text(TextInputType.visiblePassword, " Password", true,
+                  inputText(TextInputType.emailAddress, " Email", false, email),
+                  inputText(TextInputType.visiblePassword, " Password", true,
                       password),
                 ],
               ),

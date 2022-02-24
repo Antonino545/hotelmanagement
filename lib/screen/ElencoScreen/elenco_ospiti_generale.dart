@@ -1,5 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
@@ -7,7 +8,9 @@ import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import 'elenco_ospiti.dart';
 
 class ElencoOspitiGenerali extends StatefulWidget {
-  String CognomePrenotazione;
+  String cognomePrenotazione;
+
+  ElencoOspitiGenerali({Key key}) : super(key: key);
   @override
   _ElencoOspitiGeneraliState createState() => _ElencoOspitiGeneraliState();
 }
@@ -17,13 +20,13 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
+          title: const Text(
         "Hotel Management",
       )),
-      drawer: DraweNavigation(),
+      drawer: const DraweNavigation(),
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         child: Padding(
           padding: EdgeInsets.only(right: !isMobile(context) ? 50 : 0),
           child: Column(
@@ -44,7 +47,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 snapshots.data.docs[index];
                             return Card(
                                 elevation: 4,
-                                margin: EdgeInsets.all(8),
+                                margin: const EdgeInsets.all(8),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(children: [
@@ -55,13 +58,13 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     subtitle: Text(
                                         "Piano: " + documentSnapshot["Piano"]),
                                     trailing: IconButton(
-                                      icon: Icon(Icons.person),
+                                      icon: const Icon(Icons.person),
                                       onPressed: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     ElencoOspiti(
-                                                      CognomePrenotazione:
+                                                      cognomePrenotazione:
                                                           documentSnapshot[
                                                                   "CognomePrenotazione"]
                                                               .toString(),
@@ -115,7 +118,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: IconButton(
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.delete,
                                         color: Colors.red,
                                         size: 25,
@@ -126,7 +129,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 ]));
                           });
                     } else {
-                      return Align(
+                      return const Align(
                         alignment: FractionalOffset.center,
                         child: CircularProgressIndicator(),
                       );

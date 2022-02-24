@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
+// ignore: must_be_immutable
 class ElencoOspiti extends StatefulWidget {
-  String CognomePrenotazione;
+  String cognomePrenotazione;
   ElencoOspiti({
-    this.CognomePrenotazione,
-  });
+    Key key,
+    this.cognomePrenotazione,
+  }) : super(key: key);
   @override
   _ElencoOspiti createState() => _ElencoOspiti();
 }
@@ -28,12 +29,15 @@ class _ElencoOspiti extends State<ElencoOspiti> {
               return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshots.data.docs.length,
+                  // ignore: missing_return
                   itemBuilder: (context, index) {
-                    print("ciao " + widget.CognomePrenotazione);
+                    if (kDebugMode) {
+                      print("ciao " + widget.cognomePrenotazione);
+                    }
                     DocumentSnapshot documentSnapshot =
                         snapshots.data.docs[index];
                     if (documentSnapshot["CognomePrenotazione"] ==
-                        widget.CognomePrenotazione) {
+                        widget.cognomePrenotazione) {
                       return Card(
                           elevation: 4,
                           margin: const EdgeInsets.all(8),

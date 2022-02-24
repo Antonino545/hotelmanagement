@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
 import 'package:intl/intl.dart';
 
 class ElencoOspitiAttuali extends StatefulWidget {
+  const ElencoOspitiAttuali({Key key}) : super(key: key);
+
   @override
   _ElencoOspitiAttualiState createState() => _ElencoOspitiAttualiState();
 }
@@ -17,10 +18,10 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
+          title: const Text(
         "Hotel Management",
       )),
-      drawer: DraweNavigation(),
+      drawer: const DraweNavigation(),
       body: StreamBuilder(
           stream:
               FirebaseFirestore.instance.collection('Prenotazione').snapshots(),
@@ -33,12 +34,13 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data.docs[index];
+                    // ignore: non_constant_identifier_names
                     DateTime Data =
                         DateTime.parse(documentSnapshot["DataDiInizio"]);
                     if (formatter.format(Data) == formatter.format(now)) {
                       return Card(
                           elevation: 4,
-                          margin: EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(8),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           child: Column(
@@ -49,12 +51,12 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                 subtitle:
                                     Text("Piano: " + documentSnapshot["Piano"]),
                                 trailing: IconButton(
-                                  icon: Icon(Icons.person),
+                                  icon: const Icon(Icons.person),
                                   onPressed: () {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                             builder: (context) => ElencoOspiti(
-                                                  CognomePrenotazione:
+                                                  cognomePrenotazione:
                                                       documentSnapshot[
                                                               "CognomePrenotazione"]
                                                           .toString(),
@@ -103,7 +105,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                 ),
                               ),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   color: Colors.red,
                                   size: 25,
@@ -115,7 +117,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                     }
                   });
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }

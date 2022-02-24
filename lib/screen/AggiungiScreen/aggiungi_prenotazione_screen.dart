@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
@@ -11,47 +10,51 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'aggiungi_ospiti_screen.dart';
 
 class AggiungiPrenotazione extends StatefulWidget {
+  const AggiungiPrenotazione({Key key}) : super(key: key);
+
   @override
   _AggiungiPrenotazioneState createState() => _AggiungiPrenotazioneState();
 }
 
 class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
-  @override
-  static String CognomePrenotazione;
-  var CognomePrenotazioneController = TextEditingController();
-  var NumeroOspitiController = TextEditingController();
-  var NumeroTelfonoController = TextEditingController();
-  var PrezzoController = TextEditingController();
-  var Pianocontroller = TextEditingController();
+  var cognomePrenotazioneController = TextEditingController();
+  var numeroOspitiController = TextEditingController();
+  var numeroTelfonoController = TextEditingController();
+  var prezzoController = TextEditingController();
+  var pianocontroller = TextEditingController();
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  DateTime DataInzio = DateTime.now();
-  DateTime Datafine = DateTime.now();
-  String CognomeNonValido = "Cognome non valido";
-  String Parola = "";
+  DateTime dataInzio = DateTime.now();
+  DateTime dataFine = DateTime.now();
+  String cognomeNonValido = "Cognome non valido";
+  String parola = "";
 
+  @override
   void dispose() {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: DraweNavigation(),
+      drawer: const DraweNavigation(),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // ignore: prefer_const_constructors
               Text(
                 "Aggiungi Ospiti",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              input_text(TextInputType.text, " Cognome Prenotazione", false,
-                  CognomePrenotazioneController),
-              input_text(TextInputType.text, " Numero Ospiti", false,
-                  NumeroOspitiController),
+              inputText(TextInputType.text, " Cognome Prenotazione", false,
+                  cognomePrenotazioneController),
+              inputText(TextInputType.text, " Numero Ospiti", false,
+                  numeroOspitiController),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: TextButton(
@@ -62,53 +65,54 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         borderRadius: BorderRadius.all(Radius.circular(2))),
                   ),
                   onPressed: () {
-                    Alert(context, "inserire data di inizio e fine soggiorno");
+                    alertDataRange(
+                        context, "inserire data di inizio e fine soggiorno");
                   },
-                  child: Text("inserire Data di inizio e fine soggiorno"),
+                  child: const Text("inserire Data di inizio e fine soggiorno"),
                 ),
               ),
-              input_text(TextInputType.number, "Prezzo soggiorno", false,
-                  PrezzoController),
-              input_text(TextInputType.number, " Numero Di Telefono", false,
-                  NumeroTelfonoController),
-              input_text(TextInputType.text, "Piano", false, Pianocontroller),
+              inputText(TextInputType.number, "Prezzo soggiorno", false,
+                  prezzoController),
+              inputText(TextInputType.number, " Numero Di Telefono", false,
+                  numeroTelfonoController),
+              inputText(TextInputType.text, "Piano", false, pianocontroller),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () {
-                      if (CognomePrenotazioneController.text.length == 0) {
+                      if (cognomePrenotazioneController.text.isEmpty) {
                         showAlertDialog(context,
-                            Parola = "Cognome Prenotazione non inserito");
+                            parola = "Cognome Prenotazione non inserito");
                         return;
                       }
-                      if (NumeroTelfonoController.text.length == 0) {
+                      if (numeroTelfonoController.text.isEmpty) {
                         showAlertDialog(context,
-                            Parola = "Numero di Telefono non inserito");
+                            parola = "Numero di Telefono non inserito");
                         return;
                       }
-                      if (NumeroOspitiController.text.length == 0) {
+                      if (numeroOspitiController.text.isEmpty) {
                         showAlertDialog(
-                            context, Parola = "Numero Ospiti non inserito");
+                            context, parola = "Numero Ospiti non inserito");
                         return;
                       }
-                      if (PrezzoController.text.length == 0) {
+                      if (prezzoController.text.isEmpty) {
                         showAlertDialog(
-                            context, Parola = "Prezzo non inserito");
+                            context, parola = "Prezzo non inserito");
                         return;
                       }
-                      if (Datafine == null) {
+                      if (dataFine == null) {
                         showAlertDialog(
-                            context, Parola = "Data Fine non inserita");
+                            context, parola = "Data Fine non inserita");
                         return;
                       }
-                      if (DataInzio == null) {
+                      if (dataInzio == null) {
                         showAlertDialog(
-                            context, Parola = "Data Inizio non inserita");
+                            context, parola = "Data Inizio non inserita");
                         return;
                       }
-                      if (Pianocontroller.text.length == 0) {
-                        showAlertDialog(context, Parola = "Piano non inserito");
+                      if (pianocontroller.text.isEmpty) {
+                        showAlertDialog(context, parola = "Piano non inserito");
                         return;
                       }
 
@@ -116,19 +120,19 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         addDataFamigli();
 
                         for (int i = 0;
-                            i < int.parse(NumeroOspitiController.text);
+                            i < int.parse(numeroOspitiController.text);
                             i++) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AggiungiOspitiScreen(
                                   cognomeprenotazione:
-                                      CognomePrenotazioneController.text)));
+                                      cognomePrenotazioneController.text)));
                         }
                       }
-                      NumeroOspitiController.clear();
-                      PrezzoController.clear();
-                      NumeroTelfonoController.clear();
-                      Pianocontroller.clear();
-                      NumeroOspitiController.clear();
+                      numeroOspitiController.clear();
+                      prezzoController.clear();
+                      numeroTelfonoController.clear();
+                      pianocontroller.clear();
+                      numeroOspitiController.clear();
                     }),
               ),
             ],
@@ -138,12 +142,12 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
     );
   }
 
-  Future<void> Alert(BuildContext context, box) {
+  Future<void> alertDataRange(BuildContext context, box) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(5),
+          contentPadding: const EdgeInsets.all(5),
           content: SizedBox(
             height: 300,
             width: 250,
@@ -161,7 +165,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: Text('Okay'),
+                child: const Text('Okay'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -175,24 +179,24 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
 
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
-      DataInzio = args.value.startDate;
-      Datafine = args.value.endDate;
+      dataInzio = args.value.startDate;
+      dataFine = args.value.endDate;
     });
   }
 
   addDataFamigli() {
     User user = FirebaseAuth.instance.currentUser;
-    Future<DocumentReference> collectionReference = FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .collection("prenotazioni")
         .add({
-      'CognomePrenotazione': CognomePrenotazioneController.text,
-      'DataDiInizio': formatter.format(DataInzio),
-      'DataFine': formatter.format(Datafine),
-      'NPersone': int.parse(NumeroOspitiController.text),
-      'Prezzo': int.parse(PrezzoController.text),
-      'Piano': Pianocontroller.text,
+      'CognomePrenotazione': cognomePrenotazioneController.text,
+      'DataDiInizio': formatter.format(dataInzio),
+      'DataFine': formatter.format(dataFine),
+      'NPersone': int.parse(numeroOspitiController.text),
+      'Prezzo': int.parse(prezzoController.text),
+      'Piano': pianocontroller.text,
     });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-input_text(Textinput, label, obscureText, [var controller]) {
+// ignore: non_constant_identifier_names
+inputText(Textinput, label, obscureText, [var controller]) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Padding(
       padding: const EdgeInsets.all(10),
@@ -8,8 +9,9 @@ input_text(Textinput, label, obscureText, [var controller]) {
         width: 500,
         child: TextField(
           decoration: InputDecoration(
+            // ignore: prefer_const_constructors
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
             labelText: label,
             hintText: "inserisci " + label,
           ),
