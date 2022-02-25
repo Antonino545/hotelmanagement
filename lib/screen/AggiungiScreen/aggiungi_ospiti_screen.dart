@@ -76,7 +76,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
         .collection('users')
         .doc(user.uid)
         .collection("prenotazioni")
-        .doc("widget.CognomePrenotazione")
+        .doc(widget.cognomeprenotazione)
         .collection("Ospiti")
         .add({
       'Codice Fiscale': codiceFiscaleController.text,

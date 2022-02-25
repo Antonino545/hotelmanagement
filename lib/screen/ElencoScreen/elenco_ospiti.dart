@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,17 @@ class _ElencoOspiti extends State<ElencoOspiti> {
 
   @override
   Widget build(BuildContext context) {
+    User user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(title: const Text("Hotel Management")),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('Ospiti').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .collection("prenotazioni")
+              .doc(widget.cognomePrenotazione)
+              .collection("Ospiti")
+              .snapshots(),
           builder: (context, snapshots) {
             if (snapshots.hasData) {
               return ListView.builder(
@@ -32,7 +40,8 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                   // ignore: missing_return
                   itemBuilder: (context, index) {
                     if (kDebugMode) {
-                      print("ciao " + widget.cognomePrenotazione);
+                      print(
+                          "Cognome prenotazione " + widget.cognomePrenotazione);
                     }
                     DocumentSnapshot documentSnapshot =
                         snapshots.data.docs[index];

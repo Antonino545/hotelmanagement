@@ -32,7 +32,6 @@ class singup_screen extends StatelessWidget {
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "Crea Account",
@@ -68,7 +67,7 @@ class singup_screen extends StatelessWidget {
                       height: 50,
                       width: 500.0,
                       child: OutlinedButton(
-                        onPressed: () async {
+                        onPressed: () {
                           singUp(password_1, password_2, email, context);
                         },
                         child: Text(

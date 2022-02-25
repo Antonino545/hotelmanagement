@@ -52,7 +52,7 @@ singUp(
     context]) async {
   FirebaseAuth auth = FirebaseAuth.instance;
   if (password_1.text != password_2.text) {
-    await Alert(context, "Le password non coincidono");
+    await alert(context, "Le password non coincidono");
   } else {
     try {
       await auth
@@ -71,9 +71,9 @@ singUp(
       }
     } catch (e) {
       if (e.code == 'weak-password') {
-        await Alert(context, "Le password non rispetta i criteri di sicurezza");
+        await alert(context, "Le password non rispetta i criteri di sicurezza");
       } else if (e.code == 'email-already-in-use') {
-        await Alert(context, "Questa mail é gia utilizzata");
+        await alert(context, "Questa mail é gia utilizzata");
       }
     }
   }

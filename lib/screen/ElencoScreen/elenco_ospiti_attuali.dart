@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
@@ -12,6 +13,8 @@ class ElencoOspitiAttuali extends StatefulWidget {
 }
 
 class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
+  User user = FirebaseAuth.instance.currentUser;
+
   final DateFormat formatter = DateFormat('MM');
   final DateTime now = DateTime.now();
   @override
@@ -23,8 +26,11 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
       )),
       drawer: const DraweNavigation(),
       body: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance.collection('Prenotazione').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .collection("prenotazioni")
+              .snapshots(),
           builder: (context, snapshots) {
             if (snapshots.hasData) {
               return ListView.builder(
@@ -46,8 +52,18 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                           child: Column(
                             children: [
                               ListTile(
-                                title: Text("Cognome Prenotazione: " +
-                                    documentSnapshot["CognomePrenotazione"]),
+                                title: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Text("Nome Prenotazione: " +
+                                          documentSnapshot["NomePrenotazione"]),
+                                      Text("Cognome Prenotazione: " +
+                                          documentSnapshot[
+                                              "CognomePrenotazione"]),
+                                    ],
+                                  ),
+                                ),
                                 subtitle:
                                     Text("Piano: " + documentSnapshot["Piano"]),
                                 trailing: IconButton(

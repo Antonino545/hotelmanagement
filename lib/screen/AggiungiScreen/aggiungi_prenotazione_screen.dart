@@ -18,6 +18,7 @@ class AggiungiPrenotazione extends StatefulWidget {
 
 class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   var cognomePrenotazioneController = TextEditingController();
+  var nomePrenotazioneController = TextEditingController();
   var numeroOspitiController = TextEditingController();
   var numeroTelfonoController = TextEditingController();
   var prezzoController = TextEditingController();
@@ -51,9 +52,11 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                 style:
                     const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              inputText(TextInputType.text, " Cognome Prenotazione", false,
+              inputText(TextInputType.text, "Nome Prenotazione", false,
+                  nomePrenotazioneController),
+              inputText(TextInputType.text, "Cognome Prenotazione", false,
                   cognomePrenotazioneController),
-              inputText(TextInputType.text, " Numero Ospiti", false,
+              inputText(TextInputType.text, "Numero Ospiti", false,
                   numeroOspitiController),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -82,37 +85,33 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                     icon: const Icon(Icons.add),
                     onPressed: () {
                       if (cognomePrenotazioneController.text.isEmpty) {
-                        showAlertDialog(context,
+                        alert(context,
                             parola = "Cognome Prenotazione non inserito");
                         return;
                       }
                       if (numeroTelfonoController.text.isEmpty) {
-                        showAlertDialog(context,
+                        alert(context,
                             parola = "Numero di Telefono non inserito");
                         return;
                       }
                       if (numeroOspitiController.text.isEmpty) {
-                        showAlertDialog(
-                            context, parola = "Numero Ospiti non inserito");
+                        alert(context, parola = "Numero Ospiti non inserito");
                         return;
                       }
                       if (prezzoController.text.isEmpty) {
-                        showAlertDialog(
-                            context, parola = "Prezzo non inserito");
+                        alert(context, parola = "Prezzo non inserito");
                         return;
                       }
                       if (dataFine == null) {
-                        showAlertDialog(
-                            context, parola = "Data Fine non inserita");
+                        alert(context, parola = "Data Fine non inserita");
                         return;
                       }
                       if (dataInzio == null) {
-                        showAlertDialog(
-                            context, parola = "Data Inizio non inserita");
+                        alert(context, parola = "Data Inizio non inserita");
                         return;
                       }
                       if (pianocontroller.text.isEmpty) {
-                        showAlertDialog(context, parola = "Piano non inserito");
+                        alert(context, parola = "Piano non inserito");
                         return;
                       }
 
@@ -190,8 +189,10 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
         .collection('users')
         .doc(user.uid)
         .collection("prenotazioni")
-        .add({
+        .doc(cognomePrenotazioneController.text)
+        .set({
       'CognomePrenotazione': cognomePrenotazioneController.text,
+      'NomePrenotazione': nomePrenotazioneController.text,
       'DataDiInizio': formatter.format(dataInzio),
       'DataFine': formatter.format(dataFine),
       'NPersone': int.parse(numeroOspitiController.text),

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
@@ -8,14 +9,15 @@ import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import 'elenco_ospiti.dart';
 
 class ElencoOspitiGenerali extends StatefulWidget {
-  String cognomePrenotazione;
-
   ElencoOspitiGenerali({Key key}) : super(key: key);
   @override
   _ElencoOspitiGeneraliState createState() => _ElencoOspitiGeneraliState();
 }
 
 class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
+  String cognomePrenotazione;
+
+  User user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,6 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
       drawer: const DraweNavigation(),
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         child: Padding(
           padding: EdgeInsets.only(right: !isMobile(context) ? 50 : 0),
           child: Column(
@@ -35,7 +36,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
             children: [
               StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Prenotazione')
+                      .collection('users')
+                      .doc(user.uid)
+                      .collection("prenotazioni")
                       .snapshots(),
                   builder: (context, snapshots) {
                     if (snapshots.hasData) {
@@ -52,9 +55,19 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(children: [
                                   ListTile(
-                                    title: Text("Cognome Prenotazione: " +
-                                        documentSnapshot[
-                                            "CognomePrenotazione"]),
+                                    title: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Text("Nome Prenotazione: " +
+                                              documentSnapshot[
+                                                  "NomePrenotazione"]),
+                                          Text("Cognome Prenotazione: " +
+                                              documentSnapshot[
+                                                  "CognomePrenotazione"]),
+                                        ],
+                                      ),
+                                    ),
                                     subtitle: Text(
                                         "Piano: " + documentSnapshot["Piano"]),
                                     trailing: IconButton(
@@ -129,6 +142,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 ]));
                           });
                     } else {
+                      print("dati non trovati");
                       return const Align(
                         alignment: FractionalOffset.center,
                         child: CircularProgressIndicator(),
