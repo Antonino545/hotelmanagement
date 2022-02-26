@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
-import '../components/buttons.dart';
+import '/components/buttons.dart';
 import 'login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -57,6 +58,21 @@ class _welcomeState extends State<welcome> {
                           text: "Crea un Account",
                           onpressed: const singup_screen(),
                           context: context),
+                      Wrap(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              return mdfileshow(
+                                  context, "Terms and Conditions.md");
+                            },
+                            child: Text(" Termini e Condizioni"),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("Privacy Policy"),
+                          )
+                        ],
+                      )
                       /**  button_ico(
                         text: "Accedi con Google",
                         icon: AntDesign.google,

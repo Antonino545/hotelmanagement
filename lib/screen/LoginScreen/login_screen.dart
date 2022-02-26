@@ -3,8 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
-import 'package:hotelmanagement/screen/components/input.dart';
-import 'package:hotelmanagement/screen/components/login.dart';
+import 'package:hotelmanagement/components/input.dart';
+import 'package:hotelmanagement/components/login.dart';
 
 // ignore: camel_case_types
 class login_screen extends StatefulWidget {

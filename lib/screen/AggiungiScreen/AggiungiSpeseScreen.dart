@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
-import 'package:hotelmanagement/screen/components/input.dart';
+import 'package:hotelmanagement/components/input.dart';
 
 class AggiungiSpeseScreen extends StatefulWidget {
   const AggiungiSpeseScreen({Key key}) : super(key: key);
