@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:page_transition/page_transition.dart';
 

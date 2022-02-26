@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hotelmanagement/Screen/components/AlertDialog.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
