@@ -69,6 +69,8 @@ class singup_screen extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {
                           singUp(password_1, password_2, email, context);
+                          MaterialPageRoute(
+                              builder: (context) => login_screen());
                         },
                         child: Text(
                           "Crea Account",

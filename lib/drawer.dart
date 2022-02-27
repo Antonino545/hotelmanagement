@@ -67,7 +67,7 @@ class _DraweNavigationState extends State<DraweNavigation> {
           ListTile(
             //listTitle dove abbiamo il collegamento ad Finanze
             title: const Text("Finanze"),
-            leading: const Icon(Icons.euro),
+            leading: const Icon(Icons.logout),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
                     const ElencoOspitiAttuali())), //abbiamo il collegamento ad Finanze

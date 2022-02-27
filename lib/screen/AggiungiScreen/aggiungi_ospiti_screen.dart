@@ -44,7 +44,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
                   "Maggiorenne",
                   style: TextStyle(fontSize: 20),
                 ),
-                Switch(
+                Switch.adaptive(
                   value: maggiorenni,
                   onChanged: (value) {
                     setState(() {

@@ -6,6 +6,10 @@ import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
 
+import '../../drawer.dart';
+import '../../splitview.dart';
+import '../ElencoScreen/elenco_ospiti_generale.dart';
+
 // ignore: camel_case_types
 class login_screen extends StatefulWidget {
   const login_screen({Key key}) : super(key: key);
@@ -109,7 +113,7 @@ class _login_screen_mobileState extends State<login_screen> {
                       TextButton(
                         onPressed: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => singup_screen())),
+                                builder: (context) => ElencoOspitiGenerali())),
                         child: Text(
                           "Crea Account",
                           style: TextStyle(
