@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 
@@ -6,7 +7,7 @@ import '../responsive/pageScaffol.dart';
 
 // ignore: must_be_immutable
 class ElencoSpese extends StatefulWidget {
-  // ignore: non_ant_identifier_names
+  // ignore: non_ant_identifier_names, non_constant_identifier_names
   String CognomePrenotazione = "";
 
   ElencoSpese({Key? key}) : super(key: key);
@@ -17,14 +18,19 @@ class ElencoSpese extends StatefulWidget {
 class _ElencoSpeseState extends State<ElencoSpese> {
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return PageScaffold(
         title: "Hotel Management",
         body: Scaffold(
-          drawer: DraweNavigation(),
+          drawer: const DraweNavigation(),
           resizeToAvoidBottomInset: false,
           body: StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection('Spese').snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('Dati')
+                  .doc(user?.uid)
+                  .collection("Spese")
+                  .snapshots(),
               builder: (context, snapshots) {
                 if (snapshots.hasData) {
                   return ListView.builder(
@@ -35,7 +41,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                             snapshots.data!.docs[index];
                         return Card(
                             elevation: 4,
-                            margin: EdgeInsets.all(8),
+                            margin: const EdgeInsets.all(8),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             child: Column(children: [
@@ -44,8 +50,8 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                                     documentSnapshot["NomeSpesa"].toString()),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(5.0),
-                                child: Row(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Wrap(
                                   children: [
                                     Text("Descrizione: " +
                                         documentSnapshot["DescrizioneSpesa"]
@@ -54,7 +60,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 child: Row(
                                   children: [
                                     Text("Costo Spesa: " +
@@ -64,7 +70,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                                 ),
                               ),
                               IconButton(
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   color: Colors.red,
                                   size: 25,
@@ -74,7 +80,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                             ]));
                       });
                 } else {
-                  return Align(
+                  return const Align(
                     alignment: FractionalOffset.center,
                     child: CircularProgressIndicator(),
                   );

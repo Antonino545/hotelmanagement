@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
@@ -17,7 +16,7 @@ Future<void> alert(BuildContext context, box) {
           content: Text(box),
           actions: <Widget>[
             OutlinedButton(
-              child: Text('Okay'),
+              child: const Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -34,7 +33,7 @@ Future<void> alert(BuildContext context, box) {
           content: Text(box),
           actions: <Widget>[
             OutlinedButton(
-              child: Text('Okay'),
+              child: const Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -49,7 +48,7 @@ Future<void> alert(BuildContext context, box) {
 mdfileshow({required BuildContext context, required mdfile}) {
   Expanded(
     child: FutureBuilder(
-      future: Future.delayed(Duration(milliseconds: 150)).then((value) {
+      future: Future.delayed(const Duration(milliseconds: 150)).then((value) {
         return rootBundle.loadString('asset/$mdfile');
       }),
       builder: (context, snapshot) {
@@ -58,7 +57,7 @@ mdfileshow({required BuildContext context, required mdfile}) {
             data: snapshot.data.toString(),
           );
         }
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },

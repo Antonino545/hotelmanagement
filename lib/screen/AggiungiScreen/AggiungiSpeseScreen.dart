@@ -1,14 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/components/input.dart';
 
 import '../responsive/pageScaffol.dart';
 
 class AggiungiSpeseScreen extends StatefulWidget {
-  AggiungiSpeseScreen({Key? key}) : super(key: key);
+  const AggiungiSpeseScreen({Key? key}) : super(key: key);
 
   @override
   _AggiungiSpeseScreenState createState() => _AggiungiSpeseScreenState();
@@ -16,7 +16,13 @@ class AggiungiSpeseScreen extends StatefulWidget {
 
 class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
   addSpesa() {
-    FirebaseFirestore.instance.collection('Spese').add({
+    User? user = FirebaseAuth.instance.currentUser;
+
+    FirebaseFirestore.instance
+        .collection('Dati')
+        .doc(user?.uid)
+        .collection("Spese")
+        .add({
       'CostoSpesa': int.parse(costoSpesaControlle.text),
       'DescrizioneSpesa': descrizioneSpesaControlle.text,
       'NomeSpesa': nomeSpesaControlle.text,
@@ -37,7 +43,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Aggiungi Spese",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
@@ -48,7 +54,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
                   inputText(TextInputType.number, "Costo spesa", false,
                       costoSpesaControlle),
                   IconButton(
-                      icon: Icon(Icons.add_shopping_cart),
+                      icon: const Icon(Icons.add_shopping_cart),
                       onPressed: () {
                         if (nomeSpesaControlle.text.isNotEmpty &&
                             costoSpesaControlle.text.isNotEmpty) {

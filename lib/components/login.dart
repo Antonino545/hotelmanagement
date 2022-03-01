@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,13 +7,22 @@ import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
-import 'package:page_transition/page_transition.dart';
+
+import '../screen/LoginScreen/login_screen.dart';
 
 Future<void> login(
     {context,
     box,
     required TextEditingController email,
     required TextEditingController password}) async {
+  if (email.text == null) {
+    alert(context, "devi inserire la mail");
+    return;
+  }
+  if (password.text == null) {
+    alert(context, "devi inserire la password");
+    return;
+  }
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email.text, password: password.text);
@@ -37,7 +45,7 @@ Future<void> login(
       }
     } else {
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SplitView(
+          builder: (context) => const SplitView(
                 menu: DraweNavigation(),
                 content: ElencoOspitiGenerali(),
                 key: null,
@@ -76,6 +84,7 @@ singUp(
       if (kDebugMode) {
         print("Signed Up");
       }
+      login(email: email, password: password_1);
     } catch (e) {
       /**  if (e.code == 'weak-password') {
         await alert(context, "Le password non rispetta i criteri di sicurezza");
@@ -99,5 +108,5 @@ signInWithGoogle() async {
   }
 }
 
-// ignore: non_ant_identifier_names
+// ignore: non_ant_identifier_names, non_constant_identifier_names
 login_with_facebook() {}

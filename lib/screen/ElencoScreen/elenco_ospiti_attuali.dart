@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
 import 'package:intl/intl.dart';
 
 import '../responsive/pageScaffol.dart';
 
 class ElencoOspitiAttuali extends StatefulWidget {
-  ElencoOspitiAttuali({Key? key}) : super(key: key);
+  const ElencoOspitiAttuali({Key? key}) : super(key: key);
 
   @override
   _ElencoOspitiAttualiState createState() => _ElencoOspitiAttualiState();
@@ -26,7 +25,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
         body: Scaffold(
           body: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
-                  .collection('users')
+                  .collection('Dati')
                   .doc(user?.uid)
                   .collection("prenotazioni")
                   .snapshots(),
@@ -39,19 +38,19 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                       itemBuilder: (context, index) {
                         DocumentSnapshot documentSnapshot =
                             snapshots.data!.docs[index];
-                        // ignore: non_ant_identifier_names
+                        // ignore: non_ant_identifier_names, non_constant_identifier_names
                         DateTime Data =
                             DateTime.parse(documentSnapshot["DataDiInizio"]);
                         if (formatter.format(Data) == formatter.format(now)) {
                           return Card(
                               elevation: 4,
-                              margin: EdgeInsets.all(8),
+                              margin: const EdgeInsets.all(8),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),
                               child: Column(children: [
                                 ListTile(
                                   title: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -76,7 +75,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                     ),
                                   ),
                                   trailing: IconButton(
-                                    icon: Icon(Icons.person),
+                                    icon: const Icon(Icons.person),
                                     onPressed: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
@@ -91,7 +90,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     children: [
                                       Text("Data di inizio soggiorno: " +
@@ -101,7 +100,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     children: [
                                       Text("Data di Fine soggiorno: " +
@@ -111,17 +110,17 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     children: [
-                                      Text("Nummero di persone: " +
+                                      Text("Numero di persone: " +
                                           documentSnapshot["NPersone"]
                                               .toString()),
                                     ],
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     children: [
                                       Text(
@@ -134,9 +133,9 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(15.0),
+                                  padding: const EdgeInsets.all(15.0),
                                   child: IconButton(
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.delete,
                                       color: Colors.red,
                                       size: 25,
@@ -146,14 +145,14 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                 ),
                               ]));
                         } else {
-                          return Align(
+                          return const Align(
                             alignment: FractionalOffset.center,
                             child: CircularProgressIndicator(),
                           );
                         }
                       });
                 } else {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }

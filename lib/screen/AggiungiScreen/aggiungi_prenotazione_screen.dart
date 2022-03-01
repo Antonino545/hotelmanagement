@@ -4,14 +4,13 @@ import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../responsive/pageScaffol.dart';
 import 'aggiungi_ospiti_screen.dart';
 
 class AggiungiPrenotazione extends StatefulWidget {
-  AggiungiPrenotazione({Key? key}) : super(key: key);
+  const AggiungiPrenotazione({Key? key}) : super(key: key);
 
   @override
   _AggiungiPrenotazioneState createState() => _AggiungiPrenotazioneState();
@@ -48,7 +47,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // ignore: prefer__ructors
-                  Text(
+                  const Text(
                     "Aggiungi Ospiti",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
@@ -56,22 +55,23 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                       nomePrenotazioneController),
                   inputText(TextInputType.text, "Cognome Prenotazione", false,
                       cognomePrenotazioneController),
-                  inputText(TextInputType.text, "Numero Ospiti", false,
+                  inputText(TextInputType.number, "Numero Ospiti", false,
                       numeroOspitiController),
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: TextButton(
                       style: TextButton.styleFrom(
                         primary: Colors.white,
                         backgroundColor: Colors.teal,
-                        shape: BeveledRectangleBorder(
+                        shape: const BeveledRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(2))),
                       ),
                       onPressed: () {
                         alertDataRange(context,
                             "inserire data di inizio e fine soggiorno");
                       },
-                      child: Text("inserire Data di inizio e fine soggiorno"),
+                      child: const Text(
+                          "inserire Data di inizio e fine soggiorno"),
                     ),
                   ),
                   inputText(TextInputType.number, "Prezzo soggiorno", false,
@@ -81,9 +81,9 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                   inputText(
                       TextInputType.text, "Piano", false, pianocontroller),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: IconButton(
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         onPressed: () {
                           if (cognomePrenotazioneController.text.isEmpty) {
                             alert(context,
@@ -104,10 +104,12 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                             alert(context, parola = "Prezzo non inserito");
                             return;
                           }
+                          // ignore: unnecessary_null_comparison
                           if (dataFine == null) {
                             alert(context, parola = "Data Fine non inserita");
                             return;
                           }
+                          // ignore: unnecessary_null_comparison
                           if (dataInzio == null) {
                             alert(context, parola = "Data Inizio non inserita");
                             return;
@@ -148,7 +150,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(5),
+          contentPadding: const EdgeInsets.all(5),
           content: SizedBox(
             height: 300,
             width: 250,
@@ -166,7 +168,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: Text('Okay'),
+                child: const Text('Okay'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -188,7 +190,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   addDataFamigli() {
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
-        .collection('users')
+        .collection('Dati')
         .doc(user?.uid)
         .collection("prenotazioni")
         .doc(cognomePrenotazioneController.text)

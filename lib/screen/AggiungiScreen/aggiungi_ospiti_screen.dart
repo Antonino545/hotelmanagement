@@ -8,7 +8,7 @@ import '../responsive/pageScaffol.dart';
 class AggiungiOspitiScreen extends StatefulWidget {
   final String cognomeprenotazione;
 
-  AggiungiOspitiScreen({Key? key, required this.cognomeprenotazione})
+  const AggiungiOspitiScreen({Key? key, required this.cognomeprenotazione})
       : super(key: key);
 
   @override
@@ -28,9 +28,10 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
     return PageScaffold(
         title: "",
         body: Scaffold(
+          resizeToAvoidBottomInset: true,
           body: Column(
             children: [
-              Text(
+              const Text(
                 "Aggiungi Ospiti",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
@@ -41,27 +42,29 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
                   codiceFiscaleController),
               Padding(
                 // Texfield Maggiorenne
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Text(
-                      "Maggiorenne",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Switch.adaptive(
-                      value: maggiorenni,
-                      onChanged: (value) {
-                        setState(() {
-                          maggiorenni = value;
-                        });
-                      },
-                    ),
-                  ],
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Maggiorenne",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Switch.adaptive(
+                        value: maggiorenni,
+                        onChanged: (value) {
+                          setState(() {
+                            maggiorenni = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
               IconButton(
                   //bottone in cui ti porta alla schermata precedente
-                  icon: Icon(Icons.person_add),
+                  icon: const Icon(Icons.person_add),
                   onPressed: () {
                     if (nomeController.text.isNotEmpty &&
                         cognomeController.text.isNotEmpty) {
@@ -77,7 +80,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   addDataOspiti() {
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
-        .collection('users')
+        .collection('Dati')
         .doc(user?.uid)
         .collection("prenotazioni")
         .doc(widget.cognomeprenotazione)

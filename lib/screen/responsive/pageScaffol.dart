@@ -1,3 +1,7 @@
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class PageScaffold extends StatelessWidget {
@@ -25,7 +29,7 @@ class PageScaffold extends StatelessWidget {
         // 3. add a non-null leading argument if we have a drawer
         leading: hasDrawer
             ? IconButton(
-                icon: Icon(Icons.menu),
+                icon: const Icon(Icons.menu),
                 // 4. open the drawer if we have one
                 onPressed:
                     hasDrawer ? () => ancestorScaffold!.openDrawer() : null,

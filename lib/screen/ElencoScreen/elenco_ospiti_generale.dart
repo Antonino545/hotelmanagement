@@ -2,15 +2,14 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/responsive/pageScaffol.dart';
-import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
 import 'elenco_ospiti.dart';
 
 class ElencoOspitiGenerali extends StatefulWidget {
-  ElencoOspitiGenerali({Key? key}) : super(key: key);
+  const ElencoOspitiGenerali({Key? key}) : super(key: key);
   @override
   _ElencoOspitiGeneraliState createState() => _ElencoOspitiGeneraliState();
 }
@@ -32,7 +31,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
             children: [
               StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
-                      .collection('users')
+                      .collection('Dati')
                       .doc(user?.uid)
                       .collection("prenotazioni")
                       .snapshots(),
@@ -46,13 +45,13 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 snapshots.data!.docs[index];
                             return Card(
                                 elevation: 4,
-                                margin: EdgeInsets.all(8),
+                                margin: const EdgeInsets.all(8),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(children: [
                                   ListTile(
                                     title: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -66,33 +65,37 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                         ],
                                       ),
                                     ),
-                                    subtitle: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Row(
-                                        children: [
-                                          Text("Piano: " +
-                                              documentSnapshot["Piano"]
-                                                  .toString()),
-                                        ],
-                                      ),
-                                    ),
-                                    trailing: IconButton(
-                                      icon: Icon(Icons.person),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ElencoOspiti(
-                                                      cognomePrenotazione:
-                                                          documentSnapshot[
-                                                                  "CognomePrenotazione"]
-                                                              .toString(),
-                                                    )));
-                                      },
+                                    trailing: Column(
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.person),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ElencoOspiti(
+                                                          cognomePrenotazione:
+                                                              documentSnapshot[
+                                                                      "CognomePrenotazione"]
+                                                                  .toString(),
+                                                        )));
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Row(
+                                      children: [
+                                        Text("Piano: " +
+                                            documentSnapshot["Piano"]
+                                                .toString()),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Row(
                                       children: [
                                         Text("Data di inizio soggiorno: " +
@@ -102,7 +105,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Row(
                                       children: [
                                         Text("Data di Fine soggiorno: " +
@@ -112,17 +115,17 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Row(
                                       children: [
-                                        Text("Nummero di persone: " +
+                                        Text("Numero di persone: " +
                                             documentSnapshot["NPersone"]
                                                 .toString()),
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Row(
                                       children: [
                                         Text(
@@ -135,21 +138,25 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(15.0),
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                        size: 25,
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () {},
                                       ),
-                                      onPressed: () {},
                                     ),
                                   ),
                                 ]));
                           });
                     } else {
-                      print("dati non trovati");
-                      return Align(
+                      if (kDebugMode) {
+                        print("dati non trovati");
+                      }
+                      return const Align(
                         alignment: FractionalOffset.center,
                         child: CircularProgressIndicator(),
                       );

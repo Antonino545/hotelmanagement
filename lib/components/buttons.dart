@@ -3,7 +3,7 @@ import 'package:page_transition/page_transition.dart';
 
 Widget buttonIco({text, icon, onpressed, context}) {
   return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         height: 50,
         width: 500.0,
@@ -12,10 +12,11 @@ Widget buttonIco({text, icon, onpressed, context}) {
           label: Text(text),
           icon: Icon(icon),
           style: OutlinedButton.styleFrom(
-            textStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+            textStyle:
+                const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
             backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-                side: BorderSide(
+                side: const BorderSide(
                   width: 10.0,
                   style: BorderStyle.solid,
                 ),
@@ -27,7 +28,7 @@ Widget buttonIco({text, icon, onpressed, context}) {
 
 Widget buttonPageTransition({text, onpressed, context}) {
   return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         height: 50,
         width: 500.0,
@@ -42,13 +43,13 @@ Widget buttonPageTransition({text, onpressed, context}) {
             text,
           ),
           style: OutlinedButton.styleFrom(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20,
             ),
             backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-                side: BorderSide(
+                side: const BorderSide(
                   width: 10.0,
                   style: BorderStyle.solid,
                 ),
@@ -61,7 +62,7 @@ Widget buttonPageTransition({text, onpressed, context}) {
 button(text, onpressed) async {
   // todo da perfezzionare il funzionamento
   return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         height: 50,
         width: 500.0,
@@ -73,12 +74,12 @@ button(text, onpressed) async {
             text,
           ),
           style: OutlinedButton.styleFrom(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
                 fontWeight: FontWeight.w600, fontSize: 20, color: Colors.teal),
             elevation: 20,
             backgroundColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(50)),
           ),
         ),
