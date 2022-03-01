@@ -3,10 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 
+import '../responsive/pageScaffol.dart';
+
 class AggiungiOspitiScreen extends StatefulWidget {
   final String cognomeprenotazione;
 
-  const AggiungiOspitiScreen({Key key, this.cognomeprenotazione})
+  AggiungiOspitiScreen({Key? key, required this.cognomeprenotazione})
       : super(key: key);
 
   @override
@@ -23,58 +25,60 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
   bool maggiorenni = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          const Text(
-            "Aggiungi Ospiti",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-          inputText(TextInputType.text, " Nome", false, nomeController),
-          inputText(TextInputType.text, " Cognome", false, cognomeController),
-          inputText(TextInputType.text, " Codice Fiscale", false,
-              codiceFiscaleController),
-          Padding(
-            // Texfield Maggiorenne
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                const Text(
-                  "Maggiorenne",
-                  style: TextStyle(fontSize: 20),
+    return PageScaffold(
+        title: "",
+        body: Scaffold(
+          body: Column(
+            children: [
+              Text(
+                "Aggiungi Ospiti",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              inputText(TextInputType.text, " Nome", false, nomeController),
+              inputText(
+                  TextInputType.text, " Cognome", false, cognomeController),
+              inputText(TextInputType.text, " Codice Fiscale", false,
+                  codiceFiscaleController),
+              Padding(
+                // Texfield Maggiorenne
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Maggiorenne",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Switch.adaptive(
+                      value: maggiorenni,
+                      onChanged: (value) {
+                        setState(() {
+                          maggiorenni = value;
+                        });
+                      },
+                    ),
+                  ],
                 ),
-                Switch.adaptive(
-                  value: maggiorenni,
-                  onChanged: (value) {
-                    setState(() {
-                      maggiorenni = value;
-                    });
-                  },
-                ),
-              ],
-            ),
+              ),
+              IconButton(
+                  //bottone in cui ti porta alla schermata precedente
+                  icon: Icon(Icons.person_add),
+                  onPressed: () {
+                    if (nomeController.text.isNotEmpty &&
+                        cognomeController.text.isNotEmpty) {
+                      addDataOspiti();
+                      Navigator.pop(context);
+                    }
+                  }),
+            ],
           ),
-          IconButton(
-              //bottone in cui ti porta alla schermata precedente
-              icon: const Icon(Icons.person_add),
-              onPressed: () {
-                if (nomeController.text.isNotEmpty &&
-                    cognomeController.text.isNotEmpty) {
-                  addDataOspiti();
-                  Navigator.pop(context);
-                }
-              }),
-        ],
-      ),
-    );
+        ));
   }
 
   addDataOspiti() {
-    User user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('users')
-        .doc(user.uid)
+        .doc(user?.uid)
         .collection("prenotazioni")
         .doc(widget.cognomeprenotazione)
         .collection("Ospiti")

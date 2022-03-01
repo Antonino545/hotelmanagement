@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer__ructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 // ignore: camel_case_types
 class singup_screen extends StatelessWidget {
-  const singup_screen({Key key}) : super(key: key);
+  singup_screen({Key? key}) : super(key: key);
 
   get value => null;
 
@@ -62,13 +62,16 @@ class singup_screen extends StatelessWidget {
             Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: SizedBox(
                       height: 50,
                       width: 500.0,
                       child: OutlinedButton(
                         onPressed: () {
-                          singUp(password_1, password_2, email, context);
+                          singUp(
+                              email: email,
+                              password_1: password_1,
+                              password_2: password_2);
                           MaterialPageRoute(
                               builder: (context) => login_screen());
                         },
@@ -76,11 +79,11 @@ class singup_screen extends StatelessWidget {
                           "Crea Account",
                         ),
                         style: OutlinedButton.styleFrom(
-                          textStyle: const TextStyle(
+                          textStyle: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 20),
                           backgroundColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
-                              side: const BorderSide(
+                              side: BorderSide(
                                 width: 10.0,
                                 style: BorderStyle.solid,
                               ),

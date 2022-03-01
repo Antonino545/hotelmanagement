@@ -23,11 +23,10 @@ class SplitView extends StatelessWidget {
       return Row(
         children: [
           SizedBox(
-            width: menuWidth,
             child: menu,
           ),
           Container(width: 0.5, color: Colors.black),
-          Expanded(child: content),
+          Expanded(flex: 4, child: content),
         ],
       );
     } else {

@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
+import '../responsive/pageScaffol.dart';
+
 // ignore: must_be_immutable
 class ElencoOspiti extends StatefulWidget {
   String cognomePrenotazione;
   ElencoOspiti({
-    Key key,
-    this.cognomePrenotazione,
+    Key? key,
+    required this.cognomePrenotazione,
   }) : super(key: key);
   @override
   _ElencoOspiti createState() => _ElencoOspiti();
@@ -21,13 +23,13 @@ class _ElencoOspiti extends State<ElencoOspiti> {
 
   @override
   Widget build(BuildContext context) {
-    User user = FirebaseAuth.instance.currentUser;
+    var user = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      appBar: AppBar(title: const Text("Hotel Management")),
-      body: StreamBuilder(
+      appBar: AppBar(title: Text("Hotel Management")),
+      body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('users')
-              .doc(user.uid)
+              .doc(user?.uid)
               .collection("prenotazioni")
               .doc(widget.cognomePrenotazione)
               .collection("Ospiti")
@@ -36,63 +38,67 @@ class _ElencoOspiti extends State<ElencoOspiti> {
             if (snapshots.hasData) {
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: snapshots.data.docs.length,
-                  // ignore: missing_return
+                  itemCount: snapshots.data!.docs.length,
                   itemBuilder: (context, index) {
-                    if (kDebugMode) {
-                      print(
-                          "Cognome prenotazione " + widget.cognomePrenotazione);
-                    }
                     DocumentSnapshot documentSnapshot =
-                        snapshots.data.docs[index];
+                        snapshots.data!.docs[index];
                     if (documentSnapshot["CognomePrenotazione"] ==
                         widget.cognomePrenotazione) {
-                      return Card(
-                          elevation: 4,
-                          margin: const EdgeInsets.all(8),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: Text(
-                                    "Nome Ospite: " + documentSnapshot["Nome"]),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text("Cognome Ospite: " +
-                                        documentSnapshot["Cognome"]),
-                                  ],
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Card(
+                            elevation: 4,
+                            margin: EdgeInsets.all(8),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text("Nome Ospite: " +
+                                      documentSnapshot["Nome"]),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text("Codice Fiscale: " +
-                                        documentSnapshot["Codice Fiscale"]),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      Text("Cognome Ospite: " +
+                                          documentSnapshot["Cognome"]),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    if (documentSnapshot["Maggiorenne"] == true)
-                                      const Text("Maggiorenne")
-                                    else
-                                      const Text("Minorenne")
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      Text("Codice Fiscale: " +
+                                          documentSnapshot["Codice Fiscale"]),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ));
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      if (documentSnapshot["Maggiorenne"] ==
+                                          true)
+                                        Text("Maggiorenne")
+                                      else
+                                        Text("Minorenne")
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )),
+                      );
+                    } else {
+                      return Align(
+                        alignment: FractionalOffset.center,
+                        child: CircularProgressIndicator(),
+                      );
                     }
                   });
             } else {
-              return const Align(
+              return Align(
                 alignment: FractionalOffset.center,
                 child: CircularProgressIndicator(),
               );

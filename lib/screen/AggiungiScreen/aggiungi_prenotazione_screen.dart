@@ -7,10 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../responsive/pageScaffol.dart';
 import 'aggiungi_ospiti_screen.dart';
 
 class AggiungiPrenotazione extends StatefulWidget {
-  const AggiungiPrenotazione({Key key}) : super(key: key);
+  AggiungiPrenotazione({Key? key}) : super(key: key);
 
   @override
   _AggiungiPrenotazioneState createState() => _AggiungiPrenotazioneState();
@@ -37,108 +38,109 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: const DraweNavigation(),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // ignore: prefer_const_constructors
-              Text(
-                "Aggiungi Ospiti",
-                style:
-                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              inputText(TextInputType.text, "Nome Prenotazione", false,
-                  nomePrenotazioneController),
-              inputText(TextInputType.text, "Cognome Prenotazione", false,
-                  cognomePrenotazioneController),
-              inputText(TextInputType.text, "Numero Ospiti", false,
-                  numeroOspitiController),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.teal,
-                    shape: const BeveledRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(2))),
+    return PageScaffold(
+        title: "",
+        body: Scaffold(
+          body: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // ignore: prefer__ructors
+                  Text(
+                    "Aggiungi Ospiti",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    alertDataRange(
-                        context, "inserire data di inizio e fine soggiorno");
-                  },
-                  child: const Text("inserire Data di inizio e fine soggiorno"),
-                ),
-              ),
-              inputText(TextInputType.number, "Prezzo soggiorno", false,
-                  prezzoController),
-              inputText(TextInputType.number, " Numero Di Telefono", false,
-                  numeroTelfonoController),
-              inputText(TextInputType.text, "Piano", false, pianocontroller),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () {
-                      if (cognomePrenotazioneController.text.isEmpty) {
-                        alert(context,
-                            parola = "Cognome Prenotazione non inserito");
-                        return;
-                      }
-                      if (numeroTelfonoController.text.isEmpty) {
-                        alert(context,
-                            parola = "Numero di Telefono non inserito");
-                        return;
-                      }
-                      if (numeroOspitiController.text.isEmpty) {
-                        alert(context, parola = "Numero Ospiti non inserito");
-                        return;
-                      }
-                      if (prezzoController.text.isEmpty) {
-                        alert(context, parola = "Prezzo non inserito");
-                        return;
-                      }
-                      if (dataFine == null) {
-                        alert(context, parola = "Data Fine non inserita");
-                        return;
-                      }
-                      if (dataInzio == null) {
-                        alert(context, parola = "Data Inizio non inserita");
-                        return;
-                      }
-                      if (pianocontroller.text.isEmpty) {
-                        alert(context, parola = "Piano non inserito");
-                        return;
-                      }
+                  inputText(TextInputType.text, "Nome Prenotazione", false,
+                      nomePrenotazioneController),
+                  inputText(TextInputType.text, "Cognome Prenotazione", false,
+                      cognomePrenotazioneController),
+                  inputText(TextInputType.text, "Numero Ospiti", false,
+                      numeroOspitiController),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: Colors.teal,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(2))),
+                      ),
+                      onPressed: () {
+                        alertDataRange(context,
+                            "inserire data di inizio e fine soggiorno");
+                      },
+                      child: Text("inserire Data di inizio e fine soggiorno"),
+                    ),
+                  ),
+                  inputText(TextInputType.number, "Prezzo soggiorno", false,
+                      prezzoController),
+                  inputText(TextInputType.number, " Numero Di Telefono", false,
+                      numeroTelfonoController),
+                  inputText(
+                      TextInputType.text, "Piano", false, pianocontroller),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          if (cognomePrenotazioneController.text.isEmpty) {
+                            alert(context,
+                                parola = "Cognome Prenotazione non inserito");
+                            return;
+                          }
+                          if (numeroTelfonoController.text.isEmpty) {
+                            alert(context,
+                                parola = "Numero di Telefono non inserito");
+                            return;
+                          }
+                          if (numeroOspitiController.text.isEmpty) {
+                            alert(
+                                context, parola = "Numero Ospiti non inserito");
+                            return;
+                          }
+                          if (prezzoController.text.isEmpty) {
+                            alert(context, parola = "Prezzo non inserito");
+                            return;
+                          }
+                          if (dataFine == null) {
+                            alert(context, parola = "Data Fine non inserita");
+                            return;
+                          }
+                          if (dataInzio == null) {
+                            alert(context, parola = "Data Inizio non inserita");
+                            return;
+                          }
+                          if (pianocontroller.text.isEmpty) {
+                            alert(context, parola = "Piano non inserito");
+                            return;
+                          }
 
-                      {
-                        addDataFamigli();
+                          {
+                            addDataFamigli();
 
-                        for (int i = 0;
-                            i < int.parse(numeroOspitiController.text);
-                            i++) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AggiungiOspitiScreen(
-                                  cognomeprenotazione:
-                                      cognomePrenotazioneController.text)));
-                        }
-                      }
-                      numeroOspitiController.clear();
-                      prezzoController.clear();
-                      numeroTelfonoController.clear();
-                      pianocontroller.clear();
-                      numeroOspitiController.clear();
-                    }),
+                            for (int i = 0;
+                                i < int.parse(numeroOspitiController.text);
+                                i++) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AggiungiOspitiScreen(
+                                      cognomeprenotazione:
+                                          cognomePrenotazioneController.text)));
+                            }
+                          }
+                          numeroOspitiController.clear();
+                          prezzoController.clear();
+                          numeroTelfonoController.clear();
+                          pianocontroller.clear();
+                          numeroOspitiController.clear();
+                        }),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Future<void> alertDataRange(BuildContext context, box) {
@@ -146,7 +148,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: const EdgeInsets.all(5),
+          contentPadding: EdgeInsets.all(5),
           content: SizedBox(
             height: 300,
             width: 250,
@@ -164,7 +166,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
           actions: <Widget>[
             Center(
               child: TextButton(
-                child: const Text('Okay'),
+                child: Text('Okay'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -184,10 +186,10 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   addDataFamigli() {
-    User user = FirebaseAuth.instance.currentUser;
+    User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('users')
-        .doc(user.uid)
+        .doc(user?.uid)
         .collection("prenotazioni")
         .doc(cognomePrenotazioneController.text)
         .set({

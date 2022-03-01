@@ -5,14 +5,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
+import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
+import 'package:hotelmanagement/screen/responsive/splitview.dart';
 import 'package:page_transition/page_transition.dart';
 
 Future<void> login(
     {context,
     box,
-    TextEditingController email,
-    TextEditingController password}) async {
+    required TextEditingController email,
+    required TextEditingController password}) async {
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email.text, password: password.text);
@@ -27,17 +29,19 @@ Future<void> login(
       }
     }
   }
-  FirebaseAuth.instance.userChanges().listen((User user) {
+  FirebaseAuth.instance.userChanges().listen((user) {
+    // ignore: unnecessary_null_comparison
     if (user == null) {
       if (kDebugMode) {
         print('User is currently signed out!');
       }
     } else {
-      Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.leftToRight,
-              child: ElencoOspitiGenerali()));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SplitView(
+                menu: DraweNavigation(),
+                content: ElencoOspitiGenerali(),
+                key: null,
+              )));
       if (kDebugMode) {
         print('Login success');
       }
@@ -46,10 +50,10 @@ Future<void> login(
 }
 
 singUp(
-    [TextEditingController password_1,
-    TextEditingController password_2,
-    TextEditingController email,
-    context]) async {
+    {required TextEditingController password_1,
+    required TextEditingController password_2,
+    required TextEditingController email,
+    context}) async {
   FirebaseAuth auth = FirebaseAuth.instance;
   if (password_1.text != password_2.text) {
     await alert(context, "Le password non coincidono");
@@ -59,9 +63,12 @@ singUp(
           .createUserWithEmailAndPassword(
               email: email.text, password: password_1.text)
           .then((value) async {
-        User user = FirebaseAuth.instance.currentUser;
+        var user = FirebaseAuth.instance.currentUser;
 
-        await FirebaseFirestore.instance.collection("users").doc(user.uid).set({
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(user?.uid)
+            .set({
           'email': email.text,
           'password': password_1.text,
         });
@@ -70,11 +77,11 @@ singUp(
         print("Signed Up");
       }
     } catch (e) {
-      if (e.code == 'weak-password') {
+      /**  if (e.code == 'weak-password') {
         await alert(context, "Le password non rispetta i criteri di sicurezza");
       } else if (e.code == 'email-already-in-use') {
         await alert(context, "Questa mail é gia utilizzata");
-      }
+      }*/
     }
   }
 }
@@ -83,14 +90,14 @@ signInWithGoogle() async {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   try {
     // ignore: unused_local_variable
-    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
   } catch (e) {
     if (kDebugMode) {
-      print(e.message);
+      print(e);
     }
     rethrow;
   }
 }
 
-// ignore: non_constant_identifier_names
+// ignore: non_ant_identifier_names
 login_with_facebook() {}

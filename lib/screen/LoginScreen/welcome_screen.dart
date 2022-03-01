@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: camel_case_types
 class welcome extends StatefulWidget {
-  const welcome({Key key}) : super(key: key);
+  welcome({Key? key}) : super(key: key);
 
   @override
   _welcomeState createState() => _welcomeState();
@@ -23,7 +23,7 @@ class _welcomeState extends State<welcome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          margin: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
           child: Row(
             children: [
               if (isDesktop(context) || isTab(context))
@@ -52,19 +52,16 @@ class _welcomeState extends State<welcome> {
                         ),
                       buttonPageTransition(
                           text: "Accedi",
-                          onpressed: const login_screen(),
+                          onpressed: login_screen(),
                           context: context),
                       buttonPageTransition(
                           text: "Crea un Account",
-                          onpressed: const singup_screen(),
+                          onpressed: singup_screen(),
                           context: context),
                       Wrap(
                         children: [
                           TextButton(
-                            onPressed: () {
-                              return mdfileshow(
-                                  context, "Terms and Conditions.md");
-                            },
+                            onPressed: () {},
                             child: Text(" Termini e Condizioni"),
                           ),
                           TextButton(

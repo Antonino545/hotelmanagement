@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/LoginScreen/welcome_screen.dart';
-import 'package:hotelmanagement/splitview.dart';
+import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       home: //Imposta come Home:Elenco Ospiti Attuali
           welcome(),
       theme: ThemeData(
-        // ignore: prefer_const_constructors
+        // ignore: prefer__ructors
 
         appBarTheme: AppBarTheme(
           shadowColor: Colors.transparent,

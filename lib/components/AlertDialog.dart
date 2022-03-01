@@ -17,7 +17,7 @@ Future<void> alert(BuildContext context, box) {
           content: Text(box),
           actions: <Widget>[
             OutlinedButton(
-              child: const Text('Okay'),
+              child: Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -34,7 +34,7 @@ Future<void> alert(BuildContext context, box) {
           content: Text(box),
           actions: <Widget>[
             OutlinedButton(
-              child: const Text('Okay'),
+              child: Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -46,7 +46,7 @@ Future<void> alert(BuildContext context, box) {
   }
 }
 
-mdfileshow(BuildContext context, mdfile) {
+mdfileshow({required BuildContext context, required mdfile}) {
   Expanded(
     child: FutureBuilder(
       future: Future.delayed(Duration(milliseconds: 150)).then((value) {
@@ -55,7 +55,7 @@ mdfileshow(BuildContext context, mdfile) {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Markdown(
-            data: snapshot.data,
+            data: snapshot.data.toString(),
           );
         }
         return Center(

@@ -1,5 +1,5 @@
 // ignore: file_names
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
+// ignore_for_file: prefer__ructors_in_immutables, prefer__ructors
 
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
@@ -7,12 +7,12 @@ import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
 
 import '../../drawer.dart';
-import '../../splitview.dart';
+import '../responsive/splitview.dart';
 import '../ElencoScreen/elenco_ospiti_generale.dart';
 
 // ignore: camel_case_types
 class login_screen extends StatefulWidget {
-  const login_screen({Key key}) : super(key: key);
+  login_screen({Key? key}) : super(key: key);
 
   @override
   _login_screen_mobileState createState() => _login_screen_mobileState();
@@ -22,7 +22,7 @@ class login_screen extends StatefulWidget {
 class _login_screen_mobileState extends State<login_screen> {
   @override
   Widget build(BuildContext context) {
-    String box;
+    String box = "0";
     var password = TextEditingController();
     var email = TextEditingController();
     return Scaffold(
@@ -39,7 +39,7 @@ class _login_screen_mobileState extends State<login_screen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
-              // ignore: prefer_const_literals_to_create_immutables
+              // ignore: prefer__literals_to_create_immutables
               children: [
                 Text(
                   "Accedi",
@@ -72,7 +72,7 @@ class _login_screen_mobileState extends State<login_screen> {
               child: Column(
                 children: [
                   Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 50,
                         width: 500.0,
@@ -88,11 +88,11 @@ class _login_screen_mobileState extends State<login_screen> {
                             "Accedi",
                           ),
                           style: OutlinedButton.styleFrom(
-                            textStyle: const TextStyle(
+                            textStyle: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 20),
                             backgroundColor: Colors.transparent,
                             shape: RoundedRectangleBorder(
-                                side: const BorderSide(
+                                side: BorderSide(
                                   width: 10.0,
                                   style: BorderStyle.solid,
                                 ),
