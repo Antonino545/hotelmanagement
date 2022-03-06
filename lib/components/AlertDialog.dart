@@ -44,23 +44,3 @@ Future<void> alert(BuildContext context, box) {
     );
   }
 }
-
-mdfileshow({required BuildContext context, required mdfile}) {
-  Expanded(
-    child: FutureBuilder(
-      future: Future.delayed(const Duration(milliseconds: 150)).then((value) {
-        return rootBundle.loadString('asset/$mdfile');
-      }),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Markdown(
-            data: snapshot.data.toString(),
-          );
-        }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    ),
-  );
-}

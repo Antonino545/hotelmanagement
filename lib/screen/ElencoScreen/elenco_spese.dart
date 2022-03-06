@@ -8,9 +8,7 @@ import '../responsive/pageScaffol.dart';
 // ignore: must_be_immutable
 class ElencoSpese extends StatefulWidget {
   // ignore: non_ant_identifier_names, non_constant_identifier_names
-  String CognomePrenotazione = "";
 
-  ElencoSpese({Key? key}) : super(key: key);
   @override
   _ElencoSpeseState createState() => _ElencoSpeseState();
 }
@@ -51,7 +49,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Wrap(
+                                child: Row(
                                   children: [
                                     Text("Descrizione: " +
                                         documentSnapshot["DescrizioneSpesa"]
@@ -75,7 +73,18 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                                   color: Colors.red,
                                   size: 25,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  try {
+                                    FirebaseFirestore.instance
+                                        .collection('Dati')
+                                        .doc(user?.uid)
+                                        .collection("Spese")
+                                        .doc(documentSnapshot.id)
+                                        .delete();
+                                  } catch (e) {
+                                    print(e);
+                                  }
+                                },
                               ),
                             ]));
                       });

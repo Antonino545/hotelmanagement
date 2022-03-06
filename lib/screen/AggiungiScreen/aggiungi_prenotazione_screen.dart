@@ -55,7 +55,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                       nomePrenotazioneController),
                   inputText(TextInputType.text, "Cognome Prenotazione", false,
                       cognomePrenotazioneController),
-                  inputText(TextInputType.number, "Numero Ospiti", false,
+                  inputInt(TextInputType.number, "Numero Ospiti", false,
                       numeroOspitiController),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -74,9 +74,9 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                           "inserire Data di inizio e fine soggiorno"),
                     ),
                   ),
-                  inputText(TextInputType.number, "Prezzo soggiorno", false,
+                  inputInt(TextInputType.number, "Prezzo soggiorno", false,
                       prezzoController),
-                  inputText(TextInputType.number, " Numero Di Telefono", false,
+                  inputInt(TextInputType.number, " Numero Di Telefono", false,
                       numeroTelfonoController),
                   inputText(
                       TextInputType.text, "Piano", false, pianocontroller),
@@ -160,6 +160,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                   SfDateRangePicker(
                     selectionMode: DateRangePickerSelectionMode.range,
                     onSelectionChanged: selectionChanged,
+                    initialSelectedDate: DateTime.now(),
                   ),
                 ],
               ),

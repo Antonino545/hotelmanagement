@@ -56,16 +56,27 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                                       Icons.delete,
                                       color: Colors.red,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      try {
+                                        FirebaseFirestore.instance
+                                            .collection('Dati')
+                                            .doc(user?.uid)
+                                            .collection("prenotazioni")
+                                            .doc(widget.cognomePrenotazione)
+                                            .collection("Ospiti")
+                                            .doc(documentSnapshot.id)
+                                            .delete();
+                                      } catch (e) {
+                                        print(e);
+                                      }
+                                    },
                                   ),
                                 ),
-                                title: Text(
-                                    "Nome Ospite: " + documentSnapshot["Nome"]),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Text("Nome Ospite: " +
+                                        documentSnapshot["Nome"]),
                                     Text("Cognome Ospite: " +
                                         documentSnapshot["Cognome"]),
                                   ],

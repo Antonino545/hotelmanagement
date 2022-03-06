@@ -64,16 +64,6 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                       ],
                                     ),
                                   ),
-                                  subtitle: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Row(
-                                      children: [
-                                        Text("Piano: " +
-                                            documentSnapshot["Piano"]
-                                                .toString()),
-                                      ],
-                                    ),
-                                  ),
                                   trailing: IconButton(
                                     icon: const Icon(Icons.person),
                                     onPressed: () {
@@ -87,6 +77,15 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                                                             .toString(),
                                                   )));
                                     },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Row(
+                                    children: [
+                                      Text("Piano: " +
+                                          documentSnapshot["Piano"].toString()),
+                                    ],
                                   ),
                                 ),
                                 Padding(

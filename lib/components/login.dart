@@ -29,11 +29,14 @@ Future<void> login(
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       if (kDebugMode) {
-        print('No user found for that email.');
+        alert(context, 'Email non collegata ad un account');
       }
     } else if (e.code == 'wrong-password') {
       if (kDebugMode) {
-        print('Wrong password provided for that user.');
+        alert(
+          context,
+          'Password non corretta',
+        );
       }
     }
   }

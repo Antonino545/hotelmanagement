@@ -51,7 +51,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
                       nomeSpesaControlle),
                   inputText(TextInputType.text, "Descrizione", false,
                       descrizioneSpesaControlle),
-                  inputText(TextInputType.number, "Costo spesa", false,
+                  inputInt(TextInputType.number, "Costo spesa", false,
                       costoSpesaControlle),
                   IconButton(
                       icon: const Icon(Icons.add_shopping_cart),
