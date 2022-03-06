@@ -9,6 +9,7 @@ import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_attuali.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_spese.dart';
 import 'package:hotelmanagement/screen/LoginScreen/welcome_screen.dart';
+import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 class DraweNavigation extends StatefulWidget {
@@ -38,44 +39,14 @@ class _DraweNavigationState extends State<DraweNavigation> {
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Aggiungi Spese
-            title: const Text("Aggiungi Ospiti"),
-            leading: const Icon(Icons.add),
+            title: const Text("Ospiti"),
+            leading: const Icon(Icons.person),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const SplitView(
                     menu: DraweNavigation(),
                     content:
-                        const AggiungiPrenotazione()))), //abbiamo il collegamento ad Aggiungi Spese
+                        const ElencoOspitiGenerali()))), //abbiamo il collegamento ad Aggiungi Spese
           ),
-          ListTile(
-              //listTitle dove abbiamo il collegamento ad Aggiungi Spese
-              title: const Text("Aggiungi Spese"),
-              leading: const Icon(Icons.add),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SplitView(
-                      menu: DraweNavigation(),
-                      content:
-                          const AggiungiSpeseScreen()))) //abbiamo il collegamento ad Aggiungi Spese
-              ),
-          ListTile(
-              //listTitle dove abbiamo il collegamento ad Elenco Ospiti Generali
-              title: const Text("Elenco Ospiti Generale"),
-              leading: const Icon(Icons.list),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SplitView(
-                      menu: DraweNavigation(),
-                      content:
-                          const ElencoOspitiGenerali()))) //abbiamo  il collegamento ad Elenco Ospiti Generali
-              ),
-          ListTile(
-              //listTitle dove abbiamo il collegamento ad Elenco Ospiti Attuali
-              title: const Text("Elenco Ospiti Attuali"),
-              leading: const Icon(Icons.list),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SplitView(
-                      menu: DraweNavigation(),
-                      content:
-                          const ElencoOspitiAttuali()))) //abbiamo  // abbiamo il collegamento ad Elenco Ospiti Attuali
-              ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Finanze
             title: const Text("Finanze"),
@@ -85,6 +56,16 @@ class _DraweNavigationState extends State<DraweNavigation> {
                     menu: const DraweNavigation(),
                     content:
                         ElencoSpese()))), //abbiamo il collegamento ad Finanze
+          ),
+          ListTile(
+            //listTitle dove abbiamo il collegamento ad Finanze
+            title: const Text("Impostazione"),
+            leading: const Icon(Icons.settings),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SplitView(
+                    menu: const DraweNavigation(),
+                    content:
+                        Impostazioni()))), //abbiamo il collegamento ad Finanze
           ),
           ListTile(
             //listTitle dove abbiamo il collegamento ad Finanze

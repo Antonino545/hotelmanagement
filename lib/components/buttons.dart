@@ -42,19 +42,6 @@ Widget buttonPageTransition({text, onpressed, context}) {
           child: Text(
             text,
           ),
-          style: OutlinedButton.styleFrom(
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 20,
-            ),
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  width: 10.0,
-                  style: BorderStyle.solid,
-                ),
-                borderRadius: BorderRadius.circular(50)),
-          ),
         ),
       ));
 }

@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
+import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/screen/responsive/pageScaffol.dart';
+import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import 'elenco_ospiti.dart';
 
@@ -28,7 +30,6 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
         resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               StreamBuilder<QuerySnapshot>(
@@ -70,15 +71,16 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     trailing: IconButton(
                                       icon: const Icon(Icons.person),
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ElencoOspiti(
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) => SplitView(
+                                                    menu: DraweNavigation(),
+                                                    content: ElencoOspiti(
                                                       cognomePrenotazione:
                                                           documentSnapshot[
                                                                   "CognomePrenotazione"]
                                                               .toString(),
-                                                    )));
+                                                    ))));
                                       },
                                     ),
                                   ),
@@ -176,7 +178,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                       if (kDebugMode) {
                         print("dati non trovati");
                       }
-                      return const Align(
+                      return Align(
                         alignment: FractionalOffset.center,
                         child: CircularProgressIndicator(),
                       );

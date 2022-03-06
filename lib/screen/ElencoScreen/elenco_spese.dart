@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
+import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
 
 import '../responsive/pageScaffol.dart';
 
@@ -95,6 +96,13 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                   );
                 }
               }),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => AggiungiSpeseScreen()));
+            },
+            child: const Icon(Icons.add),
+          ),
         ));
   }
 }

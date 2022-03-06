@@ -59,9 +59,11 @@ class singup_screen extends StatelessWidget {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  Padding(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  children: [
+                    Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 50,
@@ -76,44 +78,35 @@ class singup_screen extends StatelessWidget {
                           child: const Text(
                             "Crea Account",
                           ),
-                          style: OutlinedButton.styleFrom(
-                            textStyle: const TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 20),
-                            backgroundColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                  width: 10.0,
-                                  style: BorderStyle.solid,
-                                ),
-                                borderRadius: BorderRadius.circular(50)),
-                          ),
-                        ),
-                      )),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Hai un account?",
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const login_screen())),
-                        child: const Text(
-                          "Accedi al tuo account",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "Hai un account?",
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const login_screen())),
+                          child: const Text(
+                            "Accedi al tuo account",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

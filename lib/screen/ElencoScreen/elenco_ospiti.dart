@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
+import '../responsive/pageScaffol.dart';
+
 // ignore: must_be_immutable
 class ElencoOspiti extends StatefulWidget {
   String cognomePrenotazione;
@@ -22,7 +24,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      appBar: AppBar(title: const Text("Hotel Management")),
+      appBar: AppBar(title: Text("Hotel Management")),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('Dati')

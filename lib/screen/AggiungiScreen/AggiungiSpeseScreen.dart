@@ -34,37 +34,36 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
   var costoSpesaControlle = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return PageScaffold(
-        title: "",
-        body: Scaffold(
-          body: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Aggiungi Spese",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  inputText(TextInputType.text, "Nome spesa", false,
-                      nomeSpesaControlle),
-                  inputText(TextInputType.text, "Descrizione", false,
-                      descrizioneSpesaControlle),
-                  inputInt(TextInputType.number, "Costo spesa", false,
-                      costoSpesaControlle),
-                  IconButton(
-                      icon: const Icon(Icons.add_shopping_cart),
-                      onPressed: () {
-                        if (nomeSpesaControlle.text.isNotEmpty &&
-                            costoSpesaControlle.text.isNotEmpty) {
-                          addSpesa();
-                        }
-                      }),
-                ],
+    return Scaffold(
+      appBar: AppBar(title: Text("")),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "Aggiungi Spese",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-            ),
+              inputText(
+                  TextInputType.text, "Nome spesa", false, nomeSpesaControlle),
+              inputText(TextInputType.text, "Descrizione", false,
+                  descrizioneSpesaControlle),
+              inputInt(TextInputType.number, "Costo spesa", false,
+                  costoSpesaControlle),
+              IconButton(
+                  icon: const Icon(Icons.add_shopping_cart),
+                  onPressed: () {
+                    if (nomeSpesaControlle.text.isNotEmpty &&
+                        costoSpesaControlle.text.isNotEmpty) {
+                      addSpesa();
+                    }
+                  }),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

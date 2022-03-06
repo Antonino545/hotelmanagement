@@ -37,112 +37,108 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
 
   @override
   Widget build(BuildContext context) {
-    return PageScaffold(
-        title: "",
-        body: Scaffold(
-          body: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // ignore: prefer__ructors
-                  const Text(
-                    "Aggiungi Ospiti",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  inputText(TextInputType.text, "Nome Prenotazione", false,
-                      nomePrenotazioneController),
-                  inputText(TextInputType.text, "Cognome Prenotazione", false,
-                      cognomePrenotazioneController),
-                  inputInt(TextInputType.number, "Numero Ospiti", false,
-                      numeroOspitiController),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
-                        backgroundColor: Colors.teal,
-                        shape: const BeveledRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(2))),
-                      ),
-                      onPressed: () {
-                        alertDataRange(context,
-                            "inserire data di inizio e fine soggiorno");
-                      },
-                      child: const Text(
-                          "inserire Data di inizio e fine soggiorno"),
-                    ),
-                  ),
-                  inputInt(TextInputType.number, "Prezzo soggiorno", false,
-                      prezzoController),
-                  inputInt(TextInputType.number, " Numero Di Telefono", false,
-                      numeroTelfonoController),
-                  inputText(
-                      TextInputType.text, "Piano", false, pianocontroller),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                        icon: const Icon(Icons.add),
-                        onPressed: () {
-                          if (cognomePrenotazioneController.text.isEmpty) {
-                            alert(context,
-                                parola = "Cognome Prenotazione non inserito");
-                            return;
-                          }
-                          if (numeroTelfonoController.text.isEmpty) {
-                            alert(context,
-                                parola = "Numero di Telefono non inserito");
-                            return;
-                          }
-                          if (numeroOspitiController.text.isEmpty) {
-                            alert(
-                                context, parola = "Numero Ospiti non inserito");
-                            return;
-                          }
-                          if (prezzoController.text.isEmpty) {
-                            alert(context, parola = "Prezzo non inserito");
-                            return;
-                          }
-                          // ignore: unnecessary_null_comparison
-                          if (dataFine == null) {
-                            alert(context, parola = "Data Fine non inserita");
-                            return;
-                          }
-                          // ignore: unnecessary_null_comparison
-                          if (dataInzio == null) {
-                            alert(context, parola = "Data Inizio non inserita");
-                            return;
-                          }
-                          if (pianocontroller.text.isEmpty) {
-                            alert(context, parola = "Piano non inserito");
-                            return;
-                          }
-
-                          {
-                            addDataFamigli();
-
-                            for (int i = 0;
-                                i < int.parse(numeroOspitiController.text);
-                                i++) {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AggiungiOspitiScreen(
-                                      cognomeprenotazione:
-                                          cognomePrenotazioneController.text)));
-                            }
-                          }
-                          numeroOspitiController.clear();
-                          prezzoController.clear();
-                          numeroTelfonoController.clear();
-                          pianocontroller.clear();
-                          numeroOspitiController.clear();
-                        }),
-                  ),
-                ],
+    return Scaffold(
+      appBar: AppBar(title: Text("")),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // ignore: prefer__ructors
+              const Text(
+                "Aggiungi Ospiti",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-            ),
+              inputText(TextInputType.text, "Nome Prenotazione", false,
+                  nomePrenotazioneController),
+              inputText(TextInputType.text, "Cognome Prenotazione", false,
+                  cognomePrenotazioneController),
+              inputInt(TextInputType.number, "Numero Ospiti", false,
+                  numeroOspitiController),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.teal,
+                    shape: const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(2))),
+                  ),
+                  onPressed: () {
+                    alertDataRange(
+                        context, "inserire data di inizio e fine soggiorno");
+                  },
+                  child: const Text("inserire Data di inizio e fine soggiorno"),
+                ),
+              ),
+              inputInt(TextInputType.number, "Prezzo soggiorno", false,
+                  prezzoController),
+              inputInt(TextInputType.number, " Numero Di Telefono", false,
+                  numeroTelfonoController),
+              inputText(TextInputType.text, "Piano", false, pianocontroller),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      if (cognomePrenotazioneController.text.isEmpty) {
+                        alert(context,
+                            parola = "Cognome Prenotazione non inserito");
+                        return;
+                      }
+                      if (numeroTelfonoController.text.isEmpty) {
+                        alert(context,
+                            parola = "Numero di Telefono non inserito");
+                        return;
+                      }
+                      if (numeroOspitiController.text.isEmpty) {
+                        alert(context, parola = "Numero Ospiti non inserito");
+                        return;
+                      }
+                      if (prezzoController.text.isEmpty) {
+                        alert(context, parola = "Prezzo non inserito");
+                        return;
+                      }
+                      // ignore: unnecessary_null_comparison
+                      if (dataFine == null) {
+                        alert(context, parola = "Data Fine non inserita");
+                        return;
+                      }
+                      // ignore: unnecessary_null_comparison
+                      if (dataInzio == null) {
+                        alert(context, parola = "Data Inizio non inserita");
+                        return;
+                      }
+                      if (pianocontroller.text.isEmpty) {
+                        alert(context, parola = "Piano non inserito");
+                        return;
+                      }
+
+                      {
+                        addDataFamigli();
+
+                        for (int i = 0;
+                            i < int.parse(numeroOspitiController.text);
+                            i++) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AggiungiOspitiScreen(
+                                  cognomeprenotazione:
+                                      cognomePrenotazioneController.text)));
+                        }
+                      }
+                      numeroOspitiController.clear();
+                      prezzoController.clear();
+                      numeroTelfonoController.clear();
+                      pianocontroller.clear();
+                      numeroOspitiController.clear();
+                    }),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Future<void> alertDataRange(BuildContext context, box) {

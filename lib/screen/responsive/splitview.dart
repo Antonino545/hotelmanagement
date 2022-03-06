@@ -34,14 +34,12 @@ class SplitView extends StatelessWidget {
       );
     } else {
       // narrow screen: show content, menu inside drawer
-      return SafeArea(
-        child: Scaffold(
-          body: content,
-          drawer: SizedBox(
-            width: menuWidth,
-            child: Drawer(
-              child: menu,
-            ),
+      return Scaffold(
+        body: content,
+        drawer: SizedBox(
+          width: menuWidth,
+          child: Drawer(
+            child: menu,
           ),
         ),
       );
