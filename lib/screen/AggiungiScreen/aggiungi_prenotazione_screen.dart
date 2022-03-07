@@ -178,10 +178,12 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
-    setState(() {
-      dataInzio = args.value.startDate;
-      dataFine = args.value.endDate;
-    });
+    try {
+      setState(() {
+        dataInzio = args.value.startDate;
+        dataFine = args.value.endDate;
+      });
+    } catch (e) {}
   }
 
   addDataFamigli() {
