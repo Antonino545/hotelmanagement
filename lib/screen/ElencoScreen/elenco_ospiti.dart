@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
+import '../../components/generalfunctions.dart';
 import '../responsive/pageScaffol.dart';
 
 // ignore: must_be_immutable
@@ -44,68 +45,57 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                     if (documentSnapshot["CognomePrenotazione"] ==
                         widget.cognomePrenotazione) {
                       return Card(
-                          elevation: 4,
-                          margin: const EdgeInsets.all(8),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
                           child: Column(
-                            children: [
-                              ListTile(
-                                trailing: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () {
-                                      try {
-                                        FirebaseFirestore.instance
-                                            .collection('Dati')
-                                            .doc(user?.uid)
-                                            .collection("prenotazioni")
-                                            .doc(widget.cognomePrenotazione)
-                                            .collection("Ospiti")
-                                            .doc(documentSnapshot.id)
-                                            .delete();
-                                      } catch (e) {
-                                        print(e);
-                                      }
-                                    },
-                                  ),
+                        children: [
+                          ListTile(
+                            trailing: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
                                 ),
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Nome Ospite: " +
-                                        documentSnapshot["Nome"]),
-                                    Text("Cognome Ospite: " +
-                                        documentSnapshot["Cognome"]),
-                                  ],
-                                ),
+                                onPressed: () {
+                                  try {
+                                    FirebaseFirestore.instance
+                                        .collection('Dati')
+                                        .doc(user?.uid)
+                                        .collection("prenotazioni")
+                                        .doc(widget.cognomePrenotazione)
+                                        .collection("Ospiti")
+                                        .doc(documentSnapshot.id)
+                                        .delete();
+                                  } catch (e) {
+                                    print(e);
+                                  }
+                                },
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text("Codice Fiscale: " +
-                                        documentSnapshot["Codice Fiscale"]),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    if (documentSnapshot["Maggiorenne"] == true)
-                                      const Text("Maggiorenne")
-                                    else
-                                      const Text("Minorenne")
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ));
+                            ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "Nome Ospite: " + documentSnapshot["Nome"]),
+                                Text("Cognome Ospite: " +
+                                    documentSnapshot["Cognome"]),
+                              ],
+                            ),
+                          ),
+                          textCard(documentSnapshot, "Codice Fiscale: ",
+                              "Codice Fiscale"),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                if (documentSnapshot["Maggiorenne"] == true)
+                                  const Text("Maggiorenne")
+                                else
+                                  const Text("Minorenne")
+                              ],
+                            ),
+                          ),
+                        ],
+                      ));
                     } else {
                       return const Align(
                         alignment: FractionalOffset.center,

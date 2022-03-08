@@ -39,55 +39,50 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                         DocumentSnapshot documentSnapshot =
                             snapshots.data!.docs[index];
                         return Card(
-                            elevation: 4,
-                            margin: const EdgeInsets.all(8),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
                             child: Column(children: [
-                              ListTile(
-                                title: Text("Nome Spesa: " +
-                                    documentSnapshot["NomeSpesa"].toString()),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text("Descrizione: " +
-                                        documentSnapshot["DescrizioneSpesa"]
-                                            .toString()),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Row(
-                                  children: [
-                                    Text("Costo Spesa: " +
-                                        documentSnapshot["CostoSpesa"]
-                                            .toString()),
-                                  ],
-                                ),
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                  size: 25,
-                                ),
-                                onPressed: () {
-                                  try {
-                                    FirebaseFirestore.instance
-                                        .collection('Dati')
-                                        .doc(user?.uid)
-                                        .collection("Spese")
-                                        .doc(documentSnapshot.id)
-                                        .delete();
-                                  } catch (e) {
-                                    print(e);
-                                  }
-                                },
-                              ),
-                            ]));
+                          ListTile(
+                            title: Text("Nome Spesa: " +
+                                documentSnapshot["NomeSpesa"].toString()),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                Text("Descrizione: " +
+                                    documentSnapshot["DescrizioneSpesa"]
+                                        .toString()),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                Text("Costo Spesa: " +
+                                    documentSnapshot["CostoSpesa"].toString()),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                              size: 25,
+                            ),
+                            onPressed: () {
+                              try {
+                                FirebaseFirestore.instance
+                                    .collection('Dati')
+                                    .doc(user?.uid)
+                                    .collection("Spese")
+                                    .doc(documentSnapshot.id)
+                                    .delete();
+                              } catch (e) {
+                                print(e);
+                              }
+                            },
+                          ),
+                        ]));
                       });
                 } else {
                   return const Align(

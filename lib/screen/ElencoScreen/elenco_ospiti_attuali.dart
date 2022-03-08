@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
 import 'package:intl/intl.dart';
 
+import '../../components/generalfunctions.dart';
 import '../responsive/pageScaffol.dart';
 
 class ElencoOspitiAttuali extends StatefulWidget {
@@ -43,106 +44,55 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                             DateTime.parse(documentSnapshot["DataDiInizio"]);
                         if (formatter.format(Data) == formatter.format(now)) {
                           return Card(
-                              elevation: 4,
-                              margin: const EdgeInsets.all(8),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
                               child: Column(children: [
-                                ListTile(
-                                  title: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Nome e cognome Prenotazione: " +
-                                            documentSnapshot[
-                                                "NomePrenotazione"] +
-                                            " " +
-                                            documentSnapshot[
-                                                "CognomePrenotazione"]),
-                                      ],
-                                    ),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.person),
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ElencoOspiti(
-                                                    cognomePrenotazione:
-                                                        documentSnapshot[
-                                                                "CognomePrenotazione"]
-                                                            .toString(),
-                                                  )));
-                                    },
-                                  ),
+                            ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Nome e cognome Prenotazione: " +
+                                        documentSnapshot["NomePrenotazione"] +
+                                        " " +
+                                        documentSnapshot[
+                                            "CognomePrenotazione"]),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    children: [
-                                      Text("Piano: " +
-                                          documentSnapshot["Piano"].toString()),
-                                    ],
-                                  ),
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.person),
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => ElencoOspiti(
+                                            cognomePrenotazione:
+                                                documentSnapshot[
+                                                        "CognomePrenotazione"]
+                                                    .toString(),
+                                          )));
+                                },
+                              ),
+                            ),
+                            textCard(documentSnapshot, "Piano:", "Piano"),
+                            textCard(documentSnapshot,
+                                "Data di inizio soggiorno:", "DataDiInizio"),
+                            textCard(documentSnapshot,
+                                "Data di Fine soggiorno:", "DataFine"),
+                            textCard(documentSnapshot, "Numero di persone: ",
+                                "NPersone"),
+                            textCard(documentSnapshot, "Prezzo Soggiorno: ",
+                                "Prezzo"),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                  size: 25,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    children: [
-                                      Text("Data di inizio soggiorno: " +
-                                          documentSnapshot["DataDiInizio"]
-                                              .toString()),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    children: [
-                                      Text("Data di Fine soggiorno: " +
-                                          documentSnapshot["DataFine"]
-                                              .toString()),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    children: [
-                                      Text("Numero di persone: " +
-                                          documentSnapshot["NPersone"]
-                                              .toString()),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "Prezzo Soggiorno: " +
-                                            documentSnapshot["Prezzo"]
-                                                .toString() +
-                                            "€",
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                      size: 25,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ]));
+                                onPressed: () {},
+                              ),
+                            ),
+                          ]));
                         } else {
                           return const Align(
                             alignment: FractionalOffset.center,

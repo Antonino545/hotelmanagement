@@ -12,7 +12,11 @@ class App extends StatelessWidget {
           const welcome(),
       theme: ThemeData(
           // ignore: prefer__ructors
-
+          inputDecorationTheme: InputDecorationTheme(
+            border: const OutlineInputBorder(
+                borderRadius:
+                    const BorderRadius.all(const Radius.circular(10))),
+          ),
           appBarTheme: const AppBarTheme(
             shadowColor: Colors.transparent,
             backgroundColor: Colors.transparent,
@@ -24,6 +28,7 @@ class App extends StatelessWidget {
           ))),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
+              minimumSize: Size(500, 50),
               textStyle: const TextStyle(
                 color: Colors.teal,
                 fontWeight: FontWeight.w600,
@@ -39,6 +44,12 @@ class App extends StatelessWidget {
               ),
             ),
           ),
+          cardTheme: CardTheme(
+            elevation: 4,
+            margin: const EdgeInsets.all(8),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
           iconTheme: IconThemeData(color: Colors.teal),
           // ignore: prefer_const_constructors
           colorScheme: ColorScheme(
@@ -47,8 +58,8 @@ class App extends StatelessWidget {
               onPrimary: Colors.white,
               secondary: Colors.teal,
               onSecondary: Colors.white,
-              error: Colors.red,
-              onError: Colors.red,
+              error: Colors.teal,
+              onError: Colors.teal,
               background: Colors.transparent,
               onBackground: Colors.transparent,
               surface: Colors.teal,

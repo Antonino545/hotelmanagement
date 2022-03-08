@@ -58,13 +58,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                   numeroOspitiController),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.teal,
-                    shape: const BeveledRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(2))),
-                  ),
+                child: OutlinedButton(
                   onPressed: () {
                     alertDataRange(
                         context, "inserire data di inizio e fine soggiorno");
@@ -146,6 +140,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          elevation: 20,
           contentPadding: const EdgeInsets.all(5),
           content: SizedBox(
             height: 300,

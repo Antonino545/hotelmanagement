@@ -15,7 +15,7 @@ Future<void> alert(BuildContext context, box) {
         return CupertinoAlertDialog(
           content: Text(box),
           actions: <Widget>[
-            TextButton(
+            CupertinoDialogAction(
               child: const Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
