@@ -36,8 +36,7 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
           ),
           inputText(TextInputType.text, " Nome", false, nomeController),
           inputText(TextInputType.text, " Cognome", false, cognomeController),
-          inputText(TextInputType.text, " Codice Fiscale", false,
-              codiceFiscaleController),
+          inputText(TextInputType.text, " Codice Fiscale", false,codiceFiscaleController),
           Padding(
             // Texfield Maggiorenne
             padding: const EdgeInsets.all(8.0),
