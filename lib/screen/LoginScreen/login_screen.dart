@@ -6,8 +6,6 @@ import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 
-import '../ElencoScreen/elenco_ospiti_generale.dart';
-
 // ignore: camel_case_types
 class login_screen extends StatelessWidget {
   const login_screen({Key? key}) : super(key: key);

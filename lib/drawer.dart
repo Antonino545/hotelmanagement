@@ -2,10 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_attuali.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_spese.dart';
 import 'package:hotelmanagement/screen/LoginScreen/welcome_screen.dart';
@@ -52,8 +48,8 @@ class _DraweNavigationState extends State<DraweNavigation> {
             title: const Text("Finanze"),
             leading: const Icon(Icons.euro),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SplitView(
-                    menu: const DraweNavigation(),
+                builder: (context) => const SplitView(
+                    menu: DraweNavigation(),
                     content:
                         ElencoSpese()))), //abbiamo il collegamento ad Finanze
           ),
@@ -62,8 +58,8 @@ class _DraweNavigationState extends State<DraweNavigation> {
             title: const Text("Impostazione"),
             leading: const Icon(Icons.settings),
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SplitView(
-                    menu: const DraweNavigation(),
+                builder: (context) => const SplitView(
+                    menu: DraweNavigation(),
                     content:
                         Impostazioni()))), //abbiamo il collegamento ad Finanze
           ),

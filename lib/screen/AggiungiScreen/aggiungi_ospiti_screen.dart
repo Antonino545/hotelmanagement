@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 
-import '../responsive/pageScaffol.dart';
-
 class AggiungiOspitiScreen extends StatefulWidget {
   final String cognomeprenotazione;
 
@@ -36,7 +34,8 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
           ),
           inputText(TextInputType.text, " Nome", false, nomeController),
           inputText(TextInputType.text, " Cognome", false, cognomeController),
-          inputText(TextInputType.text, " Codice Fiscale", false,codiceFiscaleController),
+          inputText(TextInputType.text, " Codice Fiscale", false,
+              codiceFiscaleController),
           Padding(
             // Texfield Maggiorenne
             padding: const EdgeInsets.all(8.0),

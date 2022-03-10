@@ -5,8 +5,6 @@ import 'package:hotelmanagement/components/input.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
-import '../responsive/pageScaffol.dart';
 import 'aggiungi_ospiti_screen.dart';
 
 class AggiungiPrenotazione extends StatefulWidget {
@@ -38,7 +36,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("")),
+      appBar: AppBar(title: const Text("")),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -178,6 +176,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
         dataInzio = args.value.startDate;
         dataFine = args.value.endDate;
       });
+      // ignore: empty_catches
     } catch (e) {}
   }
 

@@ -4,9 +4,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-
 Future<void> alert(BuildContext context, box) {
   if (Platform.isIOS) {
     return showDialog<void>(

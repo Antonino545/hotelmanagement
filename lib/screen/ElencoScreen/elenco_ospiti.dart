@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 
 import '../../components/generalfunctions.dart';
-import '../responsive/pageScaffol.dart';
 
 // ignore: must_be_immutable
 class ElencoOspiti extends StatefulWidget {
@@ -25,7 +25,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      appBar: AppBar(title: Text("Hotel Management")),
+      appBar: AppBar(title: const Text("Hotel Management")),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('Dati')
@@ -66,7 +66,9 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                                         .doc(documentSnapshot.id)
                                         .delete();
                                   } catch (e) {
-                                    print(e);
+                                    if (kDebugMode) {
+                                      print(e);
+                                    }
                                   }
                                 },
                               ),

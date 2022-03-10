@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/responsive/pageScaffol.dart';
-import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 class Impostazioni extends StatefulWidget {
-  Impostazioni({Key? key}) : super(key: key);
+  const Impostazioni({Key? key}) : super(key: key);
 
   @override
   State<Impostazioni> createState() => _ImpostazioniState();
@@ -22,7 +20,7 @@ class _ImpostazioniState extends State<Impostazioni> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Padding(
@@ -34,7 +32,7 @@ class _ImpostazioniState extends State<Impostazioni> {
                       "Tema scuro",
                       style: TextStyle(fontSize: 20),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: SizedBox(),
                     ),
                     Switch.adaptive(

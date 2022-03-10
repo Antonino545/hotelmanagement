@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 
-import '../responsive/pageScaffol.dart';
-
 class AggiungiSpeseScreen extends StatefulWidget {
   const AggiungiSpeseScreen({Key? key}) : super(key: key);
 
@@ -35,7 +33,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("")),
+      appBar: AppBar(title: const Text("")),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

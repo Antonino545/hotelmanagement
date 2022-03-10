@@ -69,7 +69,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                             builder: (context) => SplitView(
-                                                menu: DraweNavigation(),
+                                                menu: const DraweNavigation(),
                                                 content: ElencoOspiti(
                                                   cognomePrenotazione:
                                                       documentSnapshot[
@@ -107,7 +107,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                       int ospitiindex = 0;
                                       DocumentSnapshot ospiticounter =
                                           snapshots.data!.docs[ospitiindex];
-                                      print(ospiticounter);
+                                      if (kDebugMode) {
+                                        print(ospiticounter);
+                                      }
                                       /*FirebaseFirestore.instance
                                               .collection('Dati')
                                               .doc(user?.uid)
@@ -117,7 +119,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                               .doc(documentSnapshot.id)
                                               .delete();*/
                                     } catch (e) {
-                                      print(e);
+                                      if (kDebugMode) {
+                                        print(e);
+                                      }
                                     }
                                   },
                                 ),
@@ -128,7 +132,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                       if (kDebugMode) {
                         print("dati non trovati");
                       }
-                      return Align(
+                      return const Align(
                         alignment: FractionalOffset.center,
                         child: CircularProgressIndicator(),
                       );
@@ -140,7 +144,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => AggiungiPrenotazione()));
+                builder: (context) => const AggiungiPrenotazione()));
           },
           child: const Icon(Icons.add),
         ),

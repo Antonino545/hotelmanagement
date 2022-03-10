@@ -21,7 +21,7 @@ inputText([Textinput, label, obscureText, controller]) {
   ]);
 }
 
-inputInt([Textinput, label, obscureText, controller]) {
+inputInt([textInput, label, obscureText, controller]) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Padding(
       padding: const EdgeInsets.all(10),
@@ -33,7 +33,7 @@ inputInt([Textinput, label, obscureText, controller]) {
           labelText: label,
           hintText: "inserisci " + label,
         ),
-        keyboardType: Textinput,
+        keyboardType: textInput,
         obscureText: obscureText,
         controller: controller,
       ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
@@ -8,6 +9,8 @@ import '../responsive/pageScaffol.dart';
 
 // ignore: must_be_immutable
 class ElencoSpese extends StatefulWidget {
+  const ElencoSpese({Key? key}) : super(key: key);
+
   // ignore: non_ant_identifier_names, non_constant_identifier_names
 
   @override
@@ -78,7 +81,9 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                                     .doc(documentSnapshot.id)
                                     .delete();
                               } catch (e) {
-                                print(e);
+                                if (kDebugMode) {
+                                  print(e);
+                                }
                               }
                             },
                           ),
@@ -94,7 +99,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AggiungiSpeseScreen()));
+                  builder: (context) => const AggiungiSpeseScreen()));
             },
             child: const Icon(Icons.add),
           ),

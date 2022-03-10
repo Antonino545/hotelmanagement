@@ -8,18 +8,16 @@ import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
-import '../screen/LoginScreen/login_screen.dart';
-
 Future<void> login(
     {context,
     box,
     required TextEditingController email,
     required TextEditingController password}) async {
-  if (email.text == null) {
+  if (email.text.isEmpty) {
     alert(context, "devi inserire la mail");
     return;
   }
-  if (password.text == null) {
+  if (password.text.isEmpty) {
     alert(context, "devi inserire la password");
     return;
   }
