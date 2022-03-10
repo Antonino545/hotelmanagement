@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/responsive/pageScaffol.dart';
 
 class Impostazioni extends StatefulWidget {
   const Impostazioni({Key? key}) : super(key: key);
@@ -12,9 +11,12 @@ class _ImpostazioniState extends State<Impostazioni> {
   bool darktheme = false;
   @override
   Widget build(BuildContext context) {
-    return PageScaffold(
-        body: Scaffold(
-            body: Padding(
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text("Impostazioni"),
+        ),
+        body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +50,6 @@ class _ImpostazioniState extends State<Impostazioni> {
               ),
             ],
           ),
-        )),
-        title: "Impostazione");
+        ));
   }
 }
