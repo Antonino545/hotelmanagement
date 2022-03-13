@@ -18,6 +18,7 @@ Link to the privacy policy of third-party service providers used by the app
 Google Play Services
 Google Analytics for Firebase
 Firebase Crashlytics
+Firebase Firestore
 Facebook
 Log Data
 

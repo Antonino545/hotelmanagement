@@ -21,7 +21,10 @@ class _ElencoSpeseState extends State<ElencoSpese> {
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      drawer: const DraweNavigation(),
+      appBar: AppBar(
+        title: Text("Hotel Management"),
+        automaticallyImplyLeading: false,
+      ),
       resizeToAvoidBottomInset: false,
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
@@ -37,53 +40,57 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data!.docs[index];
-                    return Card(
-                        child: Column(children: [
-                      ListTile(
-                        title: Text("Nome Spesa: " +
-                            documentSnapshot["NomeSpesa"].toString()),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: [
-                            Text("Descrizione: " +
-                                documentSnapshot["DescrizioneSpesa"]
-                                    .toString()),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          children: [
-                            Text("Costo Spesa: " +
-                                documentSnapshot["CostoSpesa"].toString()),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                          size: 25,
-                        ),
-                        onPressed: () {
-                          try {
-                            FirebaseFirestore.instance
-                                .collection('Dati')
-                                .doc(user?.uid)
-                                .collection("Spese")
-                                .doc(documentSnapshot.id)
-                                .delete();
-                          } catch (e) {
-                            if (kDebugMode) {
-                              print(e);
-                            }
+                    return Dismissible(
+                      background: Card(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Icon(Icons.delete),
+                            ],
+                          ),
+                          color: Colors.red),
+                      key: ObjectKey(documentSnapshot.data()),
+                      onDismissed: (direction) {
+                        try {
+                          FirebaseFirestore.instance
+                              .collection('Dati')
+                              .doc(user?.uid)
+                              .collection("Spese")
+                              .doc(documentSnapshot.id)
+                              .delete();
+                        } catch (e) {
+                          if (kDebugMode) {
+                            print(e);
                           }
-                        },
-                      ),
-                    ]));
+                        }
+                      },
+                      child: Card(
+                          child: Column(children: [
+                        ListTile(
+                          title: Text("Nome Spesa: " +
+                              documentSnapshot["NomeSpesa"].toString()),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Wrap(
+                            children: [
+                              Text("Descrizione: " +
+                                  documentSnapshot["DescrizioneSpesa"]
+                                      .toString()),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            children: [
+                              Text("Costo Spesa: " +
+                                  documentSnapshot["CostoSpesa"].toString()),
+                            ],
+                          ),
+                        ),
+                      ])),
+                    );
                   });
             } else {
               return const Align(

@@ -35,6 +35,9 @@
 </head>
 
 <body>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=recaptcha-site-key"></script>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 
 
@@ -105,6 +108,9 @@
             // Service workers not supported. Just drop the <script> tag.
             loadMainDartJs();
         }
+    </script>
+    <script>
+        self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
     </script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>

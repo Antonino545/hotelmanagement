@@ -48,83 +48,91 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                         itemBuilder: (context, index) {
                           DocumentSnapshot documentSnapshot =
                               snapshots.data!.docs[index];
-                          return Card(
-                              child: Column(children: [
-                            ListTile(
-                              title: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Nome e cognome Prenotazione: " +
-                                        documentSnapshot["NomePrenotazione"] +
-                                        " " +
-                                        documentSnapshot[
-                                            "CognomePrenotazione"]),
-                                  ],
-                                ),
-                              ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.person),
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ElencoOspiti(
-                                            cognomePrenotazione:
-                                                documentSnapshot[
-                                                        "CognomePrenotazione"]
-                                                    .toString(),
-                                          )));
-                                },
-                              ),
-                            ),
-                            textCard(documentSnapshot, "Piano:", "Piano"),
-                            textCard(documentSnapshot,
-                                "Data di inizio soggiorno:", "DataDiInizio"),
-                            textCard(documentSnapshot,
-                                "Data di Fine soggiorno:", "DataFine"),
-                            textCard(documentSnapshot, "Numero di persone: ",
-                                "NPersone"),
-                            textCard(documentSnapshot, "Prezzo Soggiorno: ",
-                                "Prezzo"),
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                  size: 25,
-                                ),
-                                onPressed: () {
-                                  try {
-                                    FirebaseFirestore.instance
-                                        .collection('Dati')
-                                        .doc(user?.uid)
-                                        .collection("prenotazioni")
-                                        .doc(documentSnapshot.id)
-                                        .delete();
-                                    int ospitiindex = 0;
-                                    DocumentSnapshot ospiticounter =
-                                        snapshots.data!.docs[ospitiindex];
-                                    if (kDebugMode) {
-                                      print(ospiticounter);
-                                    }
-                                    /*FirebaseFirestore.instance
-                                              .collection('Dati')
-                                              .doc(user?.uid)
-                                              .collection("prenotazioni")
-                                              .doc(cognomePrenotazione)
-                                              .collection("Ospiti")
-                                              .doc(documentSnapshot.id)
-                                              .delete();*/
-                                  } catch (e) {
-                                    if (kDebugMode) {
-                                      print(e);
-                                    }
-                                  }
-                                },
+                          return Dismissible(
+                            onDismissed: (direction) {
+                              try {
+                                FirebaseFirestore.instance
+                                    .collection('Dati')
+                                    .doc(user?.uid)
+                                    .collection("prenotazioni")
+                                    .doc(documentSnapshot.id)
+                                    .delete();
+                                int ospitiindex = 0;
+                                DocumentSnapshot ospiticounter =
+                                    snapshots.data!.docs[ospitiindex];
+                                if (kDebugMode) {
+                                  print(ospiticounter);
+                                }
+                                /*FirebaseFirestore.instance
+                                                .collection('Dati')
+                                                .doc(user?.uid)
+                                                .collection("prenotazioni")
+                                                .doc(cognomePrenotazione)
+                                                .collection("Ospiti")
+                                                .doc(documentSnapshot.id)
+                                                .delete();*/
+                              } catch (e) {
+                                if (kDebugMode) {
+                                  print(e);
+                                }
+                              }
+                            },
+                            key: ObjectKey(documentSnapshot.data()),
+                            background: Card(
+                              color: Colors.red,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.delete,
+                                    size: 30,
+                                  ),
+                                ],
                               ),
                             ),
-                          ]));
+                            child: Card(
+                                child: Column(children: [
+                              ListTile(
+                                title: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Nome e cognome Prenotazione: " +
+                                          documentSnapshot["NomePrenotazione"] +
+                                          " " +
+                                          documentSnapshot[
+                                              "CognomePrenotazione"]),
+                                    ],
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.person),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                            builder: (context) => ElencoOspiti(
+                                                  cognomePrenotazione:
+                                                      documentSnapshot[
+                                                              "CognomePrenotazione"]
+                                                          .toString(),
+                                                )));
+                                  },
+                                ),
+                              ),
+                              textCard(documentSnapshot, "Piano:", "Piano"),
+                              textCard(documentSnapshot,
+                                  "Data di inizio soggiorno:", "DataDiInizio"),
+                              textCard(documentSnapshot,
+                                  "Data di Fine soggiorno:", "DataFine"),
+                              textCard(documentSnapshot, "Numero di persone: ",
+                                  "NPersone"),
+                              textCard(documentSnapshot, "Prezzo Soggiorno: ",
+                                  "Prezzo"),
+                            ])),
+                          );
                         });
                   } else {
                     if (kDebugMode) {

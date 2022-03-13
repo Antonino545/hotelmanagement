@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 
 class AggiungiSpeseScreen extends StatefulWidget {
@@ -15,16 +16,19 @@ class AggiungiSpeseScreen extends StatefulWidget {
 class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
   addSpesa() {
     User? user = FirebaseAuth.instance.currentUser;
-
-    FirebaseFirestore.instance
-        .collection('Dati')
-        .doc(user?.uid)
-        .collection("Spese")
-        .add({
-      'CostoSpesa': int.parse(costoSpesaControlle.text),
-      'DescrizioneSpesa': descrizioneSpesaControlle.text,
-      'NomeSpesa': nomeSpesaControlle.text,
-    });
+    try {
+      FirebaseFirestore.instance
+          .collection('Dati')
+          .doc(user?.uid)
+          .collection("Spese")
+          .add({
+        'CostoSpesa': int.parse(costoSpesaControlle.text),
+        'DescrizioneSpesa': descrizioneSpesaControlle.text,
+        'NomeSpesa': nomeSpesaControlle.text,
+      });
+    } catch (e) {
+      alert(context, e.toString());
+    }
   }
 
   var nomeSpesaControlle = TextEditingController();
@@ -57,6 +61,7 @@ class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
                         costoSpesaControlle.text.isNotEmpty) {
                       addSpesa();
                     }
+                    Navigator.pop(context);
                   }),
             ],
           ),
