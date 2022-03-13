@@ -44,60 +44,68 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                         snapshots.data!.docs[index];
                     if (documentSnapshot["CognomePrenotazione"] ==
                         widget.cognomePrenotazione) {
-                      return Card(
-                          child: Column(
-                        children: [
-                          ListTile(
-                            trailing: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () {
-                                  try {
-                                    FirebaseFirestore.instance
-                                        .collection('Dati')
-                                        .doc(user?.uid)
-                                        .collection("prenotazioni")
-                                        .doc(widget.cognomePrenotazione)
-                                        .collection("Ospiti")
-                                        .doc(documentSnapshot.id)
-                                        .delete();
-                                  } catch (e) {
-                                    if (kDebugMode) {
-                                      print(e);
-                                    }
-                                  }
-                                },
+                      return Dismissible(
+                        key: ObjectKey(documentSnapshot.data()),
+                        background: Card(
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              Icon(
+                                Icons.delete,
+                                size: 30,
+                              ),
+                            ],
+                          ),
+                        ),
+                        onDismissed: (orienation) {
+                          try {
+                            FirebaseFirestore.instance
+                                .collection('Dati')
+                                .doc(user?.uid)
+                                .collection("prenotazioni")
+                                .doc(widget.cognomePrenotazione)
+                                .collection("Ospiti")
+                                .doc(documentSnapshot.id)
+                                .delete();
+                          } catch (e) {
+                            if (kDebugMode) {
+                              print(e);
+                            }
+                          }
+                        },
+                        child: Card(
+                            child: Column(
+                          children: [
+                            ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Nome Ospite: " +
+                                      documentSnapshot["Nome"]),
+                                  Text("Cognome Ospite: " +
+                                      documentSnapshot["Cognome"]),
+                                ],
                               ),
                             ),
-                            title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Nome Ospite: " + documentSnapshot["Nome"]),
-                                Text("Cognome Ospite: " +
-                                    documentSnapshot["Cognome"]),
-                              ],
+                            textCard(documentSnapshot, "Codice Fiscale: ",
+                                "Codice Fiscale"),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Row(
+                                children: [
+                                  if (documentSnapshot["Maggiorenne"] == true)
+                                    const Text("Maggiorenne")
+                                  else
+                                    const Text("Minorenne")
+                                ],
+                              ),
                             ),
-                          ),
-                          textCard(documentSnapshot, "Codice Fiscale: ",
-                              "Codice Fiscale"),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Row(
-                              children: [
-                                if (documentSnapshot["Maggiorenne"] == true)
-                                  const Text("Maggiorenne")
-                                else
-                                  const Text("Minorenne")
-                              ],
-                            ),
-                          ),
-                        ],
-                      ));
+                          ],
+                        )),
+                      );
                     } else {
                       return const Align(
                         alignment: FractionalOffset.center,
