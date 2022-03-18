@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
 
 // ignore: must_be_immutable
@@ -22,7 +21,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
@@ -44,7 +43,7 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                       background: Card(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
+                            children: const [
                               Icon(Icons.delete),
                             ],
                           ),

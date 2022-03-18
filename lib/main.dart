@@ -8,8 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(); //inizializzare firebase
-  /*await FirebaseAppCheck.instance.activate(
-    webRecaptchaSiteKey: '6LenyBseAAAAAEmaR4u8yNchkWuKi51pi3j_7Imz',
-  );*/
+  await FirebaseAppCheck.instance.activate();
   runApp(const App());
 }

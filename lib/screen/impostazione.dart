@@ -48,6 +48,21 @@ class _ImpostazioniState extends State<Impostazioni> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Logout",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    const Expanded(
+                      child: SizedBox(),
+                    ),
+                    IconButton(onPressed: () => {}, icon: Icon(Icons.logout))
+                  ],
+                ),
+              ),
             ],
           ),
         ));

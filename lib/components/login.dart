@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
@@ -47,10 +46,7 @@ Future<void> login(
       }
     } else {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => SplitView(
-          menu: DraweNavigation(),
-          content: ElencoOspitiGenerali(),
-        ),
+        builder: (context) => SplitView(),
       ));
       if (kDebugMode) {
         print('Login success');

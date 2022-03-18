@@ -1,24 +1,14 @@
 // split_view.dart
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/drawer.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_spese.dart';
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
-class SplitView extends StatefulWidget {
-  const SplitView({
-    Key? key,
-    // menu and content are now configurable
-    required this.menu,
-    required this.content,
-    // these values are now configurable with sensible default values
-    this.menuWidth = 240,
-  }) : super(key: key);
-  final Widget menu;
-  final Widget content;
-  final double menuWidth;
+import '../LoginScreen/welcome_screen.dart';
 
+class SplitView extends StatefulWidget {
   @override
   State<SplitView> createState() => _SplitViewState();
 }
@@ -43,16 +33,57 @@ class _SplitViewState extends State<SplitView> {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final screenWidth = MediaQuery.of(context).size.width;
-    if (isTab(context) || isDesktop(context)) {
+    if (/*isTab(context) ||*/ isDesktop(context)) {
       // widescreen: menu on the left, content on the right
       return SafeArea(
         child: Row(
           children: [
             SizedBox(
-              child: widget.menu,
+              child: Drawer(
+                child: ListView(
+                  //list view
+                  children: [
+                    const DrawerHeader(
+                      //Drawer Parte Alta
+                      child: const Text(
+                        "Hotel \nManagement", //testo Che si mostra nel Drawer
+                        style: const TextStyle(
+                          color: Colors.teal,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                        title: const Text("Ospiti"),
+                        leading: const Icon(Icons.person),
+                        onTap: () => (_onItemTapped(0))),
+                    ListTile(
+                        //listTitle dove abbiamo il collegamento ad Finanze
+                        title: const Text("Finanze"),
+                        leading: const Icon(Icons.euro),
+                        onTap: () => (_onItemTapped(1))),
+                    ListTile(
+                        //listTitle dove abbiamo il collegamento ad Finanze
+                        title: const Text("Impostazione"),
+                        leading: const Icon(Icons.settings),
+                        onTap: () => (_onItemTapped(2))),
+                    ListTile(
+                      //listTitle dove abbiamo il collegamento ad Finanze
+                      title: const Text("Logout"),
+                      leading: const Icon(Icons.logout),
+                      onTap: () async => {
+                        await FirebaseAuth.instance.signOut(),
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const welcome()))
+                      }, //abbiamo il collegamento ad Finanze
+                    ),
+                  ],
+                ),
+              ),
             ),
             Container(width: 0.5, color: Colors.black),
-            Expanded(flex: 4, child: widget.content),
+            Expanded(flex: 4, child: _widgetOptions.elementAt(_selectedIndex)),
           ],
         ),
       );
