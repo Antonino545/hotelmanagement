@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
+
+import '../responsive/splitview.dart';
 
 // ignore: must_be_immutable
 class ElencoSpese extends StatefulWidget {
@@ -39,56 +45,80 @@ class _ElencoSpeseState extends State<ElencoSpese> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data!.docs[index];
-                    return Dismissible(
-                      background: Card(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
-                              Icon(Icons.delete),
-                            ],
-                          ),
-                          color: Colors.red),
+                    return Slidable(
                       key: ObjectKey(documentSnapshot.data()),
-                      onDismissed: (direction) {
-                        try {
-                          FirebaseFirestore.instance
-                              .collection('Dati')
-                              .doc(user?.uid)
-                              .collection("Spese")
-                              .doc(documentSnapshot.id)
-                              .delete();
-                        } catch (e) {
-                          if (kDebugMode) {
-                            print(e);
-                          }
-                        }
-                      },
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: const BehindMotion(),
+
+                        // A pane can dismiss the Slidable.
+                        dismissible: DismissiblePane(
+                          onDismissed: () async {
+                            await alertTwoButton(
+                                context,
+                                "Sei sicuro di cancellare questa Spesa",
+                                user,
+                                documentSnapshot);
+                          },
+                        ),
+
+                        // All actions are defined in the children parameter.
+                        children: [
+                          // A SlidableAction can have an icon and/or a label.
+                          SlidableAction(
+                            onPressed: (direction) async {
+                              await alertTwoButton(
+                                  context,
+                                  "Sei sicuro di cancellare questa spesa",
+                                  user,
+                                  documentSnapshot);
+                            },
+                            backgroundColor: Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                          ),
+                          SlidableAction(
+                              onPressed: (direction) {
+                                alertTwoButton(
+                                    context,
+                                    "Sei sicuro di cancellare questa spesa",
+                                    user,
+                                    documentSnapshot);
+                              },
+                              backgroundColor: Colors.teal,
+                              foregroundColor: Colors.white,
+                              icon: Icons.edit),
+                        ],
+                      ),
                       child: Card(
-                          child: Column(children: [
-                        ListTile(
-                          title: Text("Nome Spesa: " +
-                              documentSnapshot["NomeSpesa"].toString()),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Wrap(
-                            children: [
-                              Text("Descrizione: " +
-                                  documentSnapshot["DescrizioneSpesa"]
-                                      .toString()),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Row(
-                            children: [
-                              Text("Costo Spesa: " +
-                                  documentSnapshot["CostoSpesa"].toString()),
-                            ],
-                          ),
-                        ),
-                      ])),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                            ListTile(
+                              title: Text("Nome Spesa: " +
+                                  documentSnapshot["NomeSpesa"].toString()),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Wrap(
+                                children: [
+                                  Text("Descrizione: " +
+                                      documentSnapshot["DescrizioneSpesa"]
+                                          .toString()),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Row(
+                                children: [
+                                  Text("Costo Spesa: " +
+                                      documentSnapshot["CostoSpesa"]
+                                          .toString()),
+                                ],
+                              ),
+                            ),
+                          ])),
                     );
                   });
             } else {
@@ -105,6 +135,83 @@ class _ElencoSpeseState extends State<ElencoSpese> {
         },
         child: const Icon(Icons.add),
       ),
+    );
+  }
+}
+
+Future<void> alertTwoButton(BuildContext context, box, user, documentSnapshot) {
+  if (Platform.isIOS) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          content: Text(box),
+          actions: <Widget>[
+            CupertinoDialogAction(
+              child: const Text('Si'),
+              onPressed: () {
+                try {
+                  FirebaseFirestore.instance
+                      .collection('Dati')
+                      .doc(user?.uid)
+                      .collection("Spese")
+                      .doc(documentSnapshot.id)
+                      .delete();
+                } catch (e) {
+                  if (kDebugMode) {
+                    print(e);
+                  }
+                }
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  } else {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(box),
+          actions: <Widget>[
+            Row(
+              children: [
+                TextButton(
+                  child: const Text('Si'),
+                  onPressed: () {
+                    try {
+                      FirebaseFirestore.instance
+                          .collection('Dati')
+                          .doc(user?.uid)
+                          .collection("Spese")
+                          .doc(documentSnapshot.id)
+                          .delete();
+                    } catch (e) {
+                      if (kDebugMode) {
+                        print(e);
+                      }
+                    }
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                    child: const Text('No'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }
