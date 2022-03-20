@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/elenco_spese.dart';
+import 'package:hotelmanagement/screen/ElencoScreen/fianze.dart';
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
@@ -19,7 +19,7 @@ class _SplitViewState extends State<SplitView> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     ElencoOspitiGenerali(),
-    ElencoSpese(),
+    Finanze(),
     Impostazioni(),
   ];
 
@@ -33,7 +33,7 @@ class _SplitViewState extends State<SplitView> {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final screenWidth = MediaQuery.of(context).size.width;
-    if (/*isTab(context) ||*/ isDesktop(context)) {
+    if (isTab(context) || isDesktop(context)) {
       // widescreen: menu on the left, content on the right
       return SafeArea(
         child: Row(

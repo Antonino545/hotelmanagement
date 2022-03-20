@@ -6,21 +6,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/AggiungiSpeseScreen.dart';
+import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_speseScreen.dart';
 
 import '../responsive/splitview.dart';
 
 // ignore: must_be_immutable
-class ElencoSpese extends StatefulWidget {
-  const ElencoSpese({Key? key}) : super(key: key);
+class Finanze extends StatefulWidget {
+  const Finanze({Key? key}) : super(key: key);
 
   // ignore: non_ant_identifier_names, non_constant_identifier_names
 
   @override
-  _ElencoSpeseState createState() => _ElencoSpeseState();
+  _FinanzeState createState() => _FinanzeState();
 }
 
-class _ElencoSpeseState extends State<ElencoSpese> {
+class _FinanzeState extends State<Finanze> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
