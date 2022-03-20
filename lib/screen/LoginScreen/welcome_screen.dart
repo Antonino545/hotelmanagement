@@ -28,7 +28,7 @@ class _welcomeState extends State<welcome> {
               if (isDesktop(context) || isTab(context))
                 Expanded(
                   child: SvgPicture.asset(
-                    "asset/login.svg",
+                    "assets/login.svg",
                     height: size.height * 0.7,
                   ),
                 ),
@@ -46,7 +46,7 @@ class _welcomeState extends State<welcome> {
                           )),
                       if (isMobile(context))
                         SvgPicture.asset(
-                          "asset/login.svg",
+                          "assets/login.svg",
                           height: size.height * 0.3,
                         ),
                       buttonPageTransition(

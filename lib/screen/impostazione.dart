@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'LoginScreen/welcome_screen.dart';
 
 class Impostazioni extends StatefulWidget {
   const Impostazioni({Key? key}) : super(key: key);
@@ -59,7 +62,13 @@ class _ImpostazioniState extends State<Impostazioni> {
                     const Expanded(
                       child: SizedBox(),
                     ),
-                    IconButton(onPressed: () => {}, icon: Icon(Icons.logout))
+                    IconButton(
+                        onPressed: () async => {
+                              await FirebaseAuth.instance.signOut(),
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const welcome()))
+                            },
+                        icon: Icon(Icons.logout))
                   ],
                 ),
               ),

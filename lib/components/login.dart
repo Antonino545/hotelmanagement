@@ -74,7 +74,6 @@ singUp(
             .doc(user?.uid)
             .set({
           'email': email.text,
-          'password': password_1.text,
         });
       });
       if (kDebugMode) {
