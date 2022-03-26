@@ -12,10 +12,7 @@ class App extends StatelessWidget {
           const welcome(),
       theme: ThemeData(
           // ignore: prefer__ructors
-          inputDecorationTheme: const InputDecorationTheme(
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
+
           appBarTheme: const AppBarTheme(
             shadowColor: Colors.transparent,
             backgroundColor: Colors.transparent,

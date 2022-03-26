@@ -7,7 +7,7 @@ navigationpage({page, context}) {
 
 textCard(documentSnapshot, String text, String doc) {
   return Padding(
-    padding: const EdgeInsets.all(5.0),
+    padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
         Text(text + documentSnapshot[doc].toString()),

@@ -11,6 +11,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
+import 'package:hotelmanagement/screen/ModifcaScreen/modifica_prenotazione.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import 'elenco_ospiti.dart';
@@ -92,11 +93,23 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                             ),
                             SlidableAction(
                                 onPressed: (direction) {
-                                  alertTwoButton(
-                                      context,
-                                      "Sei sicuro di cancellare questa prenotazione",
-                                      user,
-                                      documentSnapshot);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          ModificaPrenotazione(
+                                            dataFine:
+                                                documentSnapshot["DataFine"],
+                                            dataInizio: documentSnapshot[
+                                                "DataDiInizio"],
+                                            piano: documentSnapshot["Piano"],
+                                            prezzoController:
+                                                documentSnapshot["Prezzo"],
+                                            cognomePrenotazione:
+                                                documentSnapshot["Prezzo"],
+                                            nomePrenotazione:
+                                                documentSnapshot["Prezzo"],
+                                            numeroPersone:
+                                                documentSnapshot["NPersone"],
+                                          )));
                                 },
                                 backgroundColor: Colors.teal,
                                 foregroundColor: Colors.white,

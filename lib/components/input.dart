@@ -15,6 +15,8 @@ inputText([Textinput, label, obscureText, controller]) {
           decoration: InputDecoration(
             labelText: label,
             hintText: "inserisci " + label,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
           ),
           keyboardType: Textinput,
           obscureText: obscureText,
@@ -39,6 +41,8 @@ inputInt([textInput, label, obscureText, controller]) {
           decoration: InputDecoration(
             labelText: label,
             hintText: "inserisci " + label,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
           ),
           keyboardType: textInput,
           obscureText: obscureText,
@@ -47,4 +51,25 @@ inputInt([textInput, label, obscureText, controller]) {
       ),
     )
   ]);
+}
+
+inputTextCard([Textinput, label, text]) {
+  var controller = TextEditingController();
+  controller.text = text;
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Text(label + ":"),
+        SizedBox(
+          width: 150,
+          height: 50,
+          child: TextField(
+            keyboardType: Textinput,
+            controller: controller,
+          ),
+        ),
+      ],
+    ),
+  );
 }
