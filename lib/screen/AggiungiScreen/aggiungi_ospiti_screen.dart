@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 
 class AggiungiOspitiScreen extends StatefulWidget {
-  final String cognomeprenotazione;
+  final String bookingcode;
 
-  const AggiungiOspitiScreen({Key? key, required this.cognomeprenotazione})
+  const AggiungiOspitiScreen({Key? key, required this.bookingcode})
       : super(key: key);
 
   @override
@@ -79,13 +79,12 @@ class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
         .collection('Dati')
         .doc(user?.uid)
         .collection("prenotazioni")
-        .doc(widget.cognomeprenotazione)
+        .doc(widget.bookingcode)
         .collection("Ospiti")
         .add({
       'Codice Fiscale': codiceFiscaleController.text,
       'Cognome': cognomeController.text,
       'Nome': nomeController.text,
-      'CognomePrenotazione': widget.cognomeprenotazione,
       'Maggiorenne': maggiorenni,
     });
   }

@@ -68,13 +68,10 @@ singUp(
               email: email.text, password: password_1.text)
           .then((value) async {
         var user = FirebaseAuth.instance.currentUser;
-
         await FirebaseFirestore.instance
             .collection("users")
             .doc(user?.uid)
-            .set({
-          'email': email.text,
-        });
+            .set({'email': email.text, "bookingCode": 00000000});
       });
       if (kDebugMode) {
         print("Signed Up");

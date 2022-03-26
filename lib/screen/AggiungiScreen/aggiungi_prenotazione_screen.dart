@@ -23,11 +23,13 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   var pianocontroller = TextEditingController();
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
+  final DateFormat nomeFormatter = DateFormat('MM/yyyy');
+
   DateTime dataInzio = DateTime.now();
   DateTime dataFine = DateTime.now();
   String cognomeNonValido = "Cognome non valido";
   String parola = "";
-
+  String bookingCode = "";
   @override
   void dispose() {
     super.dispose();
@@ -73,7 +75,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                     icon: const Icon(Icons.add),
-                    onPressed: () {
+                    onPressed: () async {
                       if (cognomePrenotazioneController.text.isEmpty) {
                         alert(context,
                             parola = "Cognome Prenotazione non inserito");
@@ -108,15 +110,43 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                       }
 
                       {
-                        addDataFamigli();
+                        User? user = FirebaseAuth.instance.currentUser;
+                        await FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(user?.uid)
+                            .update(
+                                {"bookingCode": FieldValue.increment(000001)});
+                        FutureBuilder<DocumentSnapshot>(
+                          future: FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(user?.uid)
+                              .get(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return const Text("Something went wrong");
+                            }
+
+                            if (snapshot.hasData) {
+                              var data =
+                                  snapshot.data!.data() as Map<String, dynamic>;
+                              return bookingCode = data["bookingCode"];
+                            }
+
+                            return const Align(
+                              alignment: FractionalOffset.center,
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        );
+                        await addDataFamigli();
 
                         for (int i = 0;
                             i < int.parse(numeroOspitiController.text);
                             i++) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AggiungiOspitiScreen(
-                                  cognomeprenotazione:
-                                      cognomePrenotazioneController.text)));
+                                  bookingcode: bookingCode.toString())));
                         }
                       }
                       numeroOspitiController.clear();
@@ -181,12 +211,13 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   addDataFamigli() {
+    print(bookingCode.toString());
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('Dati')
         .doc(user?.uid)
         .collection("prenotazioni")
-        .doc(cognomePrenotazioneController.text)
+        .doc(bookingCode.toString())
         .set({
       'CognomePrenotazione': cognomePrenotazioneController.text,
       'NomePrenotazione': nomePrenotazioneController.text,
