@@ -117,28 +117,20 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                             .update(
                                 {"bookingCode": FieldValue.increment(000001)});
                         FutureBuilder<DocumentSnapshot>(
-                          future: FirebaseFirestore.instance
-                              .collection('users')
-                              .doc(user?.uid)
-                              .get(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<DocumentSnapshot> snapshot) {
-                            if (snapshot.hasError) {
-                              return const Text("Something went wrong");
-                            }
+                            future: FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(user?.uid)
+                                .get(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<DocumentSnapshot> snapshot) {
+                              if (snapshot.hasError) {
+                                return const Text("Something went wrong");
+                              }
 
-                            if (snapshot.hasData) {
                               var data =
                                   snapshot.data!.data() as Map<String, dynamic>;
                               return bookingCode = data["bookingCode"];
-                            }
-
-                            return const Align(
-                              alignment: FractionalOffset.center,
-                              child: CircularProgressIndicator(),
-                            );
-                          },
-                        );
+                            });
                         await addDataFamigli();
 
                         for (int i = 0;
