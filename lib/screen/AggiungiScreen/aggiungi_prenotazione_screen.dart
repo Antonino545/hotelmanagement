@@ -29,7 +29,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   DateTime dataFine = DateTime.now();
   String cognomeNonValido = "Cognome non valido";
   String parola = "";
-  String bookingCode = "";
+  int bookingCode = 0;
   @override
   void dispose() {
     super.dispose();
@@ -111,26 +111,20 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
 
                       {
                         User? user = FirebaseAuth.instance.currentUser;
+                        var collection =
+                            FirebaseFirestore.instance.collection('users');
+                        var docSnapshot = await collection.doc(user?.uid).get();
+                        print(user?.uid);
+                        if (docSnapshot.exists) {
+                          Map<String, dynamic>? data = docSnapshot.data();
+                          bookingCode = data?['bookingCode'];
+                        }
+
                         await FirebaseFirestore.instance
                             .collection('users')
                             .doc(user?.uid)
                             .update(
                                 {"bookingCode": FieldValue.increment(000001)});
-                        FutureBuilder<DocumentSnapshot>(
-                            future: FirebaseFirestore.instance
-                                .collection('users')
-                                .doc(user?.uid)
-                                .get(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<DocumentSnapshot> snapshot) {
-                              if (snapshot.hasError) {
-                                return const Text("Something went wrong");
-                              }
-
-                              var data =
-                                  snapshot.data!.data() as Map<String, dynamic>;
-                              return bookingCode = data["bookingCode"];
-                            });
                         await addDataFamigli();
 
                         for (int i = 0;
@@ -203,7 +197,6 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   addDataFamigli() {
-    print(bookingCode.toString());
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('Dati')

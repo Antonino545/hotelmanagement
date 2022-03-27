@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
 import 'package:intl/intl.dart';
 
@@ -44,7 +45,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                     DateTime Data =
                         DateTime.parse(documentSnapshot["DataDiInizio"]);
                     if (formatter.format(Data) == formatter.format(now)) {
-                      return Card(
+                      return Slidable(
                           child: Column(children: [
                         ListTile(
                           title: Padding(

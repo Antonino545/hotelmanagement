@@ -101,12 +101,12 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                             dataInizio: documentSnapshot[
                                                 "DataDiInizio"],
                                             piano: documentSnapshot["Piano"],
-                                            prezzoController:
-                                                documentSnapshot["Prezzo"],
+                                            prezzo: documentSnapshot["Prezzo"],
                                             cognomePrenotazione:
-                                                documentSnapshot["Prezzo"],
-                                            nomePrenotazione:
-                                                documentSnapshot["Prezzo"],
+                                                documentSnapshot[
+                                                    "CognomePrenotazione"],
+                                            nomePrenotazione: documentSnapshot[
+                                                "NomePrenotazione"],
                                             numeroPersone:
                                                 documentSnapshot["NPersone"],
                                           )));

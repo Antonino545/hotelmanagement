@@ -55,7 +55,7 @@ inputInt([textInput, label, obscureText, controller]) {
 
 inputTextCard([Textinput, label, text]) {
   var controller = TextEditingController();
-  controller.text = text;
+  controller.text = text.toString();
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
