@@ -44,7 +44,7 @@ Future<void> login(
       }
     } else {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => SplitView(),
+        builder: (context) => const SplitView(),
       ));
       if (kDebugMode) {
         print('Login success');

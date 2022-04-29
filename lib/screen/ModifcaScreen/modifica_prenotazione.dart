@@ -7,11 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
-import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import '../../components/input.dart';
 import '../ElencoScreen/elenco_ospiti.dart';
@@ -44,7 +40,7 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,

@@ -23,7 +23,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       body: StreamBuilder<QuerySnapshot>(

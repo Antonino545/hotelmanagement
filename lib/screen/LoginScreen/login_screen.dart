@@ -1,6 +1,7 @@
 // ignore: file_names
 // ignore_for_file: prefer__ructors_in_immutables, prefer__ructors
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hotelmanagement/components/input.dart';
@@ -21,7 +22,9 @@ class login_screen extends StatelessWidget {
       autofocus: true,
       onKey: (event) {
         if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
-          print("Enter");
+          if (kDebugMode) {
+            print("Enter");
+          }
         }
       },
       child: Scaffold(

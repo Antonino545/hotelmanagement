@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/screen/ModifcaScreen/modifica_prenotazione.dart';
@@ -30,7 +29,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
@@ -67,7 +66,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          SplitView()));
+                                          const SplitView()));
                             },
                           ),
 
@@ -85,9 +84,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            SplitView()));
+                                            const SplitView()));
                               },
-                              backgroundColor: Color(0xFFFE4A49),
+                              backgroundColor: const Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
                               icon: Icons.delete,
                             ),

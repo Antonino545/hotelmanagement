@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:intl/intl.dart';
@@ -114,7 +115,9 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         var collection =
                             FirebaseFirestore.instance.collection('users');
                         var docSnapshot = await collection.doc(user?.uid).get();
-                        print(user?.uid);
+                        if (kDebugMode) {
+                          print(user?.uid);
+                        }
                         if (docSnapshot.exists) {
                           Map<String, dynamic>? data = docSnapshot.data();
                           bookingCode = data?['bookingCode'];

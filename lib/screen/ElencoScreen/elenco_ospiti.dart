@@ -53,7 +53,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.delete,
                                 size: 30,
                               ),
