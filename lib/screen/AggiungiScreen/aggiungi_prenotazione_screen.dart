@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:intl/intl.dart';
@@ -114,8 +115,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         await FirebaseFirestore.instance
                             .collection('users')
                             .doc(user?.uid)
-                            .update(
-                                {"bookingCode": FieldValue.increment(000001)});
+                            .update({"bookingCode": FieldValue.increment(1)});
                         FutureBuilder<DocumentSnapshot>(
                             future: FirebaseFirestore.instance
                                 .collection('users')
@@ -203,7 +203,9 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   addDataFamigli() {
-    print(bookingCode.toString());
+    if (kDebugMode) {
+      print(bookingCode.toString());
+    }
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('Dati')
@@ -211,6 +213,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
         .collection("prenotazioni")
         .doc(bookingCode.toString())
         .set({
+      'bookingCode': bookingCode,
       'CognomePrenotazione': cognomePrenotazioneController.text,
       'NomePrenotazione': nomePrenotazioneController.text,
       'DataDiInizio': formatter.format(dataInzio),

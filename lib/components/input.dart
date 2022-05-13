@@ -15,8 +15,9 @@ inputText([Textinput, label, obscureText, controller]) {
           decoration: InputDecoration(
             labelText: label,
             hintText: "inserisci " + label,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const OutlineInputBorder(
+                borderRadius:
+                    const BorderRadius.all(const Radius.circular(10))),
           ),
           keyboardType: Textinput,
           obscureText: obscureText,
@@ -41,8 +42,8 @@ inputInt([textInput, label, obscureText, controller]) {
           decoration: InputDecoration(
             labelText: label,
             hintText: "inserisci " + label,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const OutlineInputBorder(
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
           ),
           keyboardType: textInput,
           obscureText: obscureText,
@@ -53,7 +54,7 @@ inputInt([textInput, label, obscureText, controller]) {
   ]);
 }
 
-inputTextCard([Textinput, label, text]) {
+inputTextCard([textInput, label, text]) {
   var controller = TextEditingController();
   controller.text = text;
   return Padding(
@@ -65,7 +66,7 @@ inputTextCard([Textinput, label, text]) {
           width: 150,
           height: 50,
           child: TextField(
-            keyboardType: Textinput,
+            keyboardType: textInput,
             controller: controller,
           ),
         ),

@@ -9,10 +9,10 @@ import '../../components/generalfunctions.dart';
 
 // ignore: must_be_immutable
 class ElencoOspiti extends StatefulWidget {
-  String cognomePrenotazione;
+  String bookingCode;
   ElencoOspiti({
     Key? key,
-    required this.cognomePrenotazione,
+    required this.bookingCode,
   }) : super(key: key);
   @override
   _ElencoOspiti createState() => _ElencoOspiti();
@@ -31,7 +31,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
               .collection('Dati')
               .doc(user?.uid)
               .collection("prenotazioni")
-              .doc(widget.cognomePrenotazione)
+              .doc()
               .collection("Ospiti")
               .snapshots(),
           builder: (context, snapshots) {
@@ -42,76 +42,69 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data!.docs[index];
-                    if (documentSnapshot["CognomePrenotazione"] ==
-                        widget.cognomePrenotazione) {
-                      return Dismissible(
-                        key: ObjectKey(documentSnapshot.data()),
-                        background: Card(
-                          color: Colors.red,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: [
-                              Icon(
-                                Icons.delete,
-                                size: 30,
-                              ),
-                            ],
-                          ),
-                        ),
-                        onDismissed: (orienation) {
-                          try {
-                            FirebaseFirestore.instance
-                                .collection('Dati')
-                                .doc(user?.uid)
-                                .collection("prenotazioni")
-                                .doc(widget.cognomePrenotazione)
-                                .collection("Ospiti")
-                                .doc(documentSnapshot.id)
-                                .delete();
-                          } catch (e) {
-                            if (kDebugMode) {
-                              print(e);
-                            }
-                          }
-                        },
-                        child: Card(
-                            child: Column(
+
+                    return Dismissible(
+                      key: ObjectKey(documentSnapshot.data()),
+                      background: Card(
+                        color: Colors.red,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            ListTile(
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Nome Ospite: " +
-                                      documentSnapshot["Nome"]),
-                                  Text("Cognome Ospite: " +
-                                      documentSnapshot["Cognome"]),
-                                ],
-                              ),
-                            ),
-                            textCard(documentSnapshot, "Codice Fiscale: ",
-                                "Codice Fiscale"),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Row(
-                                children: [
-                                  if (documentSnapshot["Maggiorenne"] == true)
-                                    const Text("Maggiorenne")
-                                  else
-                                    const Text("Minorenne")
-                                ],
-                              ),
+                            const Icon(
+                              Icons.delete,
+                              size: 30,
                             ),
                           ],
-                        )),
-                      );
-                    } else {
-                      return const Align(
-                        alignment: FractionalOffset.center,
-                        child: CircularProgressIndicator(),
-                      );
-                    }
+                        ),
+                      ),
+                      onDismissed: (orienation) {
+                        try {
+                          FirebaseFirestore.instance
+                              .collection('Dati')
+                              .doc(user?.uid)
+                              .collection("prenotazioni")
+                              .doc(widget.bookingCode)
+                              .collection("Ospiti")
+                              .doc(documentSnapshot.id)
+                              .delete();
+                        } catch (e) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                        }
+                      },
+                      child: Card(
+                          child: Column(
+                        children: [
+                          ListTile(
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "Nome Ospite: " + documentSnapshot["Nome"]),
+                                Text("Cognome Ospite: " +
+                                    documentSnapshot["Cognome"]),
+                              ],
+                            ),
+                          ),
+                          textCard(documentSnapshot, "Codice Fiscale: ",
+                              "Codice Fiscale"),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              children: [
+                                if (documentSnapshot["Maggiorenne"] == true)
+                                  const Text("Maggiorenne")
+                                else
+                                  const Text("Minorenne")
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                    );
                   });
             } else {
               return const Align(
