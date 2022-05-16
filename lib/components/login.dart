@@ -12,11 +12,11 @@ Future<void> login(
     required TextEditingController email,
     required TextEditingController password}) async {
   if (email.text.isEmpty) {
-    alert(context, "devi inserire la mail");
+    alert(context, "Devi inserire la tua Mail");
     return;
   }
   if (password.text.isEmpty) {
-    alert(context, "devi inserire la password");
+    alert(context, "Devi inserire la tua Password");
     return;
   }
   try {
