@@ -1,7 +1,4 @@
-// ignore_for_file: must_be_immutable
-
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -135,8 +132,13 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ElencoOspiti(
-                                          cognomePrenotazione: documentSnapshot[
-                                                  "CognomePrenotazione"]
+                                          cognomePrenotazione: FirebaseFirestore
+                                              .instance
+                                              .collection('Dati')
+                                              .doc(user?.uid)
+                                              .collection("prenotazioni")
+                                              .doc()
+                                              .id
                                               .toString(),
                                         )));
                               },
