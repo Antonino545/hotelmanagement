@@ -126,7 +126,6 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         await FirebaseFirestore.instance
                             .collection('users')
                             .doc(user?.uid)
-<<<<<<< HEAD
                             .update({"bookingCode": FieldValue.increment(1)});
                         FutureBuilder<DocumentSnapshot>(
                             future: FirebaseFirestore.instance
@@ -143,10 +142,6 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                                   snapshot.data!.data() as Map<String, dynamic>;
                               return bookingCode = data["bookingCode"];
                             });
-=======
-                            .update(
-                                {"bookingCode": FieldValue.increment(000001)});
->>>>>>> 4522cd1b23c871a889b634b83c00fa46a0de2785
                         await addDataFamigli();
 
                         for (int i = 0;
@@ -219,12 +214,9 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
   }
 
   addDataFamigli() {
-<<<<<<< HEAD
     if (kDebugMode) {
       print(bookingCode.toString());
     }
-=======
->>>>>>> 4522cd1b23c871a889b634b83c00fa46a0de2785
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
         .collection('Dati')

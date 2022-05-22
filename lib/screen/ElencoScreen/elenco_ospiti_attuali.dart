@@ -65,7 +65,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ElencoOspiti(
-                                        cognomePrenotazione: documentSnapshot[
+                                        bookingCode: documentSnapshot[
                                                 "CognomePrenotazione"]
                                             .toString(),
                                       )));

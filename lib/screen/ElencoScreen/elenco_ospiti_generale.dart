@@ -132,7 +132,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ElencoOspiti(
-                                          cognomePrenotazione: FirebaseFirestore
+                                          bookingCode: FirebaseFirestore
                                               .instance
                                               .collection('Dati')
                                               .doc(user?.uid)

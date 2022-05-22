@@ -79,7 +79,7 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ElencoOspiti(
-                                        cognomePrenotazione: documentSnapshot[
+                                        bookingCode: documentSnapshot[
                                                 "CognomePrenotazione"]
                                             .toString(),
                                       )));

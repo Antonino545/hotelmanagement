@@ -43,12 +43,7 @@ inputInt([textInput, label, obscureText, controller]) {
             labelText: label,
             hintText: "inserisci " + label,
             border: const OutlineInputBorder(
-<<<<<<< HEAD
                 borderRadius: const BorderRadius.all(Radius.circular(10))),
-=======
-                borderRadius:
-                    const BorderRadius.all(const Radius.circular(10))),
->>>>>>> 4522cd1b23c871a889b634b83c00fa46a0de2785
           ),
           keyboardType: textInput,
           obscureText: obscureText,
@@ -59,12 +54,7 @@ inputInt([textInput, label, obscureText, controller]) {
   ]);
 }
 
-<<<<<<< HEAD
 inputTextCard([textInput, label, text]) {
-=======
-// ignore: non_constant_identifier_names
-inputTextCard([Textinput, label, text]) {
->>>>>>> 4522cd1b23c871a889b634b83c00fa46a0de2785
   var controller = TextEditingController();
   controller.text = text.toString();
   return Padding(
