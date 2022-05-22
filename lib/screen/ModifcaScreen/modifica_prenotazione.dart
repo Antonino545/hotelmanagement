@@ -7,11 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
-import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import '../../components/input.dart';
 import '../ElencoScreen/elenco_ospiti.dart';
@@ -21,8 +17,8 @@ class ModificaPrenotazione extends StatefulWidget {
   String nomePrenotazione;
   String dataInizio;
   String dataFine;
-  String prezzoController;
-  String numeroPersone;
+  int prezzo;
+  int numeroPersone;
   String piano;
   ModificaPrenotazione({
     Key? key,
@@ -30,7 +26,7 @@ class ModificaPrenotazione extends StatefulWidget {
     required this.dataFine,
     required this.numeroPersone,
     required this.dataInizio,
-    required this.prezzoController,
+    required this.prezzo,
     required this.nomePrenotazione,
     required this.piano,
   }) : super(key: key);
@@ -44,7 +40,7 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
@@ -90,10 +86,6 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
                             },
                           ),
                         ),
-                        inputTextCard(TextInputType.text, "NomePrenotazione",
-                            widget.nomePrenotazione),
-                        inputTextCard(TextInputType.text, "CognomePrenotazione",
-                            widget.cognomePrenotazione),
                         inputTextCard(
                             TextInputType.text, "Piano", widget.piano),
                         inputTextCard(TextInputType.datetime,
@@ -102,8 +94,8 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
                             "Data di Fine soggiorno", widget.dataFine),
                         textCard(documentSnapshot, "Numero di persone: ",
                             "NPersone"),
-                        inputTextCard(TextInputType.datetime, "Prezzo",
-                            widget.prezzoController),
+                        inputTextCard(
+                            TextInputType.datetime, "Prezzo", widget.prezzo),
                       ]));
                     });
               } else {
@@ -138,7 +130,7 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
       'DataDiInizio': widget.dataFine,
       'DataFine': widget.dataFine,
       'NPersone': widget.numeroPersone,
-      'Prezzo': widget.prezzoController,
+      'Prezzo': widget.prezzo,
       'Piano': widget.piano,
     });
   }

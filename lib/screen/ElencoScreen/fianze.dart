@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_speseScreen.dart';
 
-import '../responsive/splitview.dart';
-
 // ignore: must_be_immutable
 class Finanze extends StatefulWidget {
   const Finanze({Key? key}) : super(key: key);
@@ -73,7 +71,7 @@ class _FinanzeState extends State<Finanze> {
                                   user,
                                   documentSnapshot);
                             },
-                            backgroundColor: Color(0xFFFE4A49),
+                            backgroundColor: const Color(0xFFFE4A49),
                             foregroundColor: Colors.white,
                             icon: Icons.delete,
                           ),

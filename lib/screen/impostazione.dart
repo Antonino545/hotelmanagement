@@ -17,7 +17,7 @@ class _ImpostazioniState extends State<Impostazioni> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text("Impostazioni"),
+          title: const Text("Impostazioni"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class _ImpostazioniState extends State<Impostazioni> {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const welcome()))
                             },
-                        icon: Icon(Icons.logout))
+                        icon: const Icon(Icons.logout))
                   ],
                 ),
               ),

@@ -1,14 +1,10 @@
-// ignore_for_file: must_be_immutable
-
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/app.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
 import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/screen/ModifcaScreen/modifica_prenotazione.dart';
@@ -30,7 +26,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotel Management"),
+        title: const Text("Hotel Management"),
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
@@ -67,7 +63,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          SplitView()));
+                                          const SplitView()));
                             },
                           ),
 
@@ -85,9 +81,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            SplitView()));
+                                            const SplitView()));
                               },
-                              backgroundColor: Color(0xFFFE4A49),
+                              backgroundColor: const Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
                               icon: Icons.delete,
                             ),
@@ -101,12 +97,12 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                             dataInizio: documentSnapshot[
                                                 "DataDiInizio"],
                                             piano: documentSnapshot["Piano"],
-                                            prezzoController:
-                                                documentSnapshot["Prezzo"],
+                                            prezzo: documentSnapshot["Prezzo"],
                                             cognomePrenotazione:
-                                                documentSnapshot["Prezzo"],
-                                            nomePrenotazione:
-                                                documentSnapshot["Prezzo"],
+                                                documentSnapshot[
+                                                    "CognomePrenotazione"],
+                                            nomePrenotazione: documentSnapshot[
+                                                "NomePrenotazione"],
                                             numeroPersone:
                                                 documentSnapshot["NPersone"],
                                           )));
@@ -136,8 +132,13 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ElencoOspiti(
-                                          cognomePrenotazione: documentSnapshot[
-                                                  "CognomePrenotazione"]
+                                          cognomePrenotazione: FirebaseFirestore
+                                              .instance
+                                              .collection('Dati')
+                                              .doc(user?.uid)
+                                              .collection("prenotazioni")
+                                              .doc()
+                                              .id
                                               .toString(),
                                         )));
                               },

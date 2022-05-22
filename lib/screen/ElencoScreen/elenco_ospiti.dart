@@ -42,6 +42,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot documentSnapshot =
                         snapshots.data!.docs[index];
+<<<<<<< HEAD
 
                     return Dismissible(
                       key: ObjectKey(documentSnapshot.data()),
@@ -57,6 +58,25 @@ class _ElencoOspiti extends State<ElencoOspiti> {
                               size: 30,
                             ),
                           ],
+=======
+                    if (documentSnapshot["CognomePrenotazione"] ==
+                        widget.cognomePrenotazione) {
+                      return Dismissible(
+                        key: ObjectKey(documentSnapshot.data()),
+                        background: Card(
+                          color: Colors.red,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              const Icon(
+                                Icons.delete,
+                                size: 30,
+                              ),
+                            ],
+                          ),
+>>>>>>> 4522cd1b23c871a889b634b83c00fa46a0de2785
                         ),
                       ),
                       onDismissed: (orienation) {

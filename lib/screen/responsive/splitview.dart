@@ -9,14 +9,14 @@ import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '../LoginScreen/welcome_screen.dart';
 
 class SplitView extends StatefulWidget {
+  const SplitView({Key? key}) : super(key: key);
+
   @override
   State<SplitView> createState() => _SplitViewState();
 }
 
 class _SplitViewState extends State<SplitView> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     ElencoOspitiGenerali(),
     Finanze(),
@@ -45,9 +45,9 @@ class _SplitViewState extends State<SplitView> {
                   children: [
                     const DrawerHeader(
                       //Drawer Parte Alta
-                      child: const Text(
+                      child: Text(
                         "Hotel \nManagement", //testo Che si mostra nel Drawer
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.teal,
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
