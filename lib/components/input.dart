@@ -14,6 +14,7 @@ inputText([Textinput, label, obscureText, controller]) {
         child: TextField(
           decoration: InputDecoration(
             labelText: label,
+            // ignore: prefer_interpolation_to_compose_strings
             hintText: "inserisci " + label,
             border: const OutlineInputBorder(
                 borderRadius:

@@ -12,6 +12,7 @@ class AggiungiPrenotazione extends StatefulWidget {
   const AggiungiPrenotazione({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AggiungiPrenotazioneState createState() => _AggiungiPrenotazioneState();
 }
 
@@ -147,6 +148,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                         for (int i = 0;
                             i < int.parse(numeroOspitiController.text);
                             i++) {
+                          // ignore: use_build_context_synchronously
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => AggiungiOspitiScreen(
                                   bookingcode: bookingCode.toString())));

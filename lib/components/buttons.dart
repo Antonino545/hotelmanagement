@@ -39,9 +39,6 @@ button(text, onpressed) async {
         onPressed: () {
           onpressed();
         },
-        child: Text(
-          text,
-        ),
         style: OutlinedButton.styleFrom(
           textStyle: const TextStyle(
               fontWeight: FontWeight.w600, fontSize: 20, color: Colors.teal),
@@ -50,6 +47,9 @@ button(text, onpressed) async {
           shape: RoundedRectangleBorder(
               side: const BorderSide(color: Colors.white),
               borderRadius: BorderRadius.circular(50)),
+        ),
+        child: Text(
+          text,
         ),
       ));
 }
