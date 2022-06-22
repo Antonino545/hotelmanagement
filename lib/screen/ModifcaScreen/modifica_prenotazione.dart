@@ -87,11 +87,11 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
                           ),
                         ),
                         inputTextCard(
-                            TextInputType.text, "Piano", widget.piano),
+                            TextInputType.text, "Piano:", widget.piano),
                         inputTextCard(TextInputType.datetime,
-                            "Data Di Inizio soggiorno", widget.dataInizio),
+                            "Data Di Inizio soggiorno:", widget.dataInizio),
                         inputTextCard(TextInputType.datetime,
-                            "Data di Fine soggiorno", widget.dataFine),
+                            "Data di Fine soggiorno:", widget.dataFine),
                         textCard(documentSnapshot, "Numero di persone: ",
                             "NPersone"),
                         inputTextCard(

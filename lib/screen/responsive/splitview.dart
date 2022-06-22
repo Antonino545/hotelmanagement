@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/fianze.dart';
+import 'package:hotelmanagement/screen/ElencoScreen/finanze.dart';
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
@@ -48,7 +48,6 @@ class _SplitViewState extends State<SplitView> {
                       child: Text(
                         "Hotel \nManagement", //testo Che si mostra nel Drawer
                         style: TextStyle(
-                          color: Colors.teal,
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),

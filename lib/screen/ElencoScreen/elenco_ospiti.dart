@@ -31,7 +31,7 @@ class _ElencoOspiti extends State<ElencoOspiti> {
               .collection('Dati')
               .doc(user?.uid)
               .collection("prenotazioni")
-              .doc()
+              .doc(widget.bookingCode)
               .collection("Ospiti")
               .snapshots(),
           builder: (context, snapshots) {

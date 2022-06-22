@@ -83,7 +83,6 @@ class _FinanzeState extends State<Finanze> {
                                     user,
                                     documentSnapshot);
                               },
-                              backgroundColor: Colors.teal,
                               foregroundColor: Colors.white,
                               icon: Icons.edit),
                         ],

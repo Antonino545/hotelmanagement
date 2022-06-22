@@ -40,8 +40,7 @@ button(text, onpressed) async {
           onpressed();
         },
         style: OutlinedButton.styleFrom(
-          textStyle: const TextStyle(
-              fontWeight: FontWeight.w600, fontSize: 20, color: Colors.teal),
+          textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
           elevation: 20,
           backgroundColor: Colors.transparent,
           shape: RoundedRectangleBorder(

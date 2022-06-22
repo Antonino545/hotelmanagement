@@ -107,7 +107,6 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                                 documentSnapshot["NPersone"],
                                           )));
                                 },
-                                backgroundColor: Colors.teal,
                                 foregroundColor: Colors.white,
                                 icon: Icons.edit),
                           ],
@@ -132,14 +131,9 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => ElencoOspiti(
-                                          bookingCode: FirebaseFirestore
-                                              .instance
-                                              .collection('Dati')
-                                              .doc(user?.uid)
-                                              .collection("prenotazioni")
-                                              .doc()
-                                              .id
-                                              .toString(),
+                                          bookingCode:
+                                              documentSnapshot["bookingCode"]
+                                                  .toString(),
                                         )));
                               },
                             ),

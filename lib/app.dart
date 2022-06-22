@@ -18,15 +18,11 @@ class App extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
         textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-                textStyle: const TextStyle(
-          color: Colors.teal,
-        ))),
+            style: TextButton.styleFrom(textStyle: const TextStyle())),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
             minimumSize: const Size(500, 50),
             textStyle: const TextStyle(
-              color: Colors.teal,
               fontWeight: FontWeight.w600,
               fontSize: 20,
             ),
@@ -45,7 +41,6 @@ class App extends StatelessWidget {
           margin: const EdgeInsets.all(8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        iconTheme: const IconThemeData(color: Colors.teal),
         colorScheme: const ColorScheme.dark(),
         // ignore: prefer_const_constructors
       ),
