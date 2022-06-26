@@ -68,10 +68,10 @@ flutter {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0-beta01'
+    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0'
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'com.android.support:multidex:1.0.3'
     
-    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

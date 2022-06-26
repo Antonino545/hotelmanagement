@@ -66,7 +66,7 @@ class _ImpostazioniState extends State<Impostazioni> {
                         onPressed: () async => {
                               await FirebaseAuth.instance.signOut(),
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const welcome()))
+                                  builder: (context) => const Welcome()))
                             },
                         icon: const Icon(Icons.logout))
                   ],

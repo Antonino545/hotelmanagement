@@ -74,7 +74,7 @@ class _SplitViewState extends State<SplitView> {
                       onTap: () async => {
                         await FirebaseAuth.instance.signOut(),
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const welcome()))
+                            builder: (context) => const Welcome()))
                       }, //abbiamo il collegamento ad Finanze
                     ),
                   ],
@@ -91,23 +91,23 @@ class _SplitViewState extends State<SplitView> {
 
       return Scaffold(
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(
               icon: Icon(Icons.person),
               label: 'Ospiti',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               icon: Icon(Icons.euro),
               label: 'Finanaza',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               icon: Icon(Icons.settings),
               label: 'Impostazioni',
             ),
           ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onItemTapped,
         ),
       );
     }

@@ -41,7 +41,6 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Hotel Management"),
-        automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -89,9 +88,9 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
                         inputTextCard(
                             TextInputType.text, "Piano:", widget.piano),
                         inputTextCard(TextInputType.datetime,
-                            "Data Di Inizio soggiorno:", widget.dataInizio),
+                            "Data di inizio soggiorno:", widget.dataInizio),
                         inputTextCard(TextInputType.datetime,
-                            "Data di Fine soggiorno:", widget.dataFine),
+                            "Data di fine soggiorno:", widget.dataFine),
                         textCard(documentSnapshot, "Numero di persone: ",
                             "NPersone"),
                         inputTextCard(
@@ -159,6 +158,7 @@ Future<void> alertTwoButton(BuildContext context, box, user, documentSnapshot) {
                     print(e);
                   }
                 }
+                Navigator.of(context).pop();
               },
             ),
             CupertinoDialogAction(

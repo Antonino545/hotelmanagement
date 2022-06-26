@@ -7,37 +7,31 @@ import 'package:flutter/material.dart';
 Future<void> alert(BuildContext context, box) {
   if (Platform.isIOS) {
     return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: const Text('Okay'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+        context: context,
+        builder: (_) => CupertinoAlertDialog(
+              content: Text(box),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: const Text('Okay'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ));
   } else {
     return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Okay'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+        context: context,
+        builder: (_) => AlertDialog(
+              content: Text(box),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('Okay'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ));
   }
 }

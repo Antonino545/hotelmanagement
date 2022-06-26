@@ -107,7 +107,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                                 documentSnapshot["NPersone"],
                                           )));
                                 },
-                                foregroundColor: Colors.white,
+                                foregroundColor: const Color(0xffbb86fc),
                                 icon: Icons.edit),
                           ],
                         ),

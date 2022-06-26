@@ -10,8 +10,8 @@ import 'login_screen.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
 
 // ignore: camel_case_types
-class singup_screen extends StatelessWidget {
-  const singup_screen({Key? key}) : super(key: key);
+class SingUp extends StatelessWidget {
+  const SingUp({Key? key}) : super(key: key);
 
   get value => null;
 
@@ -94,7 +94,7 @@ class singup_screen extends StatelessWidget {
                         TextButton(
                           onPressed: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => const login_screen())),
+                                  builder: (context) => const Login())),
                           child: const Text(
                             "Accedi al tuo account",
                             style: TextStyle(

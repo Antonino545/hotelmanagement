@@ -6,15 +6,15 @@ import 'login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: camel_case_types
-class welcome extends StatefulWidget {
-  const welcome({Key? key}) : super(key: key);
+class Welcome extends StatefulWidget {
+  const Welcome({Key? key}) : super(key: key);
 
   @override
-  _welcomeState createState() => _welcomeState();
+  _WelcomeState createState() => _WelcomeState();
 }
 
 // ignore: camel_case_types
-class _welcomeState extends State<welcome> {
+class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -51,11 +51,11 @@ class _welcomeState extends State<welcome> {
                         ),
                       buttonPageTransition(
                           text: "Accedi",
-                          onpressed: const login_screen(),
+                          onpressed: const Login(),
                           context: context),
                       buttonPageTransition(
                           text: "Crea un Account",
-                          onpressed: const singup_screen(),
+                          onpressed: const SingUp(),
                           context: context),
                       Wrap(
                         children: [
