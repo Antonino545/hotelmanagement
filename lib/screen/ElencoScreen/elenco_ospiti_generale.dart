@@ -30,30 +30,47 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
         automaticallyImplyLeading: false,
       ),
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('Dati')
-                .doc(user?.uid)
-                .collection("prenotazioni")
-                .snapshots(),
-            builder: (context, snapshots) {
-              if (snapshots.hasData) {
-                return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshots.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      DocumentSnapshot documentSnapshot =
-                          snapshots.data!.docs[index];
-                      return Slidable(
-                        key: ObjectKey(documentSnapshot.data()),
-                        startActionPane: ActionPane(
-                          // A motion is a widget used to control how the pane animates.
-                          motion: const BehindMotion(),
+      body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('Dati')
+              .doc(user?.uid)
+              .collection("prenotazioni")
+              .snapshots(),
+          builder: (context, snapshots) {
+            if (snapshots.hasData) {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshots.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot documentSnapshot =
+                        snapshots.data!.docs[index];
+                    return Slidable(
+                      key: ObjectKey(documentSnapshot.data()),
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: const BehindMotion(),
 
-                          // A pane can dismiss the Slidable.
-                          dismissible: DismissiblePane(
-                            onDismissed: () async {
+                        // A pane can dismiss the Slidable.
+                        dismissible: DismissiblePane(
+                          onDismissed: () async {
+                            await alertTwoButton(
+                                context,
+                                "Sei sicuro di cancellare questa prenotazione",
+                                user,
+                                documentSnapshot);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const SplitView()));
+                          },
+                        ),
+
+                        // All actions are defined in the children parameter.
+                        children: [
+                          // A SlidableAction can have an icon and/or a label.
+                          SlidableAction(
+                            onPressed: (direction) async {
                               await alertTwoButton(
                                   context,
                                   "Sei sicuro di cancellare questa prenotazione",
@@ -65,102 +82,97 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                       builder: (BuildContext context) =>
                                           const SplitView()));
                             },
+                            backgroundColor: const Color(0xFFFE4A49),
+                            foregroundColor: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: Icons.delete,
                           ),
+                          SlidableAction(
+                              onPressed: (direction) {
+                                var prezzoController = TextEditingController();
+                                var pianocontroller = TextEditingController();
+                                var datafineController =
+                                    TextEditingController();
+                                var datainiziocontroller =
+                                    TextEditingController();
 
-                          // All actions are defined in the children parameter.
-                          children: [
-                            // A SlidableAction can have an icon and/or a label.
-                            SlidableAction(
-                              onPressed: (direction) async {
-                                await alertTwoButton(
-                                    context,
-                                    "Sei sicuro di cancellare questa prenotazione",
-                                    user,
-                                    documentSnapshot);
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const SplitView()));
-                              },
-                              backgroundColor: const Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                            ),
-                            SlidableAction(
-                                onPressed: (direction) {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          ModificaPrenotazione(
-                                            dataFine:
-                                                documentSnapshot["DataFine"],
-                                            dataInizio: documentSnapshot[
-                                                "DataDiInizio"],
-                                            piano: documentSnapshot["Piano"],
-                                            prezzo: documentSnapshot["Prezzo"],
-                                            cognomePrenotazione:
-                                                documentSnapshot[
-                                                    "CognomePrenotazione"],
-                                            nomePrenotazione: documentSnapshot[
-                                                "NomePrenotazione"],
-                                            numeroPersone:
-                                                documentSnapshot["NPersone"],
-                                          )));
-                                },
-                                foregroundColor: const Color(0xffbb86fc),
-                                icon: Icons.edit),
-                          ],
-                        ),
-                        child: Card(
-                            child: Column(children: [
-                          ListTile(
-                            title: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Nome e cognome Prenotazione: " +
-                                      documentSnapshot["NomePrenotazione"] +
-                                      " " +
-                                      documentSnapshot["CognomePrenotazione"]),
-                                ],
-                              ),
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.person),
-                              onPressed: () {
+                                prezzoController.text =
+                                    documentSnapshot["Prezzo"].toString();
+                                pianocontroller.text =
+                                    documentSnapshot["Piano"];
+                                datafineController.text =
+                                    documentSnapshot["DataFine"];
+                                datainiziocontroller.text =
+                                    documentSnapshot["DataDiInizio"];
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ElencoOspiti(
-                                          bookingCode:
-                                              documentSnapshot["bookingCode"]
-                                                  .toString(),
+                                    builder: (context) => ModificaPrenotazione(
+                                          bookingcode:
+                                              documentSnapshot["bookingCode"],
+                                          dataFine: datafineController,
+                                          dataInizio: datainiziocontroller,
+                                          piano: pianocontroller,
+                                          prezzo: prezzoController,
+                                          cognomePrenotazione: documentSnapshot[
+                                              "CognomePrenotazione"],
+                                          nomePrenotazione: documentSnapshot[
+                                              "NomePrenotazione"],
+                                          numeroPersone:
+                                              documentSnapshot["NPersone"],
                                         )));
                               },
+                              borderRadius: BorderRadius.circular(10),
+                              icon: Icons.edit),
+                        ],
+                      ),
+                      child: Card(
+                          child: Column(children: [
+                        ListTile(
+                          title: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Nome e cognome Prenotazione: " +
+                                    documentSnapshot["NomePrenotazione"] +
+                                    " " +
+                                    documentSnapshot["CognomePrenotazione"]),
+                              ],
                             ),
                           ),
-                          textCard(documentSnapshot, "Piano:", "Piano"),
-                          textCard(documentSnapshot,
-                              "Data di inizio soggiorno:", "DataDiInizio"),
-                          textCard(documentSnapshot, "Data di Fine soggiorno:",
-                              "DataFine"),
-                          textCard(documentSnapshot, "Numero di persone: ",
-                              "NPersone"),
-                          textCard(
-                              documentSnapshot, "Prezzo Soggiorno: ", "Prezzo"),
-                        ])),
-                      );
-                    });
-              } else {
-                if (kDebugMode) {
-                  print("dati non trovati");
-                }
-                return const Align(
-                  alignment: FractionalOffset.center,
-                  child: CircularProgressIndicator(),
-                );
+                          trailing: IconButton(
+                            icon: const Icon(Icons.person),
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ElencoOspiti(
+                                        bookingCode:
+                                            documentSnapshot["bookingCode"]
+                                                .toString(),
+                                      )));
+                            },
+                          ),
+                        ),
+                        textCard(documentSnapshot, "Piano:", "Piano"),
+                        textCard(documentSnapshot, "Data di inizio soggiorno:",
+                            "DataDiInizio"),
+                        textCard(documentSnapshot, "Data di Fine soggiorno:",
+                            "DataFine"),
+                        textCard(documentSnapshot, "Numero di persone: ",
+                            "NPersone"),
+                        textCard(
+                            documentSnapshot, "Prezzo Soggiorno: ", "Prezzo"),
+                      ])),
+                    );
+                  });
+            } else {
+              if (kDebugMode) {
+                print("dati non trovati");
               }
-            }),
-      ),
+              return const Align(
+                alignment: FractionalOffset.center,
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(

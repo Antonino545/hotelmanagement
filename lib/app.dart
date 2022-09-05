@@ -42,7 +42,7 @@ class App extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
-          colorScheme: ColorScheme(
+          colorScheme: const ColorScheme(
               brightness: Brightness.dark,
               background: Colors.black,
               error: Colors.red,

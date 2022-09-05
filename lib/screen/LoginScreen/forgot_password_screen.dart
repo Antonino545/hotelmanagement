@@ -91,9 +91,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             onPressed: () async {
                               if (email.text != null) {
                                 alert(context,
-                                    "É stata inviata una mail a " + email.text);
+                                    "É stata inviata una mail a ${email.text}");
                                 await _auth
                                     .sendPasswordResetEmail(email: email.text)
+                                    // ignore: avoid_print
                                     .catchError((e) => print(e));
                               }
                             },

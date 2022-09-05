@@ -88,10 +88,10 @@ singUp(
 }
 
 signInWithGoogle() async {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   try {
     // ignore: unused_local_variable
-    GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
   } catch (e) {
     if (kDebugMode) {
       print(e);

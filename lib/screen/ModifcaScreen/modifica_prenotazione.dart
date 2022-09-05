@@ -15,13 +15,15 @@ import '../ElencoScreen/elenco_ospiti.dart';
 class ModificaPrenotazione extends StatefulWidget {
   String cognomePrenotazione;
   String nomePrenotazione;
-  String dataInizio;
-  String dataFine;
-  int prezzo;
+  TextEditingController dataInizio;
+  TextEditingController dataFine;
+  int bookingcode;
+  TextEditingController prezzo;
   int numeroPersone;
-  String piano;
+  TextEditingController piano;
   ModificaPrenotazione({
     Key? key,
+    required this.bookingcode,
     required this.cognomePrenotazione,
     required this.dataFine,
     required this.numeroPersone,
@@ -31,6 +33,7 @@ class ModificaPrenotazione extends StatefulWidget {
     required this.piano,
   }) : super(key: key);
   @override
+  // ignore: library_private_types_in_public_api
   _ModificaPrenotazioneState createState() => _ModificaPrenotazioneState();
 }
 
@@ -43,170 +46,70 @@ class _ModificaPrenotazioneState extends State<ModificaPrenotazione> {
         title: const Text("Hotel Management"),
       ),
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('Dati')
-                .doc(user?.uid)
-                .collection("prenotazioni")
-                .snapshots(),
-            builder: (context, snapshots) {
-              if (snapshots.hasData) {
-                return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshots.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      DocumentSnapshot documentSnapshot =
-                          snapshots.data!.docs[index];
-                      return Card(
-                          child: Column(children: [
-                        ListTile(
-                          title: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Nome e cognome Prenotazione: " +
-                                    documentSnapshot["NomePrenotazione"] +
-                                    " " +
-                                    documentSnapshot["CognomePrenotazione"]),
-                              ],
-                            ),
-                          ),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.person),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ElencoOspiti(
-                                        bookingCode: documentSnapshot[
-                                                "CognomePrenotazione"]
-                                            .toString(),
-                                      )));
-                            },
-                          ),
-                        ),
-                        inputTextCard(
-                            TextInputType.text, "Piano:", widget.piano),
-                        inputTextCard(TextInputType.datetime,
-                            "Data di inizio soggiorno:", widget.dataInizio),
-                        inputTextCard(TextInputType.datetime,
-                            "Data di fine soggiorno:", widget.dataFine),
-                        textCard(documentSnapshot, "Numero di persone: ",
-                            "NPersone"),
-                        inputTextCard(
-                            TextInputType.datetime, "Prezzo", widget.prezzo),
-                      ]));
-                    });
-              } else {
-                if (kDebugMode) {
-                  print("dati non trovati");
-                }
-                return const Align(
-                  alignment: FractionalOffset.center,
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }),
+      body: Column(
+        children: [
+          Card(
+              child: Column(children: [
+            ListTile(
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // ignore: prefer_interpolation_to_compose_strings
+                    Text("Nome e cognome prenotazione:" +
+                        widget.nomePrenotazione +
+                        " " +
+                        widget.cognomePrenotazione),
+                  ],
+                ),
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.person),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ElencoOspiti(
+                            bookingCode: widget.bookingcode.toString(),
+                          )));
+                },
+              ),
+            ),
+            inputTextCard(TextInputType.text, "Piano:", widget.piano),
+            inputTextCard(TextInputType.datetime, "Data di inizio soggiorno:",
+                widget.dataInizio),
+            inputTextCard(TextInputType.datetime, "Data di fine soggiorno:",
+                widget.dataFine),
+            intCard("Numero di persone: ", widget.numeroPersone),
+            inputTextCard(TextInputType.datetime, "Prezzo", widget.prezzo),
+          ])),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
+            updatePrenotazione();
             Navigator.pop(context);
           },
           child: const Icon(Icons.done)),
     );
   }
 
-  addDataFamigli() {
+  updatePrenotazione() {
     User? user = FirebaseAuth.instance.currentUser;
+    print(widget.bookingcode);
     FirebaseFirestore.instance
         .collection('Dati')
         .doc(user?.uid)
         .collection("prenotazioni")
-        .doc()
+        .doc(widget.bookingcode.toString())
         .set({
+      'bookingCode': widget.bookingcode,
       'CognomePrenotazione': widget.cognomePrenotazione,
       'NomePrenotazione': widget.nomePrenotazione,
-      'DataDiInizio': widget.dataFine,
-      'DataFine': widget.dataFine,
+      'DataDiInizio': widget.dataFine.text,
+      'DataFine': widget.dataFine.text,
       'NPersone': widget.numeroPersone,
-      'Prezzo': widget.prezzo,
-      'Piano': widget.piano,
+      'Prezzo': widget.prezzo.text,
+      'Piano': widget.piano.text,
     });
-  }
-}
-
-Future<void> alertTwoButton(BuildContext context, box, user, documentSnapshot) {
-  if (Platform.isIOS) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: const Text('Si'),
-              onPressed: () {
-                try {
-                  FirebaseFirestore.instance
-                      .collection('Dati')
-                      .doc(user?.uid)
-                      .collection("prenotazioni")
-                      .doc(documentSnapshot.id)
-                      .delete();
-                } catch (e) {
-                  if (kDebugMode) {
-                    print(e);
-                  }
-                }
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: const Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  } else {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            Row(
-              children: [
-                TextButton(
-                  child: const Text('Si'),
-                  onPressed: () {
-                    try {
-                      FirebaseFirestore.instance
-                          .collection('Dati')
-                          .doc(user?.uid)
-                          .collection("prenotazioni")
-                          .doc(documentSnapshot.id)
-                          .delete();
-                    } catch (e) {
-                      if (kDebugMode) {
-                        print(e);
-                      }
-                    }
-                  },
-                ),
-                TextButton(
-                    child: const Text('No'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    }),
-              ],
-            ),
-          ],
-        );
-      },
-    );
   }
 }

@@ -99,7 +99,7 @@ class _SplitViewState extends State<SplitView> {
             ),
             NavigationDestination(
               icon: Icon(Icons.euro),
-              label: 'Finanaza',
+              label: 'Finanza',
             ),
             NavigationDestination(
               icon: Icon(Icons.settings),

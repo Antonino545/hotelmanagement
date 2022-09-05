@@ -42,6 +42,7 @@ inputInt([textInput, label, obscureText, controller]) {
           ],
           decoration: InputDecoration(
             labelText: label,
+            // ignore: prefer_interpolation_to_compose_strings
             hintText: "inserisci " + label,
             border: const OutlineInputBorder(
                 borderRadius: const BorderRadius.all(Radius.circular(10))),
@@ -55,9 +56,7 @@ inputInt([textInput, label, obscureText, controller]) {
   ]);
 }
 
-inputTextCard([textInput, label, text]) {
-  var controller = TextEditingController();
-  controller.text = text.toString();
+inputTextCard([textInput, label, controller]) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(

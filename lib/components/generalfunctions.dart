@@ -15,3 +15,14 @@ textCard(documentSnapshot, String text, String doc) {
     ),
   );
 }
+
+intCard(String text, int num) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Text(text + num.toString()),
+      ],
+    ),
+  );
+}
