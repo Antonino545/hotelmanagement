@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:288333512846:android:d118dacdb95d7c7d3ac9df",
+        "mobilesdk_app_id": "1:288333512846:android:4131b9877b79d7a93ac9df",
         "android_client_info": {
           "package_name": "com.antoninoincorvaia.hotel_management"
         }
       },
       "oauth_client": [
         {
-          "client_id": "288333512846-ivucjc4pfv2ttbvkghmf27mpvsug975k.apps.googleusercontent.com",
+          "client_id": "288333512846-k1qkicgnieras1a7u4udg770r8ndcgo3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.antoninoincorvaia.hotel_management",
@@ -38,6 +38,13 @@
             {
               "client_id": "288333512846-4c49uoidbiu6k5tsa0sm9temfmmlal6m.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "288333512846-9q2e54sok99ht3gviki4bmh7qfrlnngr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.antoninoincorvaia.hotelmanagement"
+              }
             }
           ]
         }

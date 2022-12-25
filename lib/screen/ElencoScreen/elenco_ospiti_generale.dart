@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_prenotazione_screen.dart';
+import 'package:hotelmanagement/screen/aggiungiscreen/aggiungi_prenotazione_screen.dart';
 import 'package:hotelmanagement/screen/ModifcaScreen/modifica_prenotazione.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 

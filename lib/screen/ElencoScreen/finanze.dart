@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hotelmanagement/screen/AggiungiScreen/aggiungi_speseScreen.dart';
+import 'package:hotelmanagement/screen/aggiungiscreen/aggiungi_speseScreen.dart';
 
 // ignore: must_be_immutable
 class Finanze extends StatefulWidget {
