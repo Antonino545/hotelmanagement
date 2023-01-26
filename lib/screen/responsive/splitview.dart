@@ -35,54 +35,41 @@ class _SplitViewState extends State<SplitView> {
     final screenWidth = MediaQuery.of(context).size.width;
     if (isTab(context) || isDesktop(context)) {
       // widescreen: menu on the left, content on the right
-      return SafeArea(
-        child: Row(
+      return Scaffold(
+        body: Row(
           children: [
-            SizedBox(
-              child: Drawer(
-                child: ListView(
-                  //list view
-                  children: [
-                    const DrawerHeader(
-                      //Drawer Parte Alta
-                      child: Text(
-                        "Hotel \nManagement", //testo Che si mostra nel Drawer
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+            NavigationDrawer(
+              onDestinationSelected: _onItemTapped,
+              selectedIndex: _selectedIndex,
+              //list view
+
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const DrawerHeader(
+                  //Drawer Parte Alta
+                  child: Text(
+                    "Hotel \nManagement", //testo Che si mostra nel Drawer
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
                     ),
-                    ListTile(
-                        title: const Text("Ospiti"),
-                        leading: const Icon(Icons.person),
-                        onTap: () => (_onItemTapped(0))),
-                    ListTile(
-                        //listTitle dove abbiamo il collegamento ad Finanze
-                        title: const Text("Finanze"),
-                        leading: const Icon(Icons.euro),
-                        onTap: () => (_onItemTapped(1))),
-                    ListTile(
-                        //listTitle dove abbiamo il collegamento ad Finanze
-                        title: const Text("Impostazione"),
-                        leading: const Icon(Icons.settings),
-                        onTap: () => (_onItemTapped(2))),
-                    ListTile(
-                      //listTitle dove abbiamo il collegamento ad Finanze
-                      title: const Text("Logout"),
-                      leading: const Icon(Icons.logout),
-                      onTap: () async => {
-                        await FirebaseAuth.instance.signOut(),
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Welcome()))
-                      }, //abbiamo il collegamento ad Finanze
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                const NavigationDrawerDestination(
+                  icon: Icon(Icons.person),
+                  label: Text('Ospiti'),
+                ),
+                const NavigationDrawerDestination(
+                  icon: Icon(Icons.euro),
+                  label: Text('Finanza'),
+                ),
+                const NavigationDrawerDestination(
+                  icon: Icon(Icons.settings),
+                  label: Text('Impostazioni'),
+                ),
+              ],
             ),
-            Container(width: 0.5, color: Colors.black),
-            Expanded(flex: 4, child: _widgetOptions.elementAt(_selectedIndex)),
+            Expanded(flex: 2, child: _widgetOptions.elementAt(_selectedIndex)),
           ],
         ),
       );

@@ -12,11 +12,11 @@ Future<void> login(
     required TextEditingController email,
     required TextEditingController password}) async {
   if (email.text.isEmpty) {
-    alert(context, "Devi inserire la tua Mail");
+    alert(context, "Devi inserire la tua mail");
     return;
   }
   if (password.text.isEmpty) {
-    alert(context, "Devi inserire la tua Password");
+    alert(context, "Devi inserire la tua password");
     return;
   }
   try {
@@ -24,16 +24,14 @@ Future<void> login(
         .signInWithEmailAndPassword(email: email.text, password: password.text);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
-      if (kDebugMode) {
-        alert(context, 'Email non collegata ad un account');
-      }
+      alert(context, 'Email non collegata ad un account');
+      return;
     } else if (e.code == 'wrong-password') {
-      if (kDebugMode) {
-        alert(
-          context,
-          'Password non corretta',
-        );
-      }
+      alert(
+        context,
+        'Password non corretta',
+      );
+      return;
     }
   }
   FirebaseAuth.instance.userChanges().listen((user) {

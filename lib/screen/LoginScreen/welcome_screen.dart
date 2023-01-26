@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '/components/buttons.dart';

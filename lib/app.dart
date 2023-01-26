@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
           // ignore: prefer__ructors
           useMaterial3: true,
+          brightness: Brightness.dark,
           appBarTheme: const AppBarTheme(
             shadowColor: Colors.transparent,
             backgroundColor: Colors.transparent,
@@ -41,7 +42,7 @@ class App extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
-          colorScheme: const ColorScheme(
+          /* colorScheme: const ColorScheme(
               brightness: Brightness.dark,
               background: Colors.black,
               error: Colors.red,
@@ -52,7 +53,8 @@ class App extends StatelessWidget {
               onSurface: Colors.white,
               primary: Colors.teal,
               secondary: Colors.teal,
-              surface: Colors.transparent),
+              surface: Colors.transparent),*/
+
           bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black)
           // ignore: prefer_const_constructors
           ),
