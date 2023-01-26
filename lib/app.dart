@@ -16,7 +16,6 @@ class App extends StatelessWidget {
             shadowColor: Colors.transparent,
             backgroundColor: Colors.transparent,
           ),
-          bottomAppBarColor: Colors.black,
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(textStyle: const TextStyle())),
           outlinedButtonTheme: OutlinedButtonThemeData(
@@ -53,7 +52,8 @@ class App extends StatelessWidget {
               onSurface: Colors.white,
               primary: Colors.teal,
               secondary: Colors.teal,
-              surface: Colors.transparent)
+              surface: Colors.transparent),
+          bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black)
           // ignore: prefer_const_constructors
           ),
     );

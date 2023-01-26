@@ -124,9 +124,6 @@ class _LoginState extends State<Login> {
                                   email: email,
                                   password: password);
                             },
-                            child: const Text(
-                              "Accedi",
-                            ),
                             style: OutlinedButton.styleFrom(
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 20),
@@ -137,6 +134,9 @@ class _LoginState extends State<Login> {
                                     style: BorderStyle.solid,
                                   ),
                                   borderRadius: BorderRadius.circular(50)),
+                            ),
+                            child: const Text(
+                              "Accedi",
                             ),
                           ),
                         )),

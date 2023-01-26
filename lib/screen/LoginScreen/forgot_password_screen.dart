@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
-import 'package:hotelmanagement/components/login.dart';
-import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -21,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   String box = "0";
   var password = TextEditingController();
   var email = TextEditingController();
-  bool _isObscure = true;
+  bool _isobscure = true;
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -98,9 +96,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     .catchError((e) => print(e));
                               }
                             },
-                            child: const Text(
-                              "Recupero dell'account",
-                            ),
                             style: OutlinedButton.styleFrom(
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 20),
@@ -111,6 +106,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     style: BorderStyle.solid,
                                   ),
                                   borderRadius: BorderRadius.circular(50)),
+                            ),
+                            child: const Text(
+                              "Recupero dell'account",
                             ),
                           ),
                         )),

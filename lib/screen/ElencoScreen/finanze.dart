@@ -92,16 +92,13 @@ class _FinanzeState extends State<Finanze> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                             ListTile(
-                              title: Text("Nome Spesa: " +
-                                  documentSnapshot["NomeSpesa"].toString()),
+                              title: Text("Nome Spesa: ${documentSnapshot["NomeSpesa"]}"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Wrap(
                                 children: [
-                                  Text("Descrizione: " +
-                                      documentSnapshot["DescrizioneSpesa"]
-                                          .toString()),
+                                  Text("Descrizione: ${documentSnapshot["DescrizioneSpesa"]}"),
                                 ],
                               ),
                             ),
@@ -109,9 +106,7 @@ class _FinanzeState extends State<Finanze> {
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 children: [
-                                  Text("Costo Spesa: " +
-                                      documentSnapshot["CostoSpesa"]
-                                          .toString()),
+                                  Text("Costo Spesa: ${documentSnapshot["CostoSpesa"]}"),
                                 ],
                               ),
                             ),

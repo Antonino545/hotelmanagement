@@ -58,6 +58,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                                 "Sei sicuro di cancellare questa prenotazione",
                                 user,
                                 documentSnapshot);
+                            // ignore: use_build_context_synchronously
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 import '../../components/generalfunctions.dart';
@@ -56,6 +57,7 @@ class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
+                                    // ignore: prefer_interpolation_to_compose_strings
                                     "${"Nome e cognome Prenotazione: " + documentSnapshot["NomePrenotazione"]} " +
                                         documentSnapshot[
                                             "CognomePrenotazione"]),
