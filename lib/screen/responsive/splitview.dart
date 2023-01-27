@@ -36,6 +36,7 @@ class _SplitViewState extends State<SplitView> {
     if (isTab(context) || isDesktop(context)) {
       // widescreen: menu on the left, content on the right
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Row(
           children: [
             NavigationDrawer(
@@ -77,6 +78,7 @@ class _SplitViewState extends State<SplitView> {
       // narrow screen: show content, menu inside drawer
 
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: NavigationBar(
           destinations: const [

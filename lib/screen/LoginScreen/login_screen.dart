@@ -37,11 +37,7 @@ class _LoginState extends State<Login> {
         }
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
+        resizeToAvoidBottomInset: false,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

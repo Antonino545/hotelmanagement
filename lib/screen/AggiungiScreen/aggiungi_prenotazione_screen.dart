@@ -66,7 +66,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                     alertDataRange(
                         context, "inserire data di inizio e fine soggiorno");
                   },
-                  child: const Text("inserire Data di inizio e fine soggiorno"),
+                  child: const Text("inserire date del soggiorno"),
                 ),
               ),
               inputInt(TextInputType.number, "Prezzo soggiorno", false,
