@@ -1,8 +1,8 @@
 // split_view.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/elenco_ospiti_generale.dart';
-import 'package:hotelmanagement/screen/ElencoScreen/finanze.dart';
+import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
+import 'package:hotelmanagement/screen/ListScreen/finance.dart';
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
