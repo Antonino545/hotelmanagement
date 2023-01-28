@@ -12,13 +12,13 @@ import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import 'list_customer.dart';
 
-class ElencoOspitiGenerali extends StatefulWidget {
-  const ElencoOspitiGenerali({Key? key}) : super(key: key);
+class ListBooking extends StatefulWidget {
+  const ListBooking({Key? key}) : super(key: key);
   @override
-  _ElencoOspitiGeneraliState createState() => _ElencoOspitiGeneraliState();
+  _ListBookingState createState() => _ListBookingState();
 }
 
-class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
+class _ListBookingState extends State<ListBooking> {
   String cognomePrenotazione = "";
 
   User? user = FirebaseAuth.instance.currentUser;
@@ -144,7 +144,7 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
                             icon: const Icon(Icons.person),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ElencoOspiti(
+                                  builder: (context) => ListCustomer(
                                         bookingCode:
                                             documentSnapshot["bookingCode"]
                                                 .toString(),
@@ -176,8 +176,8 @@ class _ElencoOspitiGeneraliState extends State<ElencoOspitiGenerali> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const AggiungiPrenotazione()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const AddBooking()));
         },
         child: const Icon(Icons.add),
       ),

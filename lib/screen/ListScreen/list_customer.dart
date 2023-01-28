@@ -8,18 +8,18 @@ import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
 import '../../components/generalfunctions.dart';
 
 // ignore: must_be_immutable
-class ElencoOspiti extends StatefulWidget {
+class ListCustomer extends StatefulWidget {
   String bookingCode;
-  ElencoOspiti({
+  ListCustomer({
     Key? key,
     required this.bookingCode,
   }) : super(key: key);
   @override
-  _ElencoOspiti createState() => _ElencoOspiti();
+  _ListCustomer createState() => _ListCustomer();
 }
 
-class _ElencoOspiti extends State<ElencoOspiti> {
-  ElencoOspitiGenerali f2 = const ElencoOspitiGenerali();
+class _ListCustomer extends State<ListCustomer> {
+  ListBooking f2 = const ListBooking();
 
   @override
   Widget build(BuildContext context) {

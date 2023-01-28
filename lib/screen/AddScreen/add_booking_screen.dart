@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'add_customer_screen.dart';
 
-class AggiungiPrenotazione extends StatefulWidget {
-  const AggiungiPrenotazione({Key? key}) : super(key: key);
+class AddBooking extends StatefulWidget {
+  const AddBooking({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _AggiungiPrenotazioneState createState() => _AggiungiPrenotazioneState();
+  _AddBookingState createState() => _AddBookingState();
 }
 
-class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
+class _AddBookingState extends State<AddBooking> {
   var cognomePrenotazioneController = TextEditingController();
   var nomePrenotazioneController = TextEditingController();
   var numeroOspitiController = TextEditingController();
@@ -151,7 +151,7 @@ class _AggiungiPrenotazioneState extends State<AggiungiPrenotazione> {
                             i++) {
                           // ignore: use_build_context_synchronously
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AggiungiOspitiScreen(
+                              builder: (context) => AddCustomer(
                                   bookingcode: bookingCode.toString())));
                         }
                       }

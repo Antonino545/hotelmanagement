@@ -1,11 +1,12 @@
 // split_view.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
-import 'package:hotelmanagement/screen/ListScreen/finance.dart';
+
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 
+import '../ListScreen/finance.dart';
+import '../ListScreen/list_booking.dart';
 import '../LoginScreen/welcome_screen.dart';
 
 class SplitView extends StatefulWidget {
@@ -18,8 +19,8 @@ class SplitView extends StatefulWidget {
 class _SplitViewState extends State<SplitView> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    ElencoOspitiGenerali(),
-    Finanze(),
+    ListBooking(),
+    Finance(),
     Impostazioni(),
   ];
 

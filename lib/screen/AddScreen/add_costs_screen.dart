@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 
-class AggiungiSpeseScreen extends StatefulWidget {
-  const AggiungiSpeseScreen({Key? key}) : super(key: key);
+class AddCost extends StatefulWidget {
+  const AddCost({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _AggiungiSpeseScreenState createState() => _AggiungiSpeseScreenState();
+  _AddCostState createState() => _AddCostState();
 }
 
-class _AggiungiSpeseScreenState extends State<AggiungiSpeseScreen> {
+class _AddCostState extends State<AddCost> {
   addSpesa() {
     User? user = FirebaseAuth.instance.currentUser;
     try {

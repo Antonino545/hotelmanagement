@@ -8,16 +8,16 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/screen/AddScreen/add_costs_screen.dart';
 
 // ignore: must_be_immutable
-class Finanze extends StatefulWidget {
-  const Finanze({Key? key}) : super(key: key);
+class Finance extends StatefulWidget {
+  const Finance({Key? key}) : super(key: key);
 
   // ignore: non_ant_identifier_names, non_constant_identifier_names
 
   @override
-  _FinanzeState createState() => _FinanzeState();
+  _FinanceState createState() => _FinanceState();
 }
 
-class _FinanzeState extends State<Finanze> {
+class _FinanceState extends State<Finance> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
@@ -91,13 +91,15 @@ class _FinanzeState extends State<Finanze> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                             ListTile(
-                              title: Text("Nome Spesa: ${documentSnapshot["NomeSpesa"]}"),
+                              title: Text(
+                                  "Nome Spesa: ${documentSnapshot["NomeSpesa"]}"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Wrap(
                                 children: [
-                                  Text("Descrizione: ${documentSnapshot["DescrizioneSpesa"]}"),
+                                  Text(
+                                      "Descrizione: ${documentSnapshot["DescrizioneSpesa"]}"),
                                 ],
                               ),
                             ),
@@ -105,7 +107,8 @@ class _FinanzeState extends State<Finanze> {
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 children: [
-                                  Text("Costo Spesa: ${documentSnapshot["CostoSpesa"]}"),
+                                  Text(
+                                      "Costo Spesa: ${documentSnapshot["CostoSpesa"]}"),
                                 ],
                               ),
                             ),
@@ -121,8 +124,8 @@ class _FinanzeState extends State<Finanze> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const AggiungiSpeseScreen()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const AddCost()));
         },
         child: const Icon(Icons.add),
       ),

@@ -10,14 +10,14 @@ import 'package:intl/intl.dart';
 
 import '../../components/generalfunctions.dart';
 
-class ElencoOspitiAttuali extends StatefulWidget {
-  const ElencoOspitiAttuali({Key? key}) : super(key: key);
+class ListActualCustomer extends StatefulWidget {
+  const ListActualCustomer({Key? key}) : super(key: key);
 
   @override
-  _ElencoOspitiAttualiState createState() => _ElencoOspitiAttualiState();
+  _ListActualCustomerState createState() => _ListActualCustomerState();
 }
 
-class _ElencoOspitiAttualiState extends State<ElencoOspitiAttuali> {
+class _ListActualCustomerState extends State<ListActualCustomer> {
   var user = FirebaseAuth.instance.currentUser;
 
   final DateFormat formatter = DateFormat('MM');

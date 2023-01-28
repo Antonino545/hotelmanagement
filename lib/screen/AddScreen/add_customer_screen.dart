@@ -3,18 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 
-class AggiungiOspitiScreen extends StatefulWidget {
+class AddCustomer extends StatefulWidget {
   final String bookingcode;
 
-  const AggiungiOspitiScreen({Key? key, required this.bookingcode})
-      : super(key: key);
+  const AddCustomer({Key? key, required this.bookingcode}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _AggiungiOspitiScreenState createState() => _AggiungiOspitiScreenState();
+  _AddCustomerState createState() => _AddCustomerState();
 }
 
-class _AggiungiOspitiScreenState extends State<AggiungiOspitiScreen> {
+class _AddCustomerState extends State<AddCustomer> {
   //aggiungi i Dati nella Raccolta Ospiti in Firebase
 
 //creazioni variabili
