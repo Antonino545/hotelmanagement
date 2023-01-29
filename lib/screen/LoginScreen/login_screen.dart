@@ -4,7 +4,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
 import 'package:hotelmanagement/screen/LoginScreen/forgot_password_screen.dart';

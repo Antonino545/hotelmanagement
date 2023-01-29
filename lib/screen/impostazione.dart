@@ -32,6 +32,7 @@ class _ImpostazioniState extends State<Impostazioni> {
                     const Text(
                       "Logout",
                       style: TextStyle(fontSize: 20),
+                      
                     ),
                     const Expanded(
                       child: SizedBox(),

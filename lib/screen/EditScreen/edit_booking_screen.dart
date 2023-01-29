@@ -65,7 +65,7 @@ class _EditBookingState extends State<EditBooking> {
                 icon: const Icon(Icons.person),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ElencoOspiti(
+                      builder: (context) => ListCustomer(
                             bookingCode: widget.bookingcode.toString(),
                           )));
                 },

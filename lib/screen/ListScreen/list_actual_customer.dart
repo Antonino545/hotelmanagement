@@ -68,7 +68,7 @@ class _ListActualCustomerState extends State<ListActualCustomer> {
                             icon: const Icon(Icons.person),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ElencoOspiti(
+                                  builder: (context) => ListCustomer(
                                         bookingCode: documentSnapshot[
                                                 "CognomePrenotazione"]
                                             .toString(),

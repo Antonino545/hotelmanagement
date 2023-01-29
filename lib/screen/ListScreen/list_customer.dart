@@ -8,17 +8,19 @@ import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
 import '../../components/generalfunctions.dart';
 
 // ignore: must_be_immutable
+
 class ListCustomer extends StatefulWidget {
   String bookingCode;
   ListCustomer({
     Key? key,
     required this.bookingCode,
   }) : super(key: key);
+
   @override
-  _ListCustomer createState() => _ListCustomer();
+  State<ListCustomer> createState() => _ListCustomerState();
 }
 
-class _ListCustomer extends State<ListCustomer> {
+class _ListCustomerState extends State<ListCustomer> {
   ListBooking f2 = const ListBooking();
 
   @override
@@ -83,7 +85,7 @@ class _ListCustomer extends State<ListCustomer> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    "Nome Ospite: " + documentSnapshot["Nome"]),
+                                    'Nome Ospite: ' + documentSnapshot["Nome"]),
                                 Text("Cognome Ospite: " +
                                     documentSnapshot["Cognome"]),
                               ],

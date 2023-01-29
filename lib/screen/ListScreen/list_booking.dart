@@ -133,9 +133,8 @@ class _ListBookingState extends State<ListBooking> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Nome e cognome Prenotazione: " +
-                                    documentSnapshot["NomePrenotazione"] +
-                                    " " +
+                                Text("${"Nome e cognome Prenotazione: " +
+                                    documentSnapshot["NomePrenotazione"]} " +
                                     documentSnapshot["CognomePrenotazione"]),
                               ],
                             ),

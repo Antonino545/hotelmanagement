@@ -1,14 +1,11 @@
-// split_view.dart
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
-
 import '../ListScreen/finance.dart';
 import '../ListScreen/list_booking.dart';
-import '../LoginScreen/welcome_screen.dart';
 
+/*splitview is an adaptive class which displays a menu and content side by 
+side on large screens and  show menu as bottom navigation bar when is a small screens*/
 class SplitView extends StatefulWidget {
   const SplitView({Key? key}) : super(key: key);
 
@@ -17,8 +14,13 @@ class SplitView extends StatefulWidget {
 }
 
 class _SplitViewState extends State<SplitView> {
+  //selected menu item
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  //menu items
+  String customer = "Ospiti";
+  String finance = "Finanza";
+  String settings = "Impostazioni";
+  static const List<Widget> _widget = <Widget>[
     ListBooking(),
     Finance(),
     Impostazioni(),
@@ -32,68 +34,62 @@ class _SplitViewState extends State<SplitView> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    final screenWidth = MediaQuery.of(context).size.width;
+    //when screen is wide enough, show content and menu side by side
     if (isTab(context) || isDesktop(context)) {
-      // widescreen: menu on the left, content on the right
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Row(
           children: [
+            //menu
             NavigationDrawer(
               onDestinationSelected: _onItemTapped,
               selectedIndex: _selectedIndex,
-              //list view
-
-              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const DrawerHeader(
-                  //Drawer Parte Alta
                   child: Text(
-                    "Hotel \nManagement", //testo Che si mostra nel Drawer
+                    "Hotel \nManagement",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const NavigationDrawerDestination(
-                  icon: Icon(Icons.person),
-                  label: Text('Ospiti'),
+                NavigationDrawerDestination(
+                  icon: const Icon(Icons.person),
+                  label: Text(customer),
                 ),
-                const NavigationDrawerDestination(
-                  icon: Icon(Icons.euro),
-                  label: Text('Finanza'),
+                NavigationDrawerDestination(
+                  icon: const Icon(Icons.euro),
+                  label: Text(finance),
                 ),
-                const NavigationDrawerDestination(
-                  icon: Icon(Icons.settings),
-                  label: Text('Impostazioni'),
+                NavigationDrawerDestination(
+                  icon: const Icon(Icons.settings),
+                  label: Text(settings),
                 ),
               ],
             ),
-            Expanded(flex: 2, child: _widgetOptions.elementAt(_selectedIndex)),
+            Expanded(flex: 2, child: _widget.elementAt(_selectedIndex)),
           ],
         ),
       );
     } else {
-      // narrow screen: show content, menu inside drawer
-
+      //when screen is too small, show menu as bottom navigation bar
       return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: _widgetOptions.elementAt(_selectedIndex),
+        body: _widget.elementAt(_selectedIndex),
         bottomNavigationBar: NavigationBar(
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.person),
-              label: 'Ospiti',
+              icon: const Icon(Icons.person),
+              label: customer,
             ),
             NavigationDestination(
-              icon: Icon(Icons.euro),
-              label: 'Finanza',
+              icon: const Icon(Icons.euro),
+              label: finance,
             ),
             NavigationDestination(
-              icon: Icon(Icons.settings),
-              label: 'Impostazioni',
+              icon: const Icon(Icons.settings),
+              label: settings,
             ),
           ],
           selectedIndex: _selectedIndex,

@@ -19,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   String box = "0";
   var password = TextEditingController();
   var email = TextEditingController();
-  bool _isobscure = true;
+  // final bool _isobscure = true;
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -87,14 +87,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           width: 500.0,
                           child: OutlinedButton(
                             onPressed: () async {
-                              if (email.text != null) {
-                                alert(context,
-                                    "É stata inviata una mail a ${email.text}");
-                                await _auth
-                                    .sendPasswordResetEmail(email: email.text)
-                                    // ignore: avoid_print
-                                    .catchError((e) => print(e));
-                              }
+                              alert(context,
+                                  "É stata inviata una mail a ${email.text}");
+                              await _auth
+                                  .sendPasswordResetEmail(email: email.text)
+                                  // ignore: avoid_print
+                                  .catchError((e) => print(e));
                             },
                             style: OutlinedButton.styleFrom(
                               textStyle: const TextStyle(
