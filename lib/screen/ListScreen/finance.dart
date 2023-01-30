@@ -8,6 +8,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/AddScreen/add_costs_screen.dart';
 
+import '../responsive/splitview.dart';
+
 class Finance extends StatefulWidget {
   const Finance({Key? key}) : super(key: key);
   @override
@@ -95,6 +97,12 @@ class _FinanceState extends State<Finance> {
                                         .collection("Spese")
                                         .doc(docSnap.id)
                                         .delete());
+
+                                // ignore: use_build_context_synchronously
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SplitView()));
                               },
                               foregroundColor: Colors.white,
                               icon: Icons.edit),
