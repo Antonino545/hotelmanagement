@@ -78,7 +78,7 @@ class _AddCustomerState extends State<AddCustomer> {
     FirebaseFirestore.instance
         .collection('Dati')
         .doc(user?.uid)
-        .collection("prenotazioni")
+        .collection("booking")
         .doc(widget.bookingcode)
         .collection("Ospiti")
         .add({

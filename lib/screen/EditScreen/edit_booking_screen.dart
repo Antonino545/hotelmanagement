@@ -12,22 +12,22 @@ import '../ListScreen/list_customer.dart';
 class EditBooking extends StatefulWidget {
   String cognomePrenotazione;
   String nomePrenotazione;
-  TextEditingController dataInizio;
-  TextEditingController dataFine;
+  TextEditingController startDate;
+  TextEditingController endDate;
   int bookingcode;
-  TextEditingController prezzo;
-  int numeroPersone;
-  TextEditingController piano;
+  TextEditingController Price;
+  int Npeople;
+  TextEditingController Floor;
   EditBooking({
     Key? key,
     required this.bookingcode,
     required this.cognomePrenotazione,
-    required this.dataFine,
-    required this.numeroPersone,
-    required this.dataInizio,
-    required this.prezzo,
+    required this.endDate,
+    required this.Npeople,
+    required this.startDate,
+    required this.Price,
     required this.nomePrenotazione,
-    required this.piano,
+    required this.Floor,
   }) : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
@@ -71,13 +71,13 @@ class _EditBookingState extends State<EditBooking> {
                 },
               ),
             ),
-            inputTextCard(TextInputType.text, "Piano:", widget.piano),
+            inputTextCard(TextInputType.text, "Piano:", widget.Floor),
             inputTextCard(TextInputType.datetime, "Data di inizio soggiorno:",
-                widget.dataInizio),
+                widget.startDate),
             inputTextCard(TextInputType.datetime, "Data di fine soggiorno:",
-                widget.dataFine),
-            intCard("Numero di persone: ", widget.numeroPersone),
-            inputTextCard(TextInputType.datetime, "Prezzo", widget.prezzo),
+                widget.endDate),
+            intCard("Numero di persone: ", widget.Npeople),
+            inputTextCard(TextInputType.datetime, "Price", widget.Price),
           ])),
         ],
       ),
@@ -98,17 +98,17 @@ class _EditBookingState extends State<EditBooking> {
     FirebaseFirestore.instance
         .collection('Dati')
         .doc(user?.uid)
-        .collection("prenotazioni")
+        .collection("booking")
         .doc(widget.bookingcode.toString())
         .set({
       'bookingCode': widget.bookingcode,
       'CognomePrenotazione': widget.cognomePrenotazione,
       'NomePrenotazione': widget.nomePrenotazione,
-      'DataDiInizio': widget.dataFine.text,
-      'DataFine': widget.dataFine.text,
-      'NPersone': widget.numeroPersone,
-      'Prezzo': widget.prezzo.text,
-      'Piano': widget.piano.text,
+      'DataDiInizio': widget.endDate.text,
+      'endDate': widget.endDate.text,
+      'Npeople': widget.Npeople,
+      'Price': widget.Price.text,
+      'Floor': widget.Floor.text,
     });
   }
 }

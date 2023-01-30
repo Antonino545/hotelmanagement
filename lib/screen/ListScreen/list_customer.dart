@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 
 import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
 
 import '../../components/generalfunctions.dart';
 
-// ignore: must_be_immutable
+//list of card with all the customer of a booking
 
 class ListCustomer extends StatefulWidget {
   String bookingCode;
@@ -25,28 +26,29 @@ class _ListCustomerState extends State<ListCustomer> {
 
   @override
   Widget build(BuildContext context) {
-    var user = FirebaseAuth.instance.currentUser;
+    var user = FirebaseAuth.instance.currentUser; //get the user
     return Scaffold(
       appBar: AppBar(title: const Text("Hotel Management")),
       body: StreamBuilder<QuerySnapshot>(
+          //stream of the customer of the booking
           stream: FirebaseFirestore.instance
               .collection('Dati')
               .doc(user?.uid)
-              .collection("prenotazioni")
+              .collection("booking")
               .doc(widget.bookingCode)
               .collection("Ospiti")
               .snapshots(),
           builder: (context, snapshots) {
             if (snapshots.hasData) {
+              //check if the stream has data
               return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshots.data!.docs.length,
                   itemBuilder: (context, index) {
-                    DocumentSnapshot documentSnapshot =
-                        snapshots.data!.docs[index];
+                    DocumentSnapshot docSnap = snapshots.data!.docs[index];
 
                     return Dismissible(
-                      key: ObjectKey(documentSnapshot.data()),
+                      key: ObjectKey(docSnap.data()),
                       background: Card(
                         color: Colors.red,
                         child: Row(
@@ -62,21 +64,22 @@ class _ListCustomerState extends State<ListCustomer> {
                         ),
                       ),
                       onDismissed: (orienation) {
+                        //delete the customer
                         try {
                           FirebaseFirestore.instance
                               .collection('Dati')
                               .doc(user?.uid)
-                              .collection("prenotazioni")
+                              .collection("booking")
                               .doc(widget.bookingCode)
                               .collection("Ospiti")
-                              .doc(documentSnapshot.id)
+                              .doc(docSnap.id)
                               .delete();
                         } catch (e) {
-                          if (kDebugMode) {
-                            print(e);
-                          }
+                          //if there is an error show it
+                          alert(context, e.toString());
                         }
                       },
+                      //show the customer data
                       child: Card(
                           child: Column(
                         children: [
@@ -84,20 +87,19 @@ class _ListCustomerState extends State<ListCustomer> {
                             title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                    'Nome Ospite: ' + documentSnapshot["Nome"]),
-                                Text("Cognome Ospite: " +
-                                    documentSnapshot["Cognome"]),
+                                Text('Nome Ospite: ' + docSnap["Nome"]),
+                                Text("Cognome Ospite: " + docSnap["Cognome"]),
                               ],
                             ),
                           ),
-                          textCard(documentSnapshot, "Codice Fiscale: ",
-                              "Codice Fiscale"),
+                          textCard(
+                              docSnap, "Codice Fiscale: ", "Codice Fiscale"),
                           Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Row(
                               children: [
-                                if (documentSnapshot["Maggiorenne"] == true)
+                                if (docSnap["Maggiorenne"] ==
+                                    true) //check if the customer is major
                                   const Text("Maggiorenne")
                                 else
                                   const Text("Minorenne")
@@ -109,6 +111,7 @@ class _ListCustomerState extends State<ListCustomer> {
                     );
                   });
             } else {
+              //if the stream has no data show a loading indicator
               return const Align(
                 alignment: FractionalOffset.center,
                 child: CircularProgressIndicator(),

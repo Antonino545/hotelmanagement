@@ -6,6 +6,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //MaterialApp is the theme of the app
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const Welcome(),

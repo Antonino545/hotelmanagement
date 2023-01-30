@@ -5,16 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/AddScreen/add_costs_screen.dart';
 
-// ignore: must_be_immutable
 class Finance extends StatefulWidget {
   const Finance({Key? key}) : super(key: key);
-
-  // ignore: non_ant_identifier_names, non_constant_identifier_names
-
   @override
-  _FinanceState createState() => _FinanceState();
+  State<Finance> createState() => _FinanceState();
 }
 
 class _FinanceState extends State<Finance> {
@@ -40,10 +37,9 @@ class _FinanceState extends State<Finance> {
                   shrinkWrap: true,
                   itemCount: snapshots.data!.docs.length,
                   itemBuilder: (context, index) {
-                    DocumentSnapshot documentSnapshot =
-                        snapshots.data!.docs[index];
+                    DocumentSnapshot docSnap = snapshots.data!.docs[index];
                     return Slidable(
-                      key: ObjectKey(documentSnapshot.data()),
+                      key: ObjectKey(docSnap.data()),
                       startActionPane: ActionPane(
                         // A motion is a widget used to control how the pane animates.
                         motion: const BehindMotion(),
@@ -51,11 +47,17 @@ class _FinanceState extends State<Finance> {
                         // A pane can dismiss the Slidable.
                         dismissible: DismissiblePane(
                           onDismissed: () async {
-                            await alertTwoButton(
+                            await alertDelete(
                                 context,
                                 "Sei sicuro di cancellare questa Spesa",
                                 user,
-                                documentSnapshot);
+                                docSnap,
+                                FirebaseFirestore.instance
+                                    .collection('Dati')
+                                    .doc(user?.uid)
+                                    .collection("Spese")
+                                    .doc(docSnap.id)
+                                    .delete());
                           },
                         ),
 
@@ -64,23 +66,35 @@ class _FinanceState extends State<Finance> {
                           // A SlidableAction can have an icon and/or a label.
                           SlidableAction(
                             onPressed: (direction) async {
-                              await alertTwoButton(
+                              await alertDelete(
                                   context,
-                                  "Sei sicuro di cancellare questa spesa",
+                                  "Sei sicuro di cancellare questa Spesa",
                                   user,
-                                  documentSnapshot);
+                                  docSnap,
+                                  FirebaseFirestore.instance
+                                      .collection('Dati')
+                                      .doc(user?.uid)
+                                      .collection("Spese")
+                                      .doc(docSnap.id)
+                                      .delete());
                             },
                             backgroundColor: const Color(0xFFFE4A49),
                             foregroundColor: Colors.white,
                             icon: Icons.delete,
                           ),
                           SlidableAction(
-                              onPressed: (direction) {
-                                alertTwoButton(
+                              onPressed: (direction) async {
+                                await alertDelete(
                                     context,
-                                    "Sei sicuro di cancellare questa spesa",
+                                    "Sei sicuro di cancellare questa Spesa",
                                     user,
-                                    documentSnapshot);
+                                    docSnap,
+                                    FirebaseFirestore.instance
+                                        .collection('Dati')
+                                        .doc(user?.uid)
+                                        .collection("Spese")
+                                        .doc(docSnap.id)
+                                        .delete());
                               },
                               foregroundColor: Colors.white,
                               icon: Icons.edit),
@@ -91,15 +105,15 @@ class _FinanceState extends State<Finance> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                             ListTile(
-                              title: Text(
-                                  "Nome Spesa: ${documentSnapshot["NomeSpesa"]}"),
+                              title:
+                                  Text("Nome Spesa: ${docSnap["NomeSpesa"]}"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Wrap(
                                 children: [
                                   Text(
-                                      "Descrizione: ${documentSnapshot["DescrizioneSpesa"]}"),
+                                      "Descrizione: ${docSnap["DescrizioneSpesa"]}"),
                                 ],
                               ),
                             ),
@@ -107,8 +121,7 @@ class _FinanceState extends State<Finance> {
                               padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 children: [
-                                  Text(
-                                      "Costo Spesa: ${documentSnapshot["CostoSpesa"]}"),
+                                  Text("Costo Spesa: ${docSnap["CostoSpesa"]}"),
                                 ],
                               ),
                             ),
@@ -129,83 +142,6 @@ class _FinanceState extends State<Finance> {
         },
         child: const Icon(Icons.add),
       ),
-    );
-  }
-}
-
-Future<void> alertTwoButton(BuildContext context, box, user, documentSnapshot) {
-  if (Platform.isIOS) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: const Text('Si'),
-              onPressed: () {
-                try {
-                  FirebaseFirestore.instance
-                      .collection('Dati')
-                      .doc(user?.uid)
-                      .collection("Spese")
-                      .doc(documentSnapshot.id)
-                      .delete();
-                } catch (e) {
-                  if (kDebugMode) {
-                    print(e);
-                  }
-                }
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: const Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  } else {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(box),
-          actions: <Widget>[
-            Row(
-              children: [
-                TextButton(
-                  child: const Text('Si'),
-                  onPressed: () {
-                    try {
-                      FirebaseFirestore.instance
-                          .collection('Dati')
-                          .doc(user?.uid)
-                          .collection("Spese")
-                          .doc(documentSnapshot.id)
-                          .delete();
-                    } catch (e) {
-                      if (kDebugMode) {
-                        print(e);
-                      }
-                    }
-                    Navigator.of(context).pop();
-                  },
-                ),
-                TextButton(
-                    child: const Text('No'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    }),
-              ],
-            ),
-          ],
-        );
-      },
     );
   }
 }

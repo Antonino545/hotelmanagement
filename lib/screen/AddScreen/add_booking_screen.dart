@@ -22,14 +22,14 @@ class _AddBookingState extends State<AddBooking> {
   var nomePrenotazioneController = TextEditingController();
   var numeroOspitiController = TextEditingController();
   var numeroTelfonoController = TextEditingController();
-  var prezzoController = TextEditingController();
-  var pianocontroller = TextEditingController();
+  var priceCtrl = TextEditingController();
+  var floorCtrl = TextEditingController();
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   final DateFormat nomeFormatter = DateFormat('MM/yyyy');
 
   DateTime dataInzio = DateTime.now();
-  DateTime dataFine = DateTime.now();
+  DateTime endDate = DateTime.now();
   String cognomeNonValido = "Cognome non valido";
   String parola = "";
   int bookingCode = 0;
@@ -69,11 +69,11 @@ class _AddBookingState extends State<AddBooking> {
                   child: const Text("inserire date del soggiorno"),
                 ),
               ),
-              inputInt(TextInputType.number, "Prezzo soggiorno", false,
-                  prezzoController),
+              inputInt(
+                  TextInputType.number, "Price soggiorno", false, priceCtrl),
               inputInt(TextInputType.number, " Numero Di Telefono", false,
                   numeroTelfonoController),
-              inputText(TextInputType.text, "Piano", false, pianocontroller),
+              inputText(TextInputType.text, "Floor", false, floorCtrl),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
@@ -93,12 +93,12 @@ class _AddBookingState extends State<AddBooking> {
                         alert(context, parola = "Numero Ospiti non inserito");
                         return;
                       }
-                      if (prezzoController.text.isEmpty) {
-                        alert(context, parola = "Prezzo non inserito");
+                      if (priceCtrl.text.isEmpty) {
+                        alert(context, parola = "Price non inserito");
                         return;
                       }
                       // ignore: unnecessary_null_comparison
-                      if (dataFine == null) {
+                      if (endDate == null) {
                         alert(context, parola = "Data Fine non inserita");
                         return;
                       }
@@ -107,8 +107,8 @@ class _AddBookingState extends State<AddBooking> {
                         alert(context, parola = "Data Inizio non inserita");
                         return;
                       }
-                      if (pianocontroller.text.isEmpty) {
-                        alert(context, parola = "Piano non inserito");
+                      if (floorCtrl.text.isEmpty) {
+                        alert(context, parola = "Floor non inserito");
                         return;
                       }
 
@@ -156,9 +156,9 @@ class _AddBookingState extends State<AddBooking> {
                         }
                       }
                       numeroOspitiController.clear();
-                      prezzoController.clear();
+                      priceCtrl.clear();
                       numeroTelfonoController.clear();
-                      pianocontroller.clear();
+                      floorCtrl.clear();
                       numeroOspitiController.clear();
                     }),
               ),
@@ -210,7 +210,7 @@ class _AddBookingState extends State<AddBooking> {
     try {
       setState(() {
         dataInzio = args.value.startDate;
-        dataFine = args.value.endDate;
+        endDate = args.value.endDate;
       });
       // ignore: empty_catches
     } catch (e) {}
@@ -222,19 +222,19 @@ class _AddBookingState extends State<AddBooking> {
     }
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
-        .collection('Dati')
+        .collection('Date')
         .doc(user?.uid)
-        .collection("prenotazioni")
+        .collection("booking")
         .doc(bookingCode.toString())
         .set({
       'bookingCode': bookingCode,
       'CognomePrenotazione': cognomePrenotazioneController.text,
       'NomePrenotazione': nomePrenotazioneController.text,
       'DataDiInizio': formatter.format(dataInzio),
-      'DataFine': formatter.format(dataFine),
-      'NPersone': int.parse(numeroOspitiController.text),
-      'Prezzo': int.parse(prezzoController.text),
-      'Piano': pianocontroller.text,
+      'endDate': formatter.format(endDate),
+      'Npeople': int.parse(numeroOspitiController.text),
+      'Price': int.parse(priceCtrl.text),
+      'Floor': floorCtrl.text,
     });
   }
 }

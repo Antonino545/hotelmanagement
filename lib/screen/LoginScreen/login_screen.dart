@@ -30,9 +30,7 @@ class _LoginState extends State<Login> {
       autofocus: true,
       onKey: (event) {
         if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
-          if (kDebugMode) {
-            print("Enter");
-          }
+          login(context: context, box: box, email: email, password: password);
         }
       },
       child: Scaffold(

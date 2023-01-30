@@ -5,12 +5,12 @@ navigationpage({page, context}) {
       .push(MaterialPageRoute(builder: (context) => page()));
 }
 
-textCard(documentSnapshot, String text, String doc) {
+textCard(docSnap, String text, String doc) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        Text(text + documentSnapshot[doc].toString()),
+        Text(text + docSnap[doc].toString()),
       ],
     ),
   );
