@@ -65,7 +65,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDhff4EVnSp5ItZSFnLo303kftIHbjbDmE',
-    appId: '1:288333512846:ios:3b9976255d7e90e43ac9df',
+    appId: '1:288333512846:ios:3bb0f8b827be2f3a3ac9df',
     messagingSenderId: '288333512846',
     projectId: 'hotel-management-9a530',
     databaseURL: 'https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app',
@@ -77,7 +77,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDhff4EVnSp5ItZSFnLo303kftIHbjbDmE',
-    appId: '1:288333512846:ios:3b9976255d7e90e43ac9df',
+    appId: '1:288333512846:ios:3bb0f8b827be2f3a3ac9df',
     messagingSenderId: '288333512846',
     projectId: 'hotel-management-9a530',
     databaseURL: 'https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app',

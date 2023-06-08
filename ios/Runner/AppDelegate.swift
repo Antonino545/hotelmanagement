@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import Firebase  // Add the Firebase import.
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,12 +7,6 @@ import Firebase  // Add the Firebase import.
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    // Use the debug provider in Debug builds:
-#if DEBUG
-    let providerFactory = AppCheckDebugProviderFactory()
-    AppCheck.setAppCheckProviderFactory(providerFactory)
-#endif
-
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
