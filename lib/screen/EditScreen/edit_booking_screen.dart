@@ -96,7 +96,7 @@ class _EditBookingState extends State<EditBooking> {
       print(widget.bookingcode);
     }
     FirebaseFirestore.instance
-        .collection('Dati')
+        .collection('Date')
         .doc(user?.uid)
         .collection("booking")
         .doc(widget.bookingcode.toString())

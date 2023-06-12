@@ -70,10 +70,11 @@ class _AddBookingState extends State<AddBooking> {
                 ),
               ),
               inputInt(
-                  TextInputType.number, "Price soggiorno", false, priceCtrl),
+                  TextInputType.number, "Costo soggiorno", false, priceCtrl),
               inputInt(TextInputType.number, " Numero Di Telefono", false,
                   numeroTelfonoController),
-              inputText(TextInputType.text, "Floor", false, floorCtrl),
+              inputText(TextInputType.text, "Piano o Numero di stanza", false,
+                  floorCtrl),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
@@ -94,7 +95,7 @@ class _AddBookingState extends State<AddBooking> {
                         return;
                       }
                       if (priceCtrl.text.isEmpty) {
-                        alert(context, parola = "Price non inserito");
+                        alert(context, parola = "Costo soggiorno non inserito");
                         return;
                       }
                       // ignore: unnecessary_null_comparison
@@ -108,7 +109,8 @@ class _AddBookingState extends State<AddBooking> {
                         return;
                       }
                       if (floorCtrl.text.isEmpty) {
-                        alert(context, parola = "Floor non inserito");
+                        alert(context,
+                            parola = "Piano o N di stanza non inserito");
                         return;
                       }
 
@@ -155,6 +157,7 @@ class _AddBookingState extends State<AddBooking> {
                                   bookingcode: bookingCode.toString())));
                         }
                       }
+                    
                       numeroOspitiController.clear();
                       priceCtrl.clear();
                       numeroTelfonoController.clear();
@@ -174,31 +177,23 @@ class _AddBookingState extends State<AddBooking> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          elevation: 20,
-          contentPadding: const EdgeInsets.all(5),
           content: SizedBox(
-            height: 300,
-            width: 250,
-            child: Scaffold(
-              body: Column(
-                children: [
-                  SfDateRangePicker(
-                    selectionMode: DateRangePickerSelectionMode.range,
-                    onSelectionChanged: selectionChanged,
-                    initialSelectedDate: DateTime.now(),
-                  ),
-                ],
-              ),
+            height: MediaQuery.of(context).size.width / 1.5,
+            width: MediaQuery.of(context).size.width / 2,
+            child: SfDateRangePicker(
+              onSelectionChanged: selectionChanged,
+              selectionMode: DateRangePickerSelectionMode.range,
+              initialSelectedRange: PickerDateRange(
+                  DateTime.now().subtract(const Duration(days: 4)),
+                  DateTime.now().add(const Duration(days: 3))),
             ),
           ),
           actions: <Widget>[
-            Center(
-              child: TextButton(
-                child: const Text('Okay'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
             ),
           ],
         );

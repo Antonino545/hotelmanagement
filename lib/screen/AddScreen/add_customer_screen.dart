@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 
 class AddCustomer extends StatefulWidget {
@@ -14,7 +15,7 @@ class AddCustomer extends StatefulWidget {
 }
 
 class _AddCustomerState extends State<AddCustomer> {
-  //aggiungi i Dati nella Raccolta Ospiti in Firebase
+  //aggiungi i Date nella Raccolta Ospiti in Firebase
 
 //creazioni variabili
   var nomeController = TextEditingController();
@@ -26,49 +27,54 @@ class _AddCustomerState extends State<AddCustomer> {
     return Scaffold(
       appBar: AppBar(),
       resizeToAvoidBottomInset: true,
-      body: Column(
-        children: [
-          const Text(
-            "Aggiungi Ospiti",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-          inputText(TextInputType.text, " Nome", false, nomeController),
-          inputText(TextInputType.text, " Cognome", false, cognomeController),
-          inputText(TextInputType.text, " Codice Fiscale", false,
-              codiceFiscaleController),
-          Padding(
-            // Texfield Maggiorenne
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Row(
-                children: [
-                  const Text(
-                    "Maggiorenne",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Switch.adaptive(
-                    value: maggiorenni,
-                    onChanged: (value) {
-                      setState(() {
-                        maggiorenni = value;
-                      });
-                    },
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Text(
+              "Aggiungi Ospiti",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            inputText(TextInputType.text, " Nome", false, nomeController),
+            inputText(TextInputType.text, " Cognome", false, cognomeController),
+            inputText(TextInputType.text, " Codice Fiscale", false,
+                codiceFiscaleController),
+            Padding(
+              // Texfield Maggiorenne
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Row(
+                  children: [
+                    const Text(
+                      "Maggiorenne",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Switch.adaptive(
+                      value: maggiorenni,
+                      onChanged: (value) {
+                        setState(() {
+                          maggiorenni = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          IconButton(
-              //bottone in cui ti porta alla schermata precedente
-              icon: const Icon(Icons.person_add),
-              onPressed: () {
-                if (nomeController.text.isNotEmpty &&
-                    cognomeController.text.isNotEmpty) {
-                  addDataOspiti();
-                  Navigator.pop(context);
-                }
-              }),
-        ],
+            IconButton(
+                //bottone in cui ti porta alla schermata precedente
+                icon: const Icon(Icons.person_add),
+                onPressed: () {
+                  if (nomeController.text.isNotEmpty &&
+                      cognomeController.text.isNotEmpty) {
+                    addDataOspiti();
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  } else {
+                    alert(context, "Inserisci i dati mancanti");
+                  }
+                }),
+          ],
+        ),
       ),
     );
   }
@@ -76,7 +82,7 @@ class _AddCustomerState extends State<AddCustomer> {
   addDataOspiti() {
     User? user = FirebaseAuth.instance.currentUser;
     FirebaseFirestore.instance
-        .collection('Dati')
+        .collection('Date')
         .doc(user?.uid)
         .collection("booking")
         .doc(widget.bookingcode)

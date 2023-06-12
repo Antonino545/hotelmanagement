@@ -33,7 +33,7 @@ class _ListBookingState extends State<ListBooking> {
       resizeToAvoidBottomInset: false,
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('Dati')
+              .collection('Date')
               .doc(user?.uid)
               .collection("booking")
               .snapshots(),
@@ -56,7 +56,7 @@ class _ListBookingState extends State<ListBooking> {
                                 user,
                                 docSnap,
                                 FirebaseFirestore.instance
-                                    .collection('Dati')
+                                    .collection('Date')
                                     .doc(user?.uid)
                                     .collection("booking")
                                     .doc(docSnap.id)
@@ -72,7 +72,7 @@ class _ListBookingState extends State<ListBooking> {
                                   user,
                                   docSnap,
                                   FirebaseFirestore.instance
-                                      .collection('Dati')
+                                      .collection('Date')
                                       .doc(user?.uid)
                                       .collection("booking")
                                       .doc(docSnap.id)
@@ -156,7 +156,7 @@ class _ListBookingState extends State<ListBooking> {
                   });
             } else {
               if (kDebugMode) {
-                print("dati non trovati");
+                print("Date non trovati");
               }
               return const Align(
                 alignment: FractionalOffset.center,

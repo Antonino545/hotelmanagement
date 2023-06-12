@@ -19,7 +19,7 @@ class _AddCostState extends State<AddCost> {
     User? user = FirebaseAuth.instance.currentUser;
     try {
       FirebaseFirestore.instance
-          .collection('Dati')
+          .collection('Date')
           .doc(user?.uid)
           .collection("Spese")
           .add({

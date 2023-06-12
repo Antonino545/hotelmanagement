@@ -29,7 +29,7 @@ class _FinanceState extends State<Finance> {
       resizeToAvoidBottomInset: false,
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('Dati')
+              .collection('Date')
               .doc(user?.uid)
               .collection("Spese")
               .snapshots(),
@@ -55,7 +55,7 @@ class _FinanceState extends State<Finance> {
                                 user,
                                 docSnap,
                                 FirebaseFirestore.instance
-                                    .collection('Dati')
+                                    .collection('Date')
                                     .doc(user?.uid)
                                     .collection("Spese")
                                     .doc(docSnap.id)
@@ -74,7 +74,7 @@ class _FinanceState extends State<Finance> {
                                   user,
                                   docSnap,
                                   FirebaseFirestore.instance
-                                      .collection('Dati')
+                                      .collection('Date')
                                       .doc(user?.uid)
                                       .collection("Spese")
                                       .doc(docSnap.id)
@@ -92,7 +92,7 @@ class _FinanceState extends State<Finance> {
                                     user,
                                     docSnap,
                                     FirebaseFirestore.instance
-                                        .collection('Dati')
+                                        .collection('Date')
                                         .doc(user?.uid)
                                         .collection("Spese")
                                         .doc(docSnap.id)

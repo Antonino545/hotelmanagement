@@ -31,7 +31,7 @@ class _ListActualCustomerState extends State<ListActualCustomer> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
-              .collection('Dati')
+              .collection('Date')
               .doc(user?.uid)
               .collection("booking")
               .snapshots(),

@@ -72,6 +72,7 @@ Future<void> alertDelete(BuildContext context, box, user, docSnap, delete) {
                 onPressed: () {
                   try {
                     delete;
+                    Navigator.of(context).pop();
                   } catch (e) {
                     alert(context, e.toString());
                   }
@@ -101,6 +102,7 @@ Future<void> alertDelete(BuildContext context, box, user, docSnap, delete) {
                     onPressed: () {
                       try {
                         delete;
+                        Navigator.of(context).pop();
                       } catch (e) {
                         alert(context, e.toString());
                       }

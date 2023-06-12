@@ -32,7 +32,7 @@ class _ListCustomerState extends State<ListCustomer> {
       body: StreamBuilder<QuerySnapshot>(
           //stream of the customer of the booking
           stream: FirebaseFirestore.instance
-              .collection('Dati')
+              .collection('Date')
               .doc(user?.uid)
               .collection("booking")
               .doc(widget.bookingCode)
@@ -67,7 +67,7 @@ class _ListCustomerState extends State<ListCustomer> {
                         //delete the customer
                         try {
                           FirebaseFirestore.instance
-                              .collection('Dati')
+                              .collection('Date')
                               .doc(user?.uid)
                               .collection("booking")
                               .doc(widget.bookingCode)
