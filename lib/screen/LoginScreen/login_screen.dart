@@ -1,13 +1,13 @@
 // ignore: file_names
 // ignore_for_file: prefer__ructors_in_immutables, prefer__ructors
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
-import 'package:hotelmanagement/screen/LoginScreen/forgot_password_screen.dart';
-import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/screen/loginScreen/forgot_password_screen.dart';
+import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 
 // ignore: camel_case_types
 class Login extends StatefulWidget {
@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
       autofocus: true,
       onKey: (event) {
         if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
-          login(context: context, box: box, email: email, password: password);
+          loginEmail(context: context, box: box, email: email, password: password);
         }
       },
       child: Scaffold(
@@ -39,8 +39,8 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: const [
+            const Column(
+              children: [
                 Text(
                   "Accedi",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
                           width: 500.0,
                           child: OutlinedButton(
                             onPressed: () {
-                              login(
+                              loginEmail(
                                   context: context,
                                   box: box,
                                   email: email,
@@ -137,6 +137,7 @@ class _LoginState extends State<Login> {
                     const SizedBox(
                       height: 20,
                     ),
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

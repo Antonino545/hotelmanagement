@@ -2,7 +2,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../screen/responsive/splitview.dart';
 
 //alert is a function that show a dialog with a message
 Future<void> alert(BuildContext context, String box) async {

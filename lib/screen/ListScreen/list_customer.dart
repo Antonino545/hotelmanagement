@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 
-import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
+import 'package:hotelmanagement/screen/listScreen/list_booking.dart';
 
 import '../../components/generalfunctions.dart';
 
-//list of card with all the customer of a booking
-
+// ignore: must_be_immutable
+/// This class show the list of the customer of a booking
 class ListCustomer extends StatefulWidget {
   String bookingCode;
   ListCustomer({
@@ -49,14 +48,14 @@ class _ListCustomerState extends State<ListCustomer> {
 
                     return Dismissible(
                       key: ObjectKey(docSnap.data()),
-                      background: Card(
+                      background: const Card(
                         color: Colors.red,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           // ignore: prefer_const_literals_to_create_immutables
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.delete,
                               size: 30,
                             ),
@@ -87,7 +86,9 @@ class _ListCustomerState extends State<ListCustomer> {
                             title: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // ignore: prefer_interpolation_to_compose_strings
                                 Text('Nome Ospite: ' + docSnap["Nome"]),
+                                // ignore: prefer_interpolation_to_compose_strings
                                 Text("Cognome Ospite: " + docSnap["Cognome"]),
                               ],
                             ),

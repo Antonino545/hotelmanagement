@@ -15,19 +15,19 @@ class EditBooking extends StatefulWidget {
   TextEditingController startDate;
   TextEditingController endDate;
   int bookingcode;
-  TextEditingController Price;
-  int Npeople;
-  TextEditingController Floor;
+  TextEditingController price;
+  int nPeople;
+  TextEditingController floor;
   EditBooking({
     Key? key,
     required this.bookingcode,
     required this.cognomePrenotazione,
     required this.endDate,
-    required this.Npeople,
+    required this.nPeople,
     required this.startDate,
-    required this.Price,
+    required this.price,
     required this.nomePrenotazione,
-    required this.Floor,
+    required this.floor,
   }) : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
@@ -71,13 +71,13 @@ class _EditBookingState extends State<EditBooking> {
                 },
               ),
             ),
-            inputTextCard(TextInputType.text, "Piano:", widget.Floor),
+            inputTextCard(TextInputType.text, "Piano:", widget.floor),
             inputTextCard(TextInputType.datetime, "Data di inizio soggiorno:",
                 widget.startDate),
             inputTextCard(TextInputType.datetime, "Data di fine soggiorno:",
                 widget.endDate),
-            intCard("Numero di persone: ", widget.Npeople),
-            inputTextCard(TextInputType.datetime, "Price", widget.Price),
+            intCard("Numero di persone: ", widget.nPeople),
+            inputTextCard(TextInputType.datetime, "Price", widget.price),
           ])),
         ],
       ),
@@ -106,9 +106,9 @@ class _EditBookingState extends State<EditBooking> {
       'NomePrenotazione': widget.nomePrenotazione,
       'DataDiInizio': widget.endDate.text,
       'endDate': widget.endDate.text,
-      'Npeople': widget.Npeople,
-      'Price': widget.Price.text,
-      'Floor': widget.Floor.text,
+      'Npeople': widget.nPeople,
+      'Price': widget.price.text,
+      'Floor': widget.floor.text,
     });
   }
 }

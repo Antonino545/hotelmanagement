@@ -44,8 +44,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: const [
+            const Column(
+              children: [
                 Text(
                   "Recupero dell'account",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),

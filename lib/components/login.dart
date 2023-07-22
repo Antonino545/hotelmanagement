@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
-Future<void> login(
+Future<void> loginEmail(
     {context,
     box,
     required TextEditingController email,
@@ -50,6 +50,37 @@ Future<void> login(
     }
   });
 }
+Future<UserCredential> signInWithGoogleIosAndroid() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+}
+Future<UserCredential> signInWithGoogle() async {
+  // Create a new provider
+  GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+  googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  googleProvider.setCustomParameters({
+    'login_hint': 'user@example.com'
+  });
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+
+  // Or use signInWithRedirect
+  // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+}
 
 singUp(
     {required TextEditingController password_1,
@@ -74,7 +105,7 @@ singUp(
       if (kDebugMode) {
         print("Signed Up");
       }
-      login(email: email, password: password_1);
+      loginEmail(email: email, password: password_1);
     } catch (e) {
       /**  if (e.code == 'weak-password') {
         await alert(context, "Le password non rispetta i criteri di sicurezza");
@@ -85,18 +116,4 @@ singUp(
   }
 }
 
-signInWithGoogle() async {
-  final GoogleSignIn googleSignIn = GoogleSignIn();
-  try {
-    // ignore: unused_local_variable
-    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-  } catch (e) {
-    if (kDebugMode) {
-      print(e);
-    }
-    rethrow;
-  }
-}
 
-// ignore: non_ant_identifier_names, non_constant_identifier_names
-login_with_facebook() {}

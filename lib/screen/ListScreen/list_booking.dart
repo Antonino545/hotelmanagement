@@ -1,14 +1,12 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
-import 'package:hotelmanagement/screen/AddScreen/add_booking_screen.dart';
-import 'package:hotelmanagement/screen/EditScreen/edit_booking_screen.dart';
+import 'package:hotelmanagement/screen/addScreen/add_booking_screen.dart';
+import 'package:hotelmanagement/screen/editScreen/edit_booking_screen.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import 'list_customer.dart';
@@ -106,13 +104,13 @@ class _ListBookingState extends State<ListBooking> {
                                           bookingcode: docSnap["bookingCode"],
                                           endDate: endDateCtrl,
                                           startDate: startDateCtrl,
-                                          Floor: floorCtrl,
-                                          Price: priceCtrl,
+                                          floor: floorCtrl,
+                                          price: priceCtrl,
                                           cognomePrenotazione:
                                               docSnap["CognomePrenotazione"],
                                           nomePrenotazione:
                                               docSnap["NomePrenotazione"],
-                                          Npeople: docSnap["Npeople"],
+                                          nPeople: docSnap["Npeople"],
                                         )));
                               },
                               borderRadius: BorderRadius.circular(10),
@@ -127,9 +125,9 @@ class _ListBookingState extends State<ListBooking> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Nome e cognome Prenotazione: " +
-                                    docSnap["NomePrenotazione"] +
-                                    " " +
+                                // ignore: prefer_interpolation_to_compose_strings
+                                Text("${"Nome e cognome Prenotazione: " +
+                                    docSnap["NomePrenotazione"]} " +
                                     docSnap["CognomePrenotazione"]),
                               ],
                             ),

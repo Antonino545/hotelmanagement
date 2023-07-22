@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
-import 'package:hotelmanagement/screen/AddScreen/add_costs_screen.dart';
+import 'package:hotelmanagement/screen/addScreen/add_costs_screen.dart';
 
 import '../responsive/splitview.dart';
 

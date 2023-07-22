@@ -29,6 +29,8 @@ class _AddCustomerState extends State<AddCustomer> {
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               "Aggiungi Ospiti",
@@ -41,23 +43,21 @@ class _AddCustomerState extends State<AddCustomer> {
             Padding(
               // Texfield Maggiorenne
               padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Row(
-                  children: [
-                    const Text(
-                      "Maggiorenne",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Switch.adaptive(
-                      value: maggiorenni,
-                      onChanged: (value) {
-                        setState(() {
-                          maggiorenni = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
+              child: Row(
+                children: [
+                  const Text(
+                    "Maggiorenne",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Switch.adaptive(
+                    value: maggiorenni,
+                    onChanged: (value) {
+                      setState(() {
+                        maggiorenni = value;
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
             IconButton(

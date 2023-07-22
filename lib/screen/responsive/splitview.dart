@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/impostazione.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
-import '../ListScreen/finance.dart';
-import '../ListScreen/list_booking.dart';
+import '../listScreen/finance.dart';
+import '../listScreen/list_booking.dart';
 
 /*splitview is an adaptive class which displays a menu and content side by 
 side on large screens and  show menu as bottom navigation bar when is a small screens*/

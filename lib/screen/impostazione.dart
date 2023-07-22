@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'LoginScreen/welcome_screen.dart';
+import 'loginScreen/welcome_screen.dart';
 
 class Impostazioni extends StatefulWidget {
   const Impostazioni({Key? key}) : super(key: key);

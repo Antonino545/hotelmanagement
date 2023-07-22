@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/components/login.dart';
+import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '/components/buttons.dart';
 import 'login_screen.dart';
@@ -69,21 +70,22 @@ class _WelcomeState extends State<Welcome> {
                             child: const Text("Privacy Policy"),
                           )
                         ],
-                      )
-                      /**  button_ico(
-                        text: "Accedi con Google",
-                        icon: AntDesign.google,
-                        onpressed:   {
-
-  },
-                        context: context,
                       ),
-                      button_ico(
-                        text: "Accedi con Facebook",
-                        icon: FontAwesome5Brands.facebook,
-                        onpressed: login_with_facebook(),
+                      buttonIco(
+                        text: "Accedi con Google",
+                        icon: Icons.abc,
+                        onpressed: {
+                          // ignore: avoid_print
+                          print("Google"),
+                          if (isMobile(context))
+                            {
+                              signInWithGoogleIosAndroid(),
+                            }
+                          else
+                            {signInWithGoogle()}
+                        },
                         context: context,
-                      ),*/
+                      )
                     ],
                   ),
                 ),
