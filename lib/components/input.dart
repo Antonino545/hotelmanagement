@@ -55,7 +55,36 @@ inputInt([textInput, label, obscureText, controller]) {
     )
   ]);
 }
-
+inputPassword([_isObscure, password, onpress]){
+  Padding(
+    padding: const EdgeInsets.all(10),
+    child: SizedBox(
+      width: 500,
+      height: 50,
+      child: TextField(
+        decoration: InputDecoration(
+          suffixIcon: Padding(
+              padding:
+              const EdgeInsetsDirectional.only(end: 12.0),
+              child: IconButton(
+                  onPressed: () {
+                 onpress();
+                  },
+                  icon: Icon(_isObscure
+                      ? Icons.visibility
+                      : Icons.visibility_off))),
+          labelText: "Password",
+          hintText: "Inserisci la password",
+          border: const OutlineInputBorder(
+              borderRadius:
+              BorderRadius.all(Radius.circular(10))),
+        ),
+        obscureText: _isObscure,
+        controller: password,
+      ),
+    ),
+  );
+}
 inputTextCard([textInput, label, controller]) {
   return Padding(
     padding: const EdgeInsets.all(8.0),

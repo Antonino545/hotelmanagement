@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/components/login.dart';
 import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
+import '../../components/login.dart';
 import '/components/buttons.dart';
 import 'login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,6 +59,36 @@ class _WelcomeState extends State<Welcome> {
                           text: "Crea un Account",
                           onpressed: const SingUp(),
                           context: context),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(onPressed:() {
+                            print("Google");
+                            if (isMobile(context))
+                              {
+                                signInWithGoogleIosAndroid();
+                              }
+                            else
+                              {signInWithGoogle();
+                              }
+                          },
+                              icon:Image.asset("icons/google.png",height: 30,)
+                          ),
+                          IconButton(onPressed:() {
+                            print("Google");
+                            if (isMobile(context))
+                            {
+                              signInWithFacebookIosAndroid();
+                            }
+                            else
+                            {signInWithFacebook();
+                            }
+                          },
+                              icon:Image.asset("icons/facebook.png",height: 30,)
+                          ),
+                        ],
+                      ),
+
                       Wrap(
                         children: [
                           TextButton(
@@ -71,21 +101,7 @@ class _WelcomeState extends State<Welcome> {
                           )
                         ],
                       ),
-                      buttonIco(
-                        text: "Accedi con Google",
-                        icon: Icons.abc,
-                        onpressed: {
-                          // ignore: avoid_print
-                          print("Google"),
-                          if (isMobile(context))
-                            {
-                              signInWithGoogleIosAndroid(),
-                            }
-                          else
-                            {signInWithGoogle()}
-                        },
-                        context: context,
-                      )
+
                     ],
                   ),
                 ),

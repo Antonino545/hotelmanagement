@@ -3,7 +3,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/login.dart';
-
 import '/components/input.dart';
 import 'login_screen.dart';
 
