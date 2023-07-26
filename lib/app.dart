@@ -18,6 +18,11 @@ class App extends StatelessWidget {
             shadowColor: Colors.transparent,
             backgroundColor: Colors.transparent,
           ),
+          inputDecorationTheme: const InputDecorationTheme(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+
+          ),
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(textStyle: const TextStyle())),
           outlinedButtonTheme: OutlinedButtonThemeData(
@@ -57,7 +62,7 @@ class App extends StatelessWidget {
               surface: Colors.transparent),*/
 
           bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black)
-          // ignore: prefer_const_constructors
+
           ),
     );
   }

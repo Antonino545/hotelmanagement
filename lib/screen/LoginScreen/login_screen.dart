@@ -1,9 +1,4 @@
-// ignore: file_names
-// ignore_for_file: prefer__ructors_in_immutables, prefer__ructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
 import 'package:hotelmanagement/screen/loginScreen/forgot_password_screen.dart';
@@ -12,7 +7,6 @@ import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 // ignore: camel_case_types
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
   State<Login> createState() => _LoginState();
 }
@@ -21,19 +15,11 @@ class _LoginState extends State<Login> {
   String box = "0";
   var password = TextEditingController();
   var email = TextEditingController();
-  bool _isObscure = true;
+  bool _isObscure = false;
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
-      focusNode: FocusNode(),
-      autofocus: true,
-      onKey: (event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
-          loginEmail(context: context, box: box, email: email, password: password);
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,11 +28,8 @@ class _LoginState extends State<Login> {
             const Column(
               children: [
                 Text(
-                  "Accedi",
+                  "Login",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 Text(
                   "Entra nel tuo account",
@@ -57,48 +40,40 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  inputText(
-                    TextInputType.emailAddress,
-                    " Email",
-                    false,
-                    email,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: SizedBox(
-                      width: 500,
-                      height: 50,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          suffixIcon: Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.only(end: 12.0),
-                              child: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _isObscure = !_isObscure;
-                                    });
-                                  },
-                                  icon: Icon(_isObscure
-                                      ? Icons.visibility
-                                      : Icons.visibility_off))),
-                          labelText: "Password",
-                          hintText: "Inserisci la password",
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ),
-                        obscureText: _isObscure,
-                        controller: password,
+            Column(
+              children: [
+                inputText(TextInputType.emailAddress, "Email", false, email,),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: SizedBox(
+                    width: 500,
+                    height: 50,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        suffixIcon: Padding(
+                            padding:
+                                const EdgeInsetsDirectional.only(end: 12.0),
+                            child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off))),
+                        labelText: "Password",
+                        hintText: "Inserisci la password",
+                        border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
+                      obscureText: _isObscure,
+                      controller: password,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -178,7 +153,7 @@ class _LoginState extends State<Login> {
             ),
           ],
         ),
-      ),
+
     );
   }
 }

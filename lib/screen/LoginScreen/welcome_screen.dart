@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
@@ -63,7 +64,9 @@ class _WelcomeState extends State<Welcome> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           IconButton(onPressed:() {
-                            print("Google");
+                            if (kDebugMode) {
+                              print("Google");
+                            }
                             if (isMobile(context))
                               {
                                 signInWithGoogleIosAndroid();
@@ -75,7 +78,9 @@ class _WelcomeState extends State<Welcome> {
                               icon:Image.asset("icons/google.png",height: 30,)
                           ),
                           IconButton(onPressed:() {
-                            print("Google");
+                            if (kDebugMode) {
+                              print("Google");
+                            }
                             if (isMobile(context))
                             {
                               signInWithFacebookIosAndroid();

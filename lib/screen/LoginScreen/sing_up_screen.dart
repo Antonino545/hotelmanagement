@@ -9,16 +9,24 @@ import 'login_screen.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
 
 // ignore: camel_case_types
-class SingUp extends StatelessWidget {
+class SingUp extends StatefulWidget {
   const SingUp({Key? key}) : super(key: key);
 
-  get value => null;
+  @override
+  State<SingUp> createState() => _SingUpState();
+}
 
+class _SingUpState extends State<SingUp> {
+  bool isObscure = false;
+  bool isObscure2 = false;
+  var password_1 = TextEditingController();
+  var password_2 = TextEditingController();
+  var email = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var password_1 = TextEditingController();
-    var password_2 = TextEditingController();
-    var email = TextEditingController();
+
+
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -51,10 +59,66 @@ class SingUp extends StatelessWidget {
                   children: [
                     inputText(
                         TextInputType.emailAddress, "Email", false, email),
-                    inputText(TextInputType.visiblePassword, "Password", true,
-                        password_1),
-                    inputText(TextInputType.visiblePassword, "Password", true,
-                        password_2),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox(
+                        width: 500,
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            suffixIcon: Padding(
+                                padding:
+                                const EdgeInsetsDirectional.only(end: 12.0),
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isObscure = !isObscure;
+                                      });
+                                    },
+                                    icon: Icon(isObscure
+                                        ? Icons.visibility : Icons.visibility_off))),
+                            labelText: "Password",
+                            hintText: "Inserisci la password",
+                            border: const OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          obscureText: isObscure,
+                          controller: password_1,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox(
+                        width: 500,
+                        height: 50,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            suffixIcon: Padding(
+                                padding:
+                                const EdgeInsetsDirectional.only(end: 12.0),
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        isObscure2 = !isObscure2;
+                                      });
+                                    },
+                                    icon: Icon(isObscure2
+                                        ? Icons.visibility
+                                        : Icons.visibility_off))),
+                            labelText: "Password",
+                            hintText: "Inserisci la password",
+                            border: const OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          obscureText: isObscure2,
+                          controller: password_2,
+                        ),
+                      ),
+                    ),
+
                   ],
                 ),
               ),
@@ -115,3 +179,5 @@ class SingUp extends StatelessWidget {
     );
   }
 }
+
+
