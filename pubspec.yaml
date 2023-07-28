@@ -64,11 +64,8 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-    - assets/login.svg
-    - assets/icons/facebook.png
-    - assets/icons/google.png
+
 flutter_native_splash:
   image: assets/playstore.png
   android: true
-  ios: false
   web: true
