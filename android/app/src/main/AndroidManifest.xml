@@ -1,6 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.antoninoincorvaia.hotel_management">
-   <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
         android:label="Hotel Management"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -56,7 +56,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB0rrVt5n_pDlsiyU3A0rrnPWkdvwQY8fM',
-    appId: '1:288333512846:android:4131b9877b79d7a93ac9df',
+    appId: '1:288333512846:android:8950cf7c3fb221c43ac9df',
     messagingSenderId: '288333512846',
     projectId: 'hotel-management-9a530',
     databaseURL: 'https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app',

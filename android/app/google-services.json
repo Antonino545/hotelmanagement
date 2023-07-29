@@ -49,6 +49,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288333512846:android:8950cf7c3fb221c43ac9df",
+        "android_client_info": {
+          "package_name": "com.antoninoincorvaia.hotelmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288333512846-4c49uoidbiu6k5tsa0sm9temfmmlal6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0rrVt5n_pDlsiyU3A0rrnPWkdvwQY8fM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288333512846-4c49uoidbiu6k5tsa0sm9temfmmlal6m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "288333512846-9q2e54sok99ht3gviki4bmh7qfrlnngr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.antoninoincorvaia.hotelmanagement"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

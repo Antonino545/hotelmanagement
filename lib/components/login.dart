@@ -83,6 +83,7 @@ Future<UserCredential> signInWithGoogle() async {
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 }
 Future<UserCredential> signInWithFacebookIosAndroid() async {
+  print("Facebook");
   // Trigger the sign-in flow
   final LoginResult loginResult = await FacebookAuth.instance.login();
 

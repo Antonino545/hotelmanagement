@@ -75,7 +75,7 @@ class _WelcomeState extends State<Welcome> {
                               {signInWithGoogle();
                               }
                           },
-                              icon:Image.asset("icons/google.png",height: 30,)
+                              icon:Image.asset("assets/google.png",height: 30,)
                           ),
                           IconButton(onPressed:() {
                             if (kDebugMode) {
@@ -89,7 +89,7 @@ class _WelcomeState extends State<Welcome> {
                             {signInWithFacebook();
                             }
                           },
-                              icon:Image.asset("icons/facebook.png",height: 30,)
+                              icon:Image.asset("assets/Facebook.png",height: 30,)
                           ),
                         ],
                       ),
