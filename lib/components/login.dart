@@ -35,8 +35,10 @@ Future<void> loginEmail(
       return;
     }
   }
+  postlogin(context);
+}
+postlogin(context){
   FirebaseAuth.instance.userChanges().listen((user) {
-    // ignore: unnecessary_null_comparison
     if (user == null) {
       if (kDebugMode) {
         print('User is currently signed out!');

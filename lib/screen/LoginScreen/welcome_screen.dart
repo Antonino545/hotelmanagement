@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: camel_case_types
 class Welcome extends StatefulWidget {
-  const Welcome({Key? key}) : super(key: key);
+  const Welcome({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -20,7 +20,7 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -74,6 +74,8 @@ class _WelcomeState extends State<Welcome> {
                             else
                               {signInWithGoogle();
                               }
+                            postlogin(context);
+
                           },
                               icon:Image.asset("assets/google.png",height: 30,)
                           ),
@@ -87,7 +89,10 @@ class _WelcomeState extends State<Welcome> {
                             }
                             else
                             {signInWithFacebook();
+
                             }
+                            postlogin(context);
+
                           },
                               icon:Image.asset("assets/Facebook.png",height: 30,)
                           ),

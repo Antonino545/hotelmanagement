@@ -17,8 +17,8 @@ class SingUp extends StatefulWidget {
 }
 
 class _SingUpState extends State<SingUp> {
-  bool isObscure = false;
-  bool isObscure2 = false;
+  var isObscure = false;
+  var isObscure2 = false;
   var password_1 = TextEditingController();
   var password_2 = TextEditingController();
   var email = TextEditingController();
