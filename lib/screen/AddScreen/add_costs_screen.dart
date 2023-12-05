@@ -7,14 +7,13 @@ import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
 
 class AddCost extends StatefulWidget {
-  const AddCost({Key? key}) : super(key: key);
+  const AddCost({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _AddCostState createState() => _AddCostState();
+  AddCostState createState() => AddCostState();
 }
 
-class _AddCostState extends State<AddCost> {
+class AddCostState extends State<AddCost> {
   addSpesa() {
     User? user = FirebaseAuth.instance.currentUser;
     try {

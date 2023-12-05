@@ -10,7 +10,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'add_customer_screen.dart';
 
 class AddBooking extends StatefulWidget {
-  const AddBooking({Key? key}) : super(key: key);
+  const AddBooking({super.key});
 
   @override
   // ignore: library_private_types_in_public_api

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'loginScreen/welcome_screen.dart';
 
 class Impostazioni extends StatefulWidget {
-  const Impostazioni({Key? key}) : super(key: key);
+  const Impostazioni({super.key});
 
   @override
   State<Impostazioni> createState() => _ImpostazioniState();
@@ -32,17 +32,18 @@ class _ImpostazioniState extends State<Impostazioni> {
                     const Text(
                       "Logout",
                       style: TextStyle(fontSize: 20),
-                      
                     ),
                     const Expanded(
                       child: SizedBox(),
                     ),
                     IconButton(
-                        onPressed: () async => {
-                              await FirebaseAuth.instance.signOut(),
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const Welcome()))
-                            },
+                        onPressed: () async {
+                          var context = this.context;
+                          await FirebaseAuth.instance.signOut();
+                          if (!context.mounted) return;
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const Welcome()));
+                        },
                         icon: const Icon(Icons.logout))
                   ],
                 ),

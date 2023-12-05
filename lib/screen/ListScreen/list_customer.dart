@@ -7,14 +7,13 @@ import 'package:hotelmanagement/screen/listScreen/list_booking.dart';
 
 import '../../components/generalfunctions.dart';
 
-// ignore: must_be_immutable
 /// This class show the list of the customer of a booking
 class ListCustomer extends StatefulWidget {
-  String bookingCode;
-  ListCustomer({
-    Key? key,
+  final String bookingCode;
+  const ListCustomer({
+    super.key,
     required this.bookingCode,
-  }) : super(key: key);
+  });
 
   @override
   State<ListCustomer> createState() => _ListCustomerState();

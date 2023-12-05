@@ -7,7 +7,7 @@ import '../listScreen/list_booking.dart';
 /*splitview is an adaptive class which displays a menu and content side by 
 side on large screens and  show menu as bottom navigation bar when is a small screens*/
 class SplitView extends StatefulWidget {
-  const SplitView({Key? key}) : super(key: key);
+  const SplitView({super.key});
 
   @override
   State<SplitView> createState() => _SplitViewState();

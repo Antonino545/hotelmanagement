@@ -19,7 +19,7 @@ class EditBooking extends StatefulWidget {
   int nPeople;
   TextEditingController floor;
   EditBooking({
-    Key? key,
+    super.key,
     required this.bookingcode,
     required this.cognomePrenotazione,
     required this.endDate,
@@ -28,7 +28,7 @@ class EditBooking extends StatefulWidget {
     required this.price,
     required this.nomePrenotazione,
     required this.floor,
-  }) : super(key: key);
+  });
   @override
   // ignore: library_private_types_in_public_api
   _EditBookingState createState() => _EditBookingState();

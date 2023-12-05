@@ -12,7 +12,7 @@ import 'package:hotelmanagement/screen/responsive/splitview.dart';
 import 'list_customer.dart';
 
 class ListBooking extends StatefulWidget {
-  const ListBooking({Key? key}) : super(key: key);
+  const ListBooking({super.key});
   @override
   State<ListBooking> createState() => _ListBookingState();
 }

@@ -7,14 +7,13 @@ import 'package:hotelmanagement/components/input.dart';
 class AddCustomer extends StatefulWidget {
   final String bookingcode;
 
-  const AddCustomer({Key? key, required this.bookingcode}) : super(key: key);
+  const AddCustomer({super.key, required this.bookingcode});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _AddCustomerState createState() => _AddCustomerState();
+AddCustomerState createState() => AddCustomerState();
 }
 
-class _AddCustomerState extends State<AddCustomer> {
+class AddCustomerState extends State<AddCustomer> {
   //aggiungi i Date nella Raccolta Ospiti in Firebase
 
 //creazioni variabili

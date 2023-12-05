@@ -10,7 +10,7 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 // ignore: camel_case_types
 class SingUp extends StatefulWidget {
-  const SingUp({Key? key}) : super(key: key);
+  const SingUp({super.key});
 
   @override
   State<SingUp> createState() => _SingUpState();

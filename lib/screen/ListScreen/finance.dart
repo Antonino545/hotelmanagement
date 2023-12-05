@@ -8,7 +8,7 @@ import 'package:hotelmanagement/screen/addScreen/add_costs_screen.dart';
 import '../responsive/splitview.dart';
 
 class Finance extends StatefulWidget {
-  const Finance({Key? key}) : super(key: key);
+  const Finance({super.key});
   @override
   State<Finance> createState() => _FinanceState();
 }

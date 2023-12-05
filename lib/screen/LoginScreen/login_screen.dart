@@ -6,7 +6,7 @@ import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
 
 // ignore: camel_case_types
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
   @override
   State<Login> createState() => _LoginState();
 }

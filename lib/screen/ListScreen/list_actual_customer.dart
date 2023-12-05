@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import '../../components/generalfunctions.dart';
 
 class ListActualCustomer extends StatefulWidget {
-  const ListActualCustomer({Key? key}) : super(key: key);
+  const ListActualCustomer({super.key});
 
   @override
   _ListActualCustomerState createState() => _ListActualCustomerState();
