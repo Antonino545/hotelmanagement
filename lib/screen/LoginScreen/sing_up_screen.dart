@@ -24,9 +24,6 @@ class _SingUpState extends State<SingUp> {
   var email = TextEditingController();
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -58,7 +55,12 @@ class _SingUpState extends State<SingUp> {
                 child: Column(
                   children: [
                     inputText(
-                        TextInputType.emailAddress, "Email", false, email),
+                      textInput: TextInputType.emailAddress,
+                      label: "Email",
+                      controller: email,
+                      obscureText: false,
+                      isNumeric: false,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: SizedBox(
@@ -68,7 +70,7 @@ class _SingUpState extends State<SingUp> {
                           decoration: InputDecoration(
                             suffixIcon: Padding(
                                 padding:
-                                const EdgeInsetsDirectional.only(end: 12.0),
+                                    const EdgeInsetsDirectional.only(end: 12.0),
                                 child: IconButton(
                                     onPressed: () {
                                       setState(() {
@@ -76,12 +78,13 @@ class _SingUpState extends State<SingUp> {
                                       });
                                     },
                                     icon: Icon(isObscure
-                                        ? Icons.visibility : Icons.visibility_off))),
+                                        ? Icons.visibility
+                                        : Icons.visibility_off))),
                             labelText: "Password",
                             hintText: "Inserisci la password",
                             border: const OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                                    BorderRadius.all(Radius.circular(10))),
                           ),
                           obscureText: isObscure,
                           controller: password_1,
@@ -97,7 +100,7 @@ class _SingUpState extends State<SingUp> {
                           decoration: InputDecoration(
                             suffixIcon: Padding(
                                 padding:
-                                const EdgeInsetsDirectional.only(end: 12.0),
+                                    const EdgeInsetsDirectional.only(end: 12.0),
                                 child: IconButton(
                                     onPressed: () {
                                       setState(() {
@@ -111,14 +114,13 @@ class _SingUpState extends State<SingUp> {
                             hintText: "Inserisci la password",
                             border: const OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                                    BorderRadius.all(Radius.circular(10))),
                           ),
                           obscureText: isObscure2,
                           controller: password_2,
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -171,7 +173,6 @@ class _SingUpState extends State<SingUp> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -179,5 +180,3 @@ class _SingUpState extends State<SingUp> {
     );
   }
 }
-
-

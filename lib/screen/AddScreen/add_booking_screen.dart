@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,12 @@ class AddBooking extends StatefulWidget {
 }
 
 class _AddBookingState extends State<AddBooking> {
-  var cognomePrenotazioneController = TextEditingController();
-  var nomePrenotazioneController = TextEditingController();
-  var numeroOspitiController = TextEditingController();
-  var numeroTelfonoController = TextEditingController();
-  var priceCtrl = TextEditingController();
-  var floorCtrl = TextEditingController();
+  var bookingLastNameController = TextEditingController();
+  var bookingFirstNameController = TextEditingController();
+  var guestNumberController = TextEditingController();
+  var phoneNumberController = TextEditingController();
+  var priceController = TextEditingController();
+  var floorController = TextEditingController();
 
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   final DateFormat nomeFormatter = DateFormat('MM/yyyy');
@@ -33,6 +34,7 @@ class _AddBookingState extends State<AddBooking> {
   String cognomeNonValido = "Cognome non valido";
   String parola = "";
   int bookingCode = 0;
+
   @override
   void dispose() {
     super.dispose();
@@ -53,12 +55,35 @@ class _AddBookingState extends State<AddBooking> {
                 "Aggiungi Ospiti",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              inputText(TextInputType.text, "Nome Prenotazione", false,
-                  nomePrenotazioneController),
-              inputText(TextInputType.text, "Cognome Prenotazione", false,
-                  cognomePrenotazioneController),
-              inputInt(TextInputType.number, "Numero Ospiti", false,
-                  numeroOspitiController),
+              defaultInputText(
+                label: "Booking First Name",
+                controller: bookingFirstNameController,
+              ),
+
+              defaultInputText(
+                label: "Booking Last Name",
+                controller: bookingLastNameController,
+              ),
+
+              defaultInputNumber(
+                label: "Number of Guests",
+                controller: guestNumberController,
+              ),
+
+              defaultInputNumber(
+                label: "Stay Cost",
+                controller: priceController,
+              ),
+
+              defaultInputNumber(
+                label: "Phone Number",
+                controller: phoneNumberController,
+              ),
+              defaultInputText(
+                label: "Floor or Room Number",
+                controller: floorController,
+              ),
+
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: OutlinedButton(
@@ -69,107 +94,90 @@ class _AddBookingState extends State<AddBooking> {
                   child: const Text("inserire date del soggiorno"),
                 ),
               ),
-              inputInt(
-                  TextInputType.number, "Costo soggiorno", false, priceCtrl),
-              inputInt(TextInputType.number, " Numero Di Telefono", false,
-                  numeroTelfonoController),
-              inputText(TextInputType.text, "Piano o Numero di stanza", false,
-                  floorCtrl),
+              defaultInputNumber(
+                label: "Costo soggiorno",
+                controller: priceController,
+              ),
+
+              defaultInputNumber(
+                label: "Numero Di Telefono",
+                controller: phoneNumberController,
+              ),
+
+              defaultInputText(
+                label: "Piano o Numero di stanza",
+                controller: floorController,
+              ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () async {
-                      if (cognomePrenotazioneController.text.isEmpty) {
-                        alert(context,
-                            parola = "Cognome Prenotazione non inserito");
-                        return;
-                      }
-                      if (numeroTelfonoController.text.isEmpty) {
-                        alert(context,
-                            parola = "Numero di Telefono non inserito");
-                        return;
-                      }
-                      if (numeroOspitiController.text.isEmpty) {
-                        alert(context, parola = "Numero Ospiti non inserito");
-                        return;
-                      }
-                      if (priceCtrl.text.isEmpty) {
-                        alert(context, parola = "Costo soggiorno non inserito");
-                        return;
-                      }
-                      // ignore: unnecessary_null_comparison
-                      if (endDate == null) {
-                        alert(context, parola = "Data Fine non inserita");
-                        return;
-                      }
-                      // ignore: unnecessary_null_comparison
-                      if (dataInzio == null) {
-                        alert(context, parola = "Data Inizio non inserita");
-                        return;
-                      }
-                      if (floorCtrl.text.isEmpty) {
-                        alert(context,
-                            parola = "Piano o N di stanza non inserito");
-                        return;
-                      }
-
-                      {
-                        User? user = FirebaseAuth.instance.currentUser;
-                        var collection =
-                            FirebaseFirestore.instance.collection('users');
-                        var docSnapshot = await collection.doc(user?.uid).get();
-                        if (kDebugMode) {
-                          print(user?.uid);
-                        }
-                        if (docSnapshot.exists) {
-                          Map<String, dynamic>? data = docSnapshot.data();
-                          bookingCode = data?['bookingCode'];
-                        }
-
-                        await FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(user?.uid)
-                            .update({"bookingCode": FieldValue.increment(1)});
-                        FutureBuilder<DocumentSnapshot>(
-                            future: FirebaseFirestore.instance
-                                .collection('users')
-                                .doc(user?.uid)
-                                .get(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<DocumentSnapshot> snapshot) {
-                              if (snapshot.hasError) {
-                                return const Text("Something went wrong");
-                              }
-
-                              var data =
-                                  snapshot.data!.data() as Map<String, dynamic>;
-                              return bookingCode = data["bookingCode"];
-                            });
-                        await addDataFamigli();
-
-                        for (int i = 0;
-                            i < int.parse(numeroOspitiController.text);
-                            i++) {
-                          // ignore: use_build_context_synchronously
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AddCustomer(
-                                  bookingcode: bookingCode.toString())));
-                        }
-                      }
-                    
-                      numeroOspitiController.clear();
-                      priceCtrl.clear();
-                      numeroTelfonoController.clear();
-                      floorCtrl.clear();
-                      numeroOspitiController.clear();
-                    }),
+                  icon: const Icon(Icons.add),
+                  onPressed: _addBooking,
+                ),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _addBooking() async {
+    if (_isFieldEmpty()) {
+      return;
+    }
+
+    final User? user = FirebaseAuth.instance.currentUser;
+    final collection = FirebaseFirestore.instance.collection('users');
+    final docSnapshot = await collection.doc(user?.uid).get();
+
+    if (docSnapshot.exists) {
+      final Map<String, dynamic>? data = docSnapshot.data();
+      bookingCode = data?['bookingCode'];
+    }
+
+    await collection
+        .doc(user?.uid)
+        .update({"bookingCode": FieldValue.increment(1)});
+
+    await addDataFamigli();
+
+    for (int i = 0; i < int.parse(guestNumberController.text); i++) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              AddCustomer(bookingcode: bookingCode.toString())));
+    }
+
+    _clearControllers();
+  }
+
+  bool _isFieldEmpty() {
+    final fields = {
+      "Booking Last Name": bookingLastNameController.text,
+      "Phone Number": phoneNumberController.text,
+      "Number of Guests": guestNumberController.text,
+      "Stay Cost": priceController.text,
+      "Floor or Room Number": floorController.text,
+    };
+
+    for (final field in fields.entries) {
+      if (field.value.isEmpty) {
+        alert(context, "${field.key} not entered");
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
+  void _clearControllers() {
+    guestNumberController.clear();
+    priceController.clear();
+    phoneNumberController.clear();
+    floorController.clear();
+    bookingFirstNameController.clear();
   }
 
   Future<void> alertDataRange(BuildContext context, box) {
@@ -223,13 +231,13 @@ class _AddBookingState extends State<AddBooking> {
         .doc(bookingCode.toString())
         .set({
       'bookingCode': bookingCode,
-      'CognomePrenotazione': cognomePrenotazioneController.text,
-      'NomePrenotazione': nomePrenotazioneController.text,
+      'CognomePrenotazione': bookingLastNameController.text,
+      'NomePrenotazione': bookingFirstNameController.text,
       'DataDiInizio': formatter.format(dataInzio),
       'endDate': formatter.format(endDate),
-      'Npeople': int.parse(numeroOspitiController.text),
-      'Price': int.parse(priceCtrl.text),
-      'Floor': floorCtrl.text,
+      'Npeople': int.parse(guestNumberController.text),
+      'Price': int.parse(priceController.text),
+      'Floor': floorController.text,
     });
   }
 }

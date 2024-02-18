@@ -48,12 +48,21 @@ class AddCostState extends State<AddCost> {
                 "Aggiungi Spese",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              inputText(
-                  TextInputType.text, "Nome spesa", false, nomeSpesaControlle),
-              inputText(TextInputType.text, "Descrizione", false,
-                  descrizioneSpesaControlle),
-              inputInt(TextInputType.number, "Costo spesa", false,
-                  costoSpesaControlle),
+              defaultInputText(
+                label: "Nome spesa",
+                controller: nomeSpesaControlle,
+
+              ),
+              defaultInputText(
+                label: "Descrizione",
+                controller: descrizioneSpesaControlle,
+
+              ),
+              defaultInputNumber(
+                label: "Costo spesa",
+                controller: costoSpesaControlle,
+
+              ),
               IconButton(
                   icon: const Icon(Icons.add_shopping_cart),
                   onPressed: () {

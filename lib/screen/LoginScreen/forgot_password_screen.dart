@@ -67,10 +67,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               child: Column(
                 children: [
                   inputText(
-                    TextInputType.emailAddress,
-                    " Email",
-                    false,
-                    email,
+                    textInput: TextInputType.emailAddress,
+                    label: "Email",
+                    controller: email,
+                    obscureText: false,
+                    isNumeric: false,
                   ),
                 ],
               ),

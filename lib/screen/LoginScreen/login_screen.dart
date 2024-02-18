@@ -46,8 +46,13 @@ class _LoginState extends State<Login> {
             ),
             Column(
               children: [
-                inputText(TextInputType.emailAddress, "Email", false, email,),
-                Padding(
+inputText(
+  textInput: TextInputType.emailAddress,
+  label: "Email",
+  controller: email,
+  obscureText: false,
+  isNumeric: false,
+),                Padding(
                   padding: const EdgeInsets.all(10),
                   child: SizedBox(
                     width: 500,

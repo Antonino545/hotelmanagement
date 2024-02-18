@@ -10,7 +10,7 @@ class AddCustomer extends StatefulWidget {
   const AddCustomer({super.key, required this.bookingcode});
 
   @override
-AddCustomerState createState() => AddCustomerState();
+  AddCustomerState createState() => AddCustomerState();
 }
 
 class AddCustomerState extends State<AddCustomer> {
@@ -35,10 +35,30 @@ class AddCustomerState extends State<AddCustomer> {
               "Aggiungi Ospiti",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            inputText(TextInputType.text, " Nome", false, nomeController),
-            inputText(TextInputType.text, " Cognome", false, cognomeController),
-            inputText(TextInputType.text, " Codice Fiscale", false,
-                codiceFiscaleController),
+// Chiamata corretta alla funzione inputText
+            inputText(
+              textInput: TextInputType.text,
+              label: "Nome",
+              controller: nomeController,
+              obscureText: false,
+              isNumeric: false,
+            ),
+            inputText(
+              textInput: TextInputType.text,
+              label: "Cognome",
+              controller: cognomeController,
+              obscureText: false,
+              isNumeric: false,
+            ),
+
+            inputText(
+              textInput: TextInputType.text,
+              label: "Codice Fiscale",
+              controller: codiceFiscaleController,
+              obscureText: false,
+              isNumeric: false,
+            ),
+
             Padding(
               // Texfield Maggiorenne
               padding: const EdgeInsets.all(8.0),
