@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/generalfunctions.dart';
-import 'package:hotelmanagement/screen/addScreen/add_booking_screen.dart';
-import 'package:hotelmanagement/screen/editScreen/edit_booking_screen.dart';
+import 'package:hotelmanagement/screen/AddScreen/add_booking_screen.dart';
+import 'package:hotelmanagement/screen/EditScreen/edit_booking_screen.dart';
 import 'package:hotelmanagement/screen/responsive/splitview.dart';
 
 import 'list_customer.dart';

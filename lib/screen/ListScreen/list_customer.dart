@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 
-import 'package:hotelmanagement/screen/listScreen/list_booking.dart';
+import 'package:hotelmanagement/screen/ListScreen/list_booking.dart';
 
 import '../../components/generalfunctions.dart';
 

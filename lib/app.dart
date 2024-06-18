@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/loginScreen/welcome_screen.dart';
+import 'package:hotelmanagement/screen/LoginScreen/welcome_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

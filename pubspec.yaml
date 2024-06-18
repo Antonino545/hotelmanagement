@@ -57,7 +57,7 @@ flutter:
     - assets/
 
 flutter_native_splash:
-  image: assets/playstore.png
+  image: assets/image.png
   color: "#009688"
 
 

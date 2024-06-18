@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '../../components/login.dart';
 import '/components/buttons.dart';

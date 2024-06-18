@@ -1,16 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}
+{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"android":{"default":{"projectId":"hotel-management-9a530","appId":"1:288333512846:android:8950cf7c3fb221c43ac9df","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"hotel-management-9a530","configurations":{"android":"1:288333512846:android:8950cf7c3fb221c43ac9df","ios":"1:288333512846:ios:3bb0f8b827be2f3a3ac9df","macos":"1:288333512846:ios:3bb0f8b827be2f3a3ac9df","web":"1:288333512846:web:47ebc197c3be002c3ac9df","windows":"1:288333512846:web:a2f47afc637def563ac9df"}}}}}}

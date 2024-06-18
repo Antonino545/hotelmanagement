@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -86,4 +83,16 @@ class DefaultFirebaseOptions {
     iosClientId: '288333512846-9q2e54sok99ht3gviki4bmh7qfrlnngr.apps.googleusercontent.com',
     iosBundleId: 'com.antoninoincorvaia.hotelmanagement',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBgKtoSOiOlNIg6Hax5dvNlDuUPbu93YuA',
+    appId: '1:288333512846:web:a2f47afc637def563ac9df',
+    messagingSenderId: '288333512846',
+    projectId: 'hotel-management-9a530',
+    authDomain: 'hotel-management-9a530.firebaseapp.com',
+    databaseURL: 'https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'hotel-management-9a530.appspot.com',
+    measurementId: 'G-ZW43NLN9FE',
+  );
+
 }

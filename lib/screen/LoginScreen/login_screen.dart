@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/input.dart';
 import 'package:hotelmanagement/components/login.dart';
-import 'package:hotelmanagement/screen/loginScreen/forgot_password_screen.dart';
-import 'package:hotelmanagement/screen/loginScreen/sing_up_screen.dart';
+import 'package:hotelmanagement/screen/LoginScreen/forgot_password_screen.dart';
+import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 
 // ignore: camel_case_types
 class Login extends StatefulWidget {
