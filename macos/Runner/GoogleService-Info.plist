@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:288333512846:ios:3b9976255d7e90e43ac9df</string>
+	<string>1:288333512846:ios:faeeeeb0f01f3f6d3ac9df</string>
 	<key>DATABASE_URL</key>
 	<string>https://hotel-management-9a530-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>

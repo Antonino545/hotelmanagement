@@ -11,4 +11,4 @@ PRODUCT_NAME = hotelmanagement
 PRODUCT_BUNDLE_IDENTIFIER = com.antoninoincorvaia.hotelmanagement
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 com.antoninoincorvaia. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 com.antoninoincorvaia. All rights reserved.

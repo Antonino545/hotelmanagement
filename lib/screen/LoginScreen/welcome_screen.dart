@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/screen/LoginScreen/sing_up_screen.dart';
 import 'package:hotelmanagement/screen/responsive/responsive.dart';
 import '../../components/login.dart';
@@ -63,42 +64,46 @@ class _WelcomeState extends State<Welcome> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(onPressed:() {
-                            if (kDebugMode) {
-                              print("Google");
-                            }
-                            if (isMobile(context))
-                              {
-                                signInWithGoogleIosAndroid();
-                              }
-                            else
-                              {signInWithGoogle();
-                              }
-                            postlogin(context);
-
-                          },
-                              icon:Image.asset("assets/google.png",height: 30,)
-                          ),
-                          IconButton(onPressed:() {
-                            if (kDebugMode) {
-                              print("Google");
-                            }
-                            if (isMobile(context))
-                            {
-                              signInWithFacebookIosAndroid();
-                            }
-                            else
-                            {signInWithFacebook();
-
-                            }
-                            postlogin(context);
-
-                          },
-                              icon:Image.asset("assets/Facebook.png",height: 30,)
-                          ),
+                          IconButton(
+                              onPressed: () {
+                                if (kDebugMode) {
+                                  print("Google");
+                                }
+                                try {
+                               
+                                if (!kIsWeb) {
+                                  signInWithGoogleIosAndroid();
+                                } else {
+                                  signInWithGoogle();
+                                }
+                                                                postlogin(context);
+                                postlogin(context);
+                                } catch (e) {
+                                  print(e);
+                                  alert(context, "Errore di autenticazione");                              }
+                              },
+                              icon: Image.asset(
+                                "assets/google.png",
+                                height: 30,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                if (kDebugMode) {
+                                  print("Google");
+                                }
+                                if (isMobile(context)) {
+                                  signInWithFacebookIosAndroid();
+                                } else {
+                                  signInWithFacebook();
+                                }
+                                postlogin(context);
+                              },
+                              icon: Image.asset(
+                                "assets/Facebook.png",
+                                height: 30,
+                              )),
                         ],
                       ),
-
                       Wrap(
                         children: [
                           TextButton(
@@ -111,7 +116,6 @@ class _WelcomeState extends State<Welcome> {
                           )
                         ],
                       ),
-
                     ],
                   ),
                 ),
