@@ -44,7 +44,7 @@ class _ListActualCustomerState extends State<ListActualCustomer> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot docSnap = snapshots.data!.docs[index];
                     // ignore: non_ant_identifier_names, non_constant_identifier_names
-                    DateTime Data = DateTime.parse(docSnap["DataDiInizio"]);
+                    DateTime Data = DateTime.parse(docSnap["startDate"]);
                     if (formatter.format(Data) == formatter.format(now)) {
                       return Slidable(
                           child: Column(children: [

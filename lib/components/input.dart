@@ -8,17 +8,23 @@ import 'package:flutter/services.dart';
 /// [controller] is the TextEditingController for the TextField.
 /// [obscureText] determines whether the TextField should obscure the text. Default is false.
 /// [isNumeric] determines whether the TextField should only accept numeric input. Default is false.
-inputText({required TextInputType textInput, required String label, required TextEditingController controller, bool obscureText = false, bool isNumeric = false}) {
+inputText(
+    {required TextInputType textInput,
+    required String label,
+    required TextEditingController controller,
+    bool obscureText = false,
+    bool isNumeric = false}) {
   return Padding(
     padding: const EdgeInsets.all(10),
     child: SizedBox(
       width: 500,
       height: 50,
       child: TextField(
-        inputFormatters: isNumeric ? [FilteringTextInputFormatter.digitsOnly] : [],
+        inputFormatters:
+            isNumeric ? [FilteringTextInputFormatter.digitsOnly] : [],
         decoration: InputDecoration(
           labelText: label,
-          hintText: "inserisci $label",
+          hintText: "Insert $label",
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
@@ -35,7 +41,8 @@ inputText({required TextInputType textInput, required String label, required Tex
 /// [label] is the label text for the TextField.
 /// [controller] is the TextEditingController for the TextField.
 /// The TextField is set to accept text input and not obscure the text.
-Widget defaultInputText({required String label, required TextEditingController controller}) {
+Widget defaultInputText(
+    {required String label, required TextEditingController controller}) {
   return inputText(
     textInput: TextInputType.text,
     label: label,
@@ -50,7 +57,8 @@ Widget defaultInputText({required String label, required TextEditingController c
 /// [label] is the label text for the TextField.
 /// [controller] is the TextEditingController for the TextField.
 /// The TextField is set to accept numeric input and not obscure the text.
-Widget defaultInputNumber({required String label, required TextEditingController controller}) {
+Widget defaultInputNumber(
+    {required String label, required TextEditingController controller}) {
   return inputText(
     textInput: TextInputType.number,
     label: label,

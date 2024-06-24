@@ -104,7 +104,7 @@ class _EditBookingState extends State<EditBooking> {
       'bookingCode': widget.bookingcode,
       'CognomePrenotazione': widget.cognomePrenotazione,
       'NomePrenotazione': widget.nomePrenotazione,
-      'DataDiInizio': widget.endDate.text,
+      'startDate': widget.endDate.text,
       'endDate': widget.endDate.text,
       'Npeople': widget.nPeople,
       'Price': widget.price.text,

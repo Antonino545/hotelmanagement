@@ -54,7 +54,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   height: 20,
                 ),
                 Text(
-                  "Inserisci la mail dell'account",
+                  "Insert la mail dell'account",
                   style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               ],

@@ -44,7 +44,7 @@ dependencies:
   google_sign_in: ^6.1.5
   page_transition: ^2.1.0
   syncfusion_flutter_datepicker: ^24.2.6
-
+  uuid: ^3.0.5
 dev_dependencies:
   flutter_lints: ^3.0.0
   flutter_test:

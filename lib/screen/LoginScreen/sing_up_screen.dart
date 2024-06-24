@@ -81,7 +81,7 @@ class _SingUpState extends State<SingUp> {
                                         ? Icons.visibility
                                         : Icons.visibility_off))),
                             labelText: "Password",
-                            hintText: "Inserisci la password",
+                            hintText: "Insert la password",
                             border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
@@ -111,7 +111,7 @@ class _SingUpState extends State<SingUp> {
                                         ? Icons.visibility
                                         : Icons.visibility_off))),
                             labelText: "Password",
-                            hintText: "Inserisci la password",
+                            hintText: "Insert la password",
                             border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),

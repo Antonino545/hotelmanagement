@@ -89,7 +89,7 @@ class AddCustomerState extends State<AddCustomer> {
                     Navigator.pop(context);
                     Navigator.pop(context);
                   } else {
-                    alert(context, "Inserisci i dati mancanti");
+                    alert(context, "Insert i dati mancanti");
                   }
                 }),
           ],

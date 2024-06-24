@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:hotelmanagement/components/AlertDialog.dart';
 import 'package:hotelmanagement/components/input.dart';
-
-// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:uuid/uuid.dart';
 import 'add_customer_screen.dart';
 
 class AddBooking extends StatefulWidget {
@@ -25,7 +24,14 @@ class _AddBookingState extends State<AddBooking> {
   var phoneNumberController = TextEditingController();
   var priceController = TextEditingController();
   var floorController = TextEditingController();
-
+  var emailController = TextEditingController();
+  var billingFirstNameController = TextEditingController();
+  var billingLastNameController = TextEditingController();
+  var billingAddressController = TextEditingController();
+  var billingCityController = TextEditingController();
+  var billingPostalCodeController = TextEditingController();
+  var billingCountryController = TextEditingController();
+  var taxCodeController = TextEditingController();
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   final DateFormat nomeFormatter = DateFormat('MM/yyyy');
 
@@ -33,94 +39,31 @@ class _AddBookingState extends State<AddBooking> {
   DateTime endDate = DateTime.now();
   String cognomeNonValido = "Cognome non valido";
   String parola = "";
-  int bookingCode = 0;
+  late String bookingCode;
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+    super.initState();
+    bookingCode = Uuid().v4(); // Genera un UUID casuale
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("")),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // ignore: prefer__ructors
-              const Text(
-                "Aggiungi Ospiti",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              defaultInputText(
-                label: "Booking First Name",
-                controller: bookingFirstNameController,
-              ),
-
-              defaultInputText(
-                label: "Booking Last Name",
-                controller: bookingLastNameController,
-              ),
-
-              defaultInputNumber(
-                label: "Number of Guests",
-                controller: guestNumberController,
-              ),
-
-              defaultInputNumber(
-                label: "Stay Cost",
-                controller: priceController,
-              ),
-
-              defaultInputNumber(
-                label: "Phone Number",
-                controller: phoneNumberController,
-              ),
-              defaultInputText(
-                label: "Floor or Room Number",
-                controller: floorController,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: OutlinedButton(
-                  onPressed: () {
-                    alertDataRange(
-                        context, "inserire data di inizio e fine soggiorno");
-                  },
-                  child: const Text("inserire date del soggiorno"),
-                ),
-              ),
-              defaultInputNumber(
-                label: "Costo soggiorno",
-                controller: priceController,
-              ),
-
-              defaultInputNumber(
-                label: "Numero Di Telefono",
-                controller: phoneNumberController,
-              ),
-
-              defaultInputText(
-                label: "Piano o Numero di stanza",
-                controller: floorController,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: _addBooking,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+  void dispose() {
+    bookingLastNameController.dispose();
+    bookingFirstNameController.dispose();
+    guestNumberController.dispose();
+    phoneNumberController.dispose();
+    priceController.dispose();
+    floorController.dispose();
+    emailController.dispose();
+    billingFirstNameController.dispose();
+    billingLastNameController.dispose();
+    billingAddressController.dispose();
+    billingCityController.dispose();
+    billingPostalCodeController.dispose();
+    billingCountryController.dispose();
+    taxCodeController.dispose();
+    super.dispose();
   }
 
   void _addBooking() async {
@@ -129,24 +72,13 @@ class _AddBookingState extends State<AddBooking> {
     }
 
     final User? user = FirebaseAuth.instance.currentUser;
-    final collection = FirebaseFirestore.instance.collection('users');
-    final docSnapshot = await collection.doc(user?.uid).get();
-
-    if (docSnapshot.exists) {
-      final Map<String, dynamic>? data = docSnapshot.data();
-      bookingCode = data?['bookingCode'];
-    }
-
-    await collection
-        .doc(user?.uid)
-        .update({"bookingCode": FieldValue.increment(1)});
 
     await addDataFamigli();
 
     for (int i = 0; i < int.parse(guestNumberController.text); i++) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) =>
-              AddCustomer(bookingcode: bookingCode.toString())));
+              AddCustomer(bookingcode: bookingCode)));
     }
 
     _clearControllers();
@@ -170,7 +102,6 @@ class _AddBookingState extends State<AddBooking> {
 
     return false;
   }
-
 
   void _clearControllers() {
     guestNumberController.clear();
@@ -228,16 +159,118 @@ class _AddBookingState extends State<AddBooking> {
         .collection('Date')
         .doc(user?.uid)
         .collection("booking")
-        .doc(bookingCode.toString())
+        .doc(bookingCode)
         .set({
-      'bookingCode': bookingCode,
       'CognomePrenotazione': bookingLastNameController.text,
       'NomePrenotazione': bookingFirstNameController.text,
-      'DataDiInizio': formatter.format(dataInzio),
+      'startDate': formatter.format(dataInzio),
       'endDate': formatter.format(endDate),
       'Npeople': int.parse(guestNumberController.text),
       'Price': int.parse(priceController.text),
       'Floor': floorController.text,
     });
+  }
+
+  Widget sectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Gestione Hotel")),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "Aggiungi Ospiti",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              sectionHeader("Informazioni di Prenotazione"),
+              defaultInputText(
+                label: "Booking First Name",
+                controller: bookingFirstNameController,
+              ),
+              defaultInputText(
+                label: "Booking Last Name",
+                controller: bookingLastNameController,
+              ),
+              defaultInputNumber(
+                label: "Number of Guests",
+                controller: guestNumberController,
+              ),
+              defaultInputNumber(
+                label: "Stay Cost",
+                controller: priceController,
+              ),
+              defaultInputNumber(
+                label: "Phone Number",
+                controller: phoneNumberController,
+              ),
+              defaultInputText(label: "Email", controller: emailController),
+              defaultInputText(
+                label: "Floor or Room Number",
+                controller: floorController,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: OutlinedButton(
+                  onPressed: () {
+                    alertDataRange(
+                        context, "Inserire data di inizio e fine soggiorno");
+                  },
+                  child: const Text("Date del soggiorno"),
+                ),
+              ),
+              sectionHeader("Dati di Fatturazione"),
+              defaultInputText(
+                label: "Billing First Name",
+                controller: billingFirstNameController,
+              ),
+              defaultInputText(
+                label: "Billing Last Name",
+                controller: billingLastNameController,
+              ),
+              defaultInputText(
+                label: "Billing Address",
+                controller: billingAddressController,
+              ),
+              defaultInputText(
+                label: "Billing City",
+                controller: billingCityController,
+              ),
+              defaultInputText(
+                label: "Billing Postal Code",
+                controller: billingPostalCodeController,
+              ),
+              defaultInputText(
+                label: "Billing Country",
+                controller: billingCountryController,
+              ),
+              defaultInputText(
+                label: "Tax Code / VAT Number",
+                controller: taxCodeController,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: _addBooking,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

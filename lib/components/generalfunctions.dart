@@ -5,12 +5,23 @@ navigationpage({page, context}) {
       .push(MaterialPageRoute(builder: (context) => page()));
 }
 
-textCard(docSnap, String text, String doc) {
+
+Widget textCard(var docSnap, String text, String doc, [String symbol = '']) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        Text(text + docSnap[doc].toString()),
+        Text(text + docSnap[doc].toString() + symbol),
+      ],
+    ),
+  );
+}
+Widget textCard2(String text, String doc, [String symbol = '']) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Text(text + doc + symbol),
       ],
     ),
   );

@@ -19,7 +19,7 @@ class ListBooking extends StatefulWidget {
 
 class _ListBookingState extends State<ListBooking> {
   String cognomePrenotazione = "";
-
+  double priceForDay=1;
   User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
@@ -99,6 +99,13 @@ class _ListBookingState extends State<ListBooking> {
                                 floorCtrl.text = docSnap["Floor"];
                                 endDateCtrl.text = docSnap["endDate"];
                                 startDateCtrl.text = docSnap["startDate"];
+                                // Calculate the difference in daysù
+                                DateTime startDate =
+                                    DateTime.parse(startDateCtrl.text);
+                                DateTime endDate =
+                                    DateTime.parse(endDateCtrl.text);
+                                int days = endDate.difference(startDate).inDays;
+                                priceForDay = docSnap["Price"] / days;
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => EditBooking(
                                           bookingcode: docSnap["bookingCode"],
@@ -126,9 +133,10 @@ class _ListBookingState extends State<ListBooking> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // ignore: prefer_interpolation_to_compose_strings
-                                Text("${"Nome e cognome Prenotazione: " +
-                                    docSnap["NomePrenotazione"]} " +
-                                    docSnap["CognomePrenotazione"]),
+                                Text(
+                                    // ignore: prefer_interpolation_to_compose_strings
+                                    "${"Name: " + docSnap["NomePrenotazione"]} " +
+                                        docSnap["CognomePrenotazione"]),
                               ],
                             ),
                           ),
@@ -136,19 +144,18 @@ class _ListBookingState extends State<ListBooking> {
                             icon: const Icon(Icons.person),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ListCustomer(
-                                        bookingCode:
-                                            docSnap["bookingCode"].toString(),
-                                      )));
+                                  builder: (context) =>
+                                      ListCustomer(bookingCode: docSnap.id)));
                             },
                           ),
                         ),
                         textCard(docSnap, "Floor:", "Floor"),
-                        textCard(docSnap, "Data di inizio soggiorno:",
-                            "DataDiInizio"),
-                        textCard(docSnap, "Data di Fine soggiorno:", "endDate"),
-                        textCard(docSnap, "Numero di persone: ", "Npeople"),
-                        textCard(docSnap, "Price Soggiorno: ", "Price"),
+                        textCard(docSnap, "Start Date:", "startDate"),
+                        textCard(docSnap, "End Date:", "endDate"),
+                        textCard(docSnap, "Number of People: ", "Npeople"),
+                        textCard(docSnap, "Price Soggiorno: ", "Price", "€"),
+                        textCard2(
+                            "Price per Day: ", priceForDay.toString(), "€"),
                       ])),
                     );
                   });
